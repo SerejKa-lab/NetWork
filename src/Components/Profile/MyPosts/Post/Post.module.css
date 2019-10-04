@@ -1,11 +1,38 @@
 .item {
     background-color: rgba(5, 255, 243, 0.4);
-    width           : 300px;
+    width           : 550px;
     border          : 1px solid black;
-    margin: 10px;
+    margin          : 15px;
 }
 
 .item img {
     width        : 50px;
     border-radius: 20%;
+}
+
+.item span {
+
+    font-family: 'Courier New', Courier, monospace;
+    font-style : italic;
+    color      : darkmagenta
+}
+
+.like {
+    position: relative;
+    left    : 95%;
+    top: 10px;
+}
+
+.like span {
+    position   : relative;
+    right      : 2%;
+    botton: 0%;
+    font-size  : 15px;
+    font-weight: bold;
+    color   : rgb(199, 46, 67);
+
+}
+
+.like img {
+    width: 35px;
 }
