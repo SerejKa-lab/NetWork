@@ -1,0 +1,11 @@
+.item {
+    background-color: rgba(5, 255, 243, 0.4);
+    width           : 300px;
+    border          : 1px solid black;
+    margin: 10px;
+}
+
+.item img {
+    width        : 50px;
+    border-radius: 20%;
+}
