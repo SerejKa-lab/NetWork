@@ -3,10 +3,10 @@
   background-color: rgb(89, 155, 18);
 }
 
-.item a {
+.item {
   color: azure;
 }
 
-.item.active a {
+.item.active {
   color: rgba(249, 253, 18, 0.952);
 }

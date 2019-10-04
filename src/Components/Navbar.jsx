@@ -5,19 +5,19 @@ const Navbar = () => {
     return (
         <nav className={style.nav}>
             <div className={`${style.item} ${style.active}`}>
-                <a href='#yandex'>Profile</a>
+                <a>Profile</a>
             </div>
             <div className={style.item}>
                 <a href=''>Messages</a>
             </div>
             <div className={style.item}>
-                <a href=''>News</a>
+                <a href='https://yandex.by'>News</a>
             </div>
             <div className={style.item}>
-                <a href=''>Music</a>
+                <a href='https://yandex.by'>Music</a>
             </div>
             <div className={style.item}>
-                <a href=''>Settings</a>
+                <a>Settings</a>
             </div>
         </nav>
     )
