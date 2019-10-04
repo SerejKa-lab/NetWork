@@ -1,0 +1,15 @@
+
+  
+  .app-wraper {
+    display: grid;
+    width: 1200px;
+    margin: 0 auto;
+
+  
+  grid-template-areas:
+  "h h"
+  "n c";
+  
+  grid-template-rows: 60ps 1fr;
+  grid-template-columns: 2fr 10fr;
+  }

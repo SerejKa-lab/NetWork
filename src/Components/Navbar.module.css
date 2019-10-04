@@ -1,0 +1,12 @@
+.nav {
+  grid-area       : n;
+  background-color: rgb(89, 155, 18);
+}
+
+.item a {
+  color: azure;
+}
+
+.item.active a {
+  color: rgba(249, 253, 18, 0.952);
+}
