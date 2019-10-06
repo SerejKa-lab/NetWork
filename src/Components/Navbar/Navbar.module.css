@@ -3,10 +3,13 @@
   background-color: rgb(126, 189, 231);
 }
 
-.item {
-  color: azure;
+.item a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  padding: 10px;
+  font-size: 17px;
 }
 
-.item.active {
-  color: rgba(249, 253, 18, 0.952);
+.item a.active {
+  color: rgba(251, 255, 20, 0.952);
 }
