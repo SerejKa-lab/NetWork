@@ -1,22 +1,27 @@
 .dialogs {
-    padding: 10px;
-    display: grid;
+    padding              : 10px;
+    display              : grid;
     grid-template-columns: 1fr 5fr;
 
 }
 
-.conversationNames {
-    background-color: rgba(255, 235, 205, 0.3) 
+.dialogNames {
+    padding-left: 10px;
 }
 
 .name {
+    margin: 5px 0px;
+}
 
+.active {
+    color: rgba(251, 255, 20, 0.952);
+    margin: 5px 0px;
 }
 
 .conversations {
-
+    padding-left: 10px;
 }
 
 .conversation {
-
+    margin: 5px 0px;
 }

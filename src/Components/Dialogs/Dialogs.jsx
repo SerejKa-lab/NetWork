@@ -4,8 +4,8 @@ import style from './Dialogs.module.css';
 const Dialogs = () => {
     return (
         <div className={style.dialogs}>
-            <div className={style.conversationNames}>
-                <div className={style.name}>
+            <div className={style.dialogNames}>
+                <div className={style.active}>
                     ConversationName1
                </div>
                 <div className={style.name}>
@@ -19,16 +19,16 @@ const Dialogs = () => {
                </div>
             </div>
             <div className={style.conversations}>
-                <div>
+                <div className={style.conversation}>
                     Conversation1
                 </div>
-                <div>
+                <div className={style.conversation}>
                     Conversation2
                 </div>
-                <div>
+                <div className={style.conversation}>
                     Conversation3
                 </div>
-                <div>
+                <div className={style.conversation}>
                     Conversation4
                 </div>
             </div>
