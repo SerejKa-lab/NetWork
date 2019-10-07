@@ -1,0 +1,22 @@
+.dialogs {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+
+}
+
+.conversationNames {
+    background-color: rgba(255, 235, 205, 0.3) 
+}
+
+.name {
+
+}
+
+.conversations {
+
+}
+
+.conversation {
+
+}
