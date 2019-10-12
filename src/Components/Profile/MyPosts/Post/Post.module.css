@@ -2,7 +2,7 @@
     background-color: rgba(5, 255, 243, 0.4);
     width           : 550px;
     border          : 1px solid black;
-    margin          : 15px;
+    margin          : 15px 0px;
 }
 
 .item img {
@@ -16,6 +16,7 @@
     font-style : italic;
     color      : darkmagenta
 }
+
 
 .like {
     position: relative;

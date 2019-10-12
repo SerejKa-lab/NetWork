@@ -1,3 +1,15 @@
-.active {
-    color: whitesmoke;
+.posts {
+    padding: 15px;
+}
+
+.posts div {
+    border-radius: 10px;
+}
+
+.myPosts {
+    padding: 5px 0px;
+}
+
+.newPost {
+    padding: 5px 0px;
 }
