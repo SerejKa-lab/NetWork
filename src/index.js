@@ -28,11 +28,25 @@ const postsData = [
     }
 ];
 
+const dialogNames = [
+    { name: 'Name1', id: 'n1', path: 'name1'},
+    { name: 'Name2', id: 'n2', path: 'name2'},
+    { name: 'Name3', id: 'n3', path: 'name3'},
+    { name: 'Name4', id: 'n4', path: 'name4'},
+    { name: 'Name5', id: 'n5', path: 'name5'}
+];
+
+const messageText = [
+    {text: 'Message1', id: 'm1', path: 'message1'},
+    {text: 'Message2', id: 'm2', path: 'message2'},
+    {text: 'Message3', id: 'm3', path: 'message3'},
+    {text: 'Message4', id: 'm4', path: 'message4'},
+    {text: 'Message5', id: 'm5', path: 'message5'}
+]
 
 
-ReactDOM.render(<App postsData = {postsData}/>, document.getElementById('root'));
+ReactDOM.render(<App postsData = {postsData} dialogNames = {dialogNames}
+                messageText = {messageText} />, 
+document.getElementById('root'));
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
