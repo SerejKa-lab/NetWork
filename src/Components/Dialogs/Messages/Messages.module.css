@@ -1,0 +1,17 @@
+
+.messages {
+    padding-left: 10px;
+}
+
+.message {
+    margin: 5px 0px;
+}
+
+.message a {
+    text-decoration: none;
+    color: white;
+}
+
+a.active {
+    color: rgba(251, 255, 20, 0.952);
+}

@@ -1,0 +1,17 @@
+.dialogNames {
+    padding-left: 10px;
+}
+
+.dialog {
+    margin: 5px 0px;
+}
+
+.dialog a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+
+}
+
+a.active {
+    color: rgba(251, 255, 20, 0.952);
+}
