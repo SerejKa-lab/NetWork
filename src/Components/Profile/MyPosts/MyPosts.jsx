@@ -2,7 +2,16 @@ import React from 'react';
 import style from './MyPosts.module.css';
 import Post from './Post/Post';
 
-const MyPosts = () => {
+const MyPosts = ({ postsData }) => {
+
+    let postComponent = postsData.map((post) => {
+        return (
+            <div key = {post.id}>
+                <Post {...post} />
+            </div>
+        )
+    })
+
     return (
         <div className={style.posts}>
             <div className={style.myPosts}>
@@ -11,9 +20,7 @@ const MyPosts = () => {
             <div className={style.newPost}>
                 New post
             </div>
-            <Post name='Yury' message='Hello! How are you' like='10' />
-            <Post name='Exibitor' message='Hi. I am fine. Thank you!' like='15' />
-            <Post name='Cultivator' message='Would you like a cup of tee?' like='17' />
+            {postComponent}
         </div>
     )
 }
