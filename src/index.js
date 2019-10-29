@@ -6,7 +6,6 @@ import * as serviceWorker from './serviceWorker';
 import state from './Redux/State'
 
 
-// Данные для отрисовки в постах профиля
 
 
 

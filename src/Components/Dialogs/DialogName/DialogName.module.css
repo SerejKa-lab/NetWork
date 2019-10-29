@@ -7,9 +7,19 @@
 }
 
 .dialog a {
+    display: flex;
+    align-items: center;
     text-decoration: none;
     color: rgb(255, 255, 255);
+    
+}
 
+.dialog a img {
+    height: 45px;
+    border: 1px solid royalblue;
+    border-radius: 35%;
+    background-color: salmon;
+    margin-right: 5px;
 }
 
 a.active {

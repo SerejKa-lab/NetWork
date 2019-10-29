@@ -7,10 +7,10 @@ const DialogName = ( {dialogNames} ) => {
 
     const namesArray = dialogNames.map( (el) => {
         let linkPath = '/dialogs/' + el.path;
-        
         return (
             <div className={style.dialog} key={el.id}>
-                <NavLink to={linkPath} activeClassName={style.active}>{el.name}</NavLink>
+                <NavLink to={linkPath} activeClassName={style.active}>
+                    <img src = { el.avatar } alt="Avatar"/> {el.name}</NavLink>
             </div>
         )
     }

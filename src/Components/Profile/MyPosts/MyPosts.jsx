@@ -12,13 +12,26 @@ const MyPosts = ({ postsData }) => {
         )
     })
 
+    let addPostRef = React.createRef();
+
+    let addPost = () => {
+        let newMessage = addPostRef.current.value;
+        alert(newMessage);
+    }
+
     return (
         <div className={style.posts}>
             <div className={style.myPosts}>
                 My posts
             </div>
             <div className={style.newPost}>
-                New post
+                <h2>New post</h2>
+                <div>
+                    <textarea ref = { addPostRef } name="newPost" id="newPost" cols="70" rows="3"></textarea>
+                </div>
+                <div>
+                    <button onClick = { addPost }>Add post</button>
+                </div>
             </div>
             {postComponent}
         </div>

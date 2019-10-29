@@ -1,17 +1,39 @@
-
 .messages {
     padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid grey;
+}
+
+.messages textarea,
+.messages button {
+    align-self: flex-start;
 }
 
 .message {
     margin: 5px 0px;
 }
 
-.message a {
-    text-decoration: none;
+.talker {
+    max-width: 50%;
+    min-width: 25%;
+    height: 35px;
+    border: 1px solid rgb(142, 142, 252);
+    border-radius: 5px;
+    margin: 5px;
     color: white;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
 }
 
-a.active {
-    color: rgba(251, 255, 20, 0.952);
+.talkerFirst {
+    align-self: flex-start;
+    background-color: rgba(236, 204, 20, 0.418);
 }
+
+.talkerSecond {
+    align-self: flex-end;
+    background-color: rgba(152, 165, 39, 0.507);
+}
+
