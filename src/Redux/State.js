@@ -1,4 +1,7 @@
 
+const ADD_POST = 'ADD-POST';
+const SET_POST_TEXT = 'SET_POST_TEXT';
+
 let store = {
 
     _state : {
@@ -54,34 +57,44 @@ let store = {
 
     },
 
+    // методы, не изменяющие state
     getState() {
         return this._state;
     },
 
-    addPost() {
-        let newPost = {
-            name: 'Kolya',
-            message: this._state.profilePage.postText,
-            like: '0',
-            id: 'Kolya',
-            profileImage: 'https://multik.online/wp-content/uploads/2019/07/1562444283_main_2x.jpg'
-        };
-        this._state.profilePage.postsData.push(newPost);
-        this._state.profilePage.postText = '';
-        this._callSubscriber(this._state);
-    },
-
-    setPostText(newPostText) {
-        this._state.profilePage.postText = newPostText;
-        this._callSubscriber(this._state);
-    },
-
     _callSubscriber () { console.log('no subcribers availiable') },
 
-    subscriber(observer) {
-        this._callSubscriber = observer
+    subscriber(observer) {                // экспортируем метод, в аргумент передается функция из "мира UI",
+        this._callSubscriber = observer   // которая выполняется всякий раз при изменении state
+    },
+
+    // dispatch - метод, объединяющий все методы, изменяющие state
+    dispatch( action ) {
+        if ( action.type === ADD_POST ) {
+            let newPost = {
+                name: 'Kolya',
+                message: this._state.profilePage.postText,
+                like: '0',
+                id: 'Kolya',
+                profileImage: 'https://multik.online/wp-content/uploads/2019/07/1562444283_main_2x.jpg'
+            };
+            this._state.profilePage.postsData.push(newPost);
+            this._state.profilePage.postText = '';
+            this._callSubscriber(this._state);
+        }
+        if ( action.type === SET_POST_TEXT ) {
+            this._state.profilePage.postText = action.newPostText;
+            this._callSubscriber(this._state);
+        }
+
     }
 }
+
+export const addPostCreator = () => ( { type: ADD_POST} );
+export const setPostTextCreator = ( newText ) => 
+    ( { type: SET_POST_TEXT, newPostText: newText } );
+
+
 export default store;
 
 //делаем store объектом window, чтобы можно было к нему обратиться в любой точке программы

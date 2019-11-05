@@ -1,8 +1,9 @@
 import React from 'react';
 import style from './MyPosts.module.css';
 import Post from './Post/Post';
+import { addPostCreator, setPostTextCreator } from '../../../Redux/State'
 
-const MyPosts = ({ postsData, addPost, postText, setPostText }) => {
+const MyPosts = ({ postsData, postText, dispatch }) => {
 
     let postComponent = postsData.map((post) => {
         return (
@@ -12,12 +13,25 @@ const MyPosts = ({ postsData, addPost, postText, setPostText }) => {
         )
     })
 
-
+    
     let PostRef = React.createRef();
 
     let onChangePostText = () => {
         let text = PostRef.current.value;
-        setPostText( text );
+        let action = setPostTextCreator( text );
+        dispatch( action );
+    }
+
+    let onAddPost = () => {
+        let action = addPostCreator();
+        dispatch( action );
+    }
+
+    let onKeyAddPost = (e) => {
+         if ( e.key === 'Enter' ) {
+             let action = addPostCreator();
+             dispatch( action );
+         }
     }
 
     return (
@@ -28,10 +42,15 @@ const MyPosts = ({ postsData, addPost, postText, setPostText }) => {
             {postComponent}
             <div className={style.newPost}>
                 <div>
-                    <textarea ref = { PostRef } onChange = { onChangePostText } value = { postText } cols="70" rows="3"></textarea>
+                    <textarea 
+                        ref = { PostRef } 
+                        value = { postText } 
+                        onChange = { onChangePostText }
+                        onKeyPress = { onKeyAddPost }
+                        cols="70" rows="3"></textarea>
                 </div>
                 <div>
-                    <button onClick = { addPost }>Add post</button>
+                    <button onClick = { onAddPost }>Add post</button>
                 </div>
             </div>
         </div>
