@@ -2,19 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import state, { subscriber, addPost, setPostText } from './Redux/State'
+import store from './Redux/State'
 
 
 
 let renderEntireTree = (state) => {
     ReactDOM.render(
-        <App state = {state} addPost = { addPost } setPostText ={ setPostText } />, 
+        <App 
+            state = { state } 
+            addPost = { store.addPost.bind( store ) } 
+            setPostText = { store.setPostText.bind( store ) } />, 
         document.getElementById('root')
     );
 };
 
-renderEntireTree( state );
+renderEntireTree( store.getState() );
 
-subscriber( renderEntireTree );
+store.subscriber( renderEntireTree );
 
 serviceWorker.unregister();
