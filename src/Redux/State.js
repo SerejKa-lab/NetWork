@@ -1,3 +1,6 @@
+
+let renderEntireTree;
+
 let state = {
     profilePage: {
         postsData: [
@@ -21,7 +24,8 @@ let state = {
                 name: 'EasyMan', message: 'Ok. Here it is!', like: '17', id: 'EasyMan',
                 profileImage: 'https://multik.online/wp-content/uploads/2019/07/1562444283_main_2x.jpg'
             }
-        ]
+        ],
+        postText: ''
     },
 
     dialogsPage: {
@@ -48,6 +52,28 @@ let state = {
         ]
     }
 
+}
+
+export const addPost = () => {
+    let newPost = {
+        name: 'Kolya',
+        message: state.profilePage.postText,
+        like: '0',
+        id: 'Kolya',
+        profileImage: 'https://multik.online/wp-content/uploads/2019/07/1562444283_main_2x.jpg'
+    };
+    state.profilePage.postsData.push( newPost );
+    state.profilePage.postText = '';
+    renderEntireTree(state);
+}
+
+export const setPostText = (newPostText) => {
+    state.profilePage.postText = newPostText;
+    renderEntireTree(state);
+}
+
+export const subscriber = ( observer ) => {
+    renderEntireTree = observer
 }
 
 export default state;
