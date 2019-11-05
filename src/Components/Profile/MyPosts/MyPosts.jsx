@@ -2,7 +2,7 @@ import React from 'react';
 import style from './MyPosts.module.css';
 import Post from './Post/Post';
 
-const MyPosts = ({ postsData }) => {
+const MyPosts = ({ postsData, addPost, postText, setPostText }) => {
 
     let postComponent = postsData.map((post) => {
         return (
@@ -12,28 +12,28 @@ const MyPosts = ({ postsData }) => {
         )
     })
 
-    let addPostRef = React.createRef();
 
-    let addPost = () => {
-        let newMessage = addPostRef.current.value;
-        alert(newMessage);
+    let PostRef = React.createRef();
+
+    let onChangePostText = () => {
+        let text = PostRef.current.value;
+        setPostText( text );
     }
 
     return (
         <div className={style.posts}>
             <div className={style.myPosts}>
-                My posts
+               <h2> My posts </h2>
             </div>
+            {postComponent}
             <div className={style.newPost}>
-                <h2>New post</h2>
                 <div>
-                    <textarea ref = { addPostRef } name="newPost" id="newPost" cols="70" rows="3"></textarea>
+                    <textarea ref = { PostRef } onChange = { onChangePostText } value = { postText } cols="70" rows="3"></textarea>
                 </div>
                 <div>
                     <button onClick = { addPost }>Add post</button>
                 </div>
             </div>
-            {postComponent}
         </div>
     )
 }
