@@ -90,8 +90,8 @@ let store = {
     }
 }
 
-export const addPostCreator = () => ( { type: ADD_POST} );
-export const setPostTextCreator = ( newText ) => 
+export const addPostActionCreator = () => ( { type: ADD_POST} );
+export const setPostTextActionCreator = ( newText ) => 
     ( { type: SET_POST_TEXT, newPostText: newText } );
 
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './MyPosts.module.css';
 import Post from './Post/Post';
-import { addPostCreator, setPostTextCreator } from '../../../Redux/State'
+import { addPostActionCreator, setPostTextActionCreator } from '../../../Redux/State'
 
 const MyPosts = ({ postsData, postText, dispatch }) => {
 
@@ -18,18 +18,18 @@ const MyPosts = ({ postsData, postText, dispatch }) => {
 
     let onChangePostText = () => {
         let text = PostRef.current.value;
-        let action = setPostTextCreator( text );
+        let action = setPostTextActionCreator( text );
         dispatch( action );
     }
 
     let onAddPost = () => {
-        let action = addPostCreator();
+        let action = addPostActionCreator();
         dispatch( action );
     }
 
     let onKeyAddPost = (e) => {
          if ( e.key === 'Enter' ) {
-             let action = addPostCreator();
+             let action = addPostActionCreator();
              dispatch( action );
          }
     }
