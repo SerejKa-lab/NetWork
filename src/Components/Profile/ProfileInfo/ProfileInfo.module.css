@@ -1,5 +1,9 @@
+.profileInfo {
+
+}
+
 .image img {
-    width: 800px;
+max-height: 400px;
 }
 
 .description {

@@ -29,7 +29,7 @@ const Messages = ({ dialogBox }) => {
         <div className={style.messages}>
             {messagesArray}
             <textarea ref = { inputText } cols="60" rows="3"></textarea>
-            <button onClick = { onAddClick } >Add message</button>
+            <button onClick = { onAddClick } >Send message</button>
         </div>
     )
 }
