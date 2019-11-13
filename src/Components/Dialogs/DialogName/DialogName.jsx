@@ -17,7 +17,7 @@ const DialogName = ( {dialogNames} ) => {
     )
 
     return (
-        <div className={style.dialogs}>
+        <div className={style.dialogNamesWrapper}>
             <div className={style.dialogNames}>
                 { namesArray }
             </div>

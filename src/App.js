@@ -13,12 +13,12 @@ import News from './Components/News/News';
 const App = (props) => {
     return (
         <BrowserRouter>
-            <div className='app-wraper'>
+            <div className ='app-wraper'>
                 <Header />
                 <Navbar />
-                <div className='content-wrapper'>
-                    <Route path='/dialogs'
-                        render={() => <Dialogs state={props.state.dialogsPage} />}
+                <div className ='content-wrapper'>
+                    <Route path ='/dialogs'
+                        render = { () => <Dialogs dialogsPage = {props.state.dialogsPage} dispatch = { props.dispatch } /> }
                     />
 
                     <Route path='/profile'
@@ -30,9 +30,9 @@ const App = (props) => {
                         }
                     />
 
-                    <Route path='/music' component={Music} />
-                    <Route path='/settings' component={Settings} />
-                    <Route path='/news' component={News} />
+                    <Route path = '/music' component={Music} />
+                    <Route path = '/settings' component={Settings} />
+                    <Route path = '/news' component={News} />
                 </div>
             </div>
         </BrowserRouter>

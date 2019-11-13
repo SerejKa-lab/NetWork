@@ -1,13 +1,13 @@
 import React from 'react';
 import style from './Messages.module.css';
+import { setNewMessageTextActionCreator, addMessageActionCreator } from '../../../Redux/State'
 
 
 
+const Messages = ({ newMessage, messages, dispatch, id }) => {
 
-const Messages = ({ dialogBox }) => {
-
-    let firstTalker = dialogBox[0].id;
-    const messagesArray = dialogBox.map((message) => {
+    let firstTalker = messages[0].id;
+    const messagesArray = messages.map((message) => {
 
         let messageStyle = (message.id === firstTalker) ?
             style.talker + ' ' + style.talkerFirst : `${style.talker} ${style.talkerSecond}`;
@@ -20,16 +20,32 @@ const Messages = ({ dialogBox }) => {
         )
     })
 
-    let inputText = React.createRef();
-    const onAddClick  = () => {
-        alert( inputText.current.value )
+    const addMessageOnClick  = () => {
+        let action = addMessageActionCreator( id );
+        dispatch( action );
+    }
+
+    const addMessageOnKey = (e) => {
+        if ( e.key === 'Enter' ) {
+            let action = addMessageActionCreator( id );
+            dispatch( action );
+        }
+    }
+
+    const enterNewMessage = (e) => {
+        let action = setNewMessageTextActionCreator( id, e.currentTarget.value );
+        dispatch(action);
     }
 
     return (
         <div className={style.messages}>
             {messagesArray}
-            <textarea ref = { inputText } cols="60" rows="3"></textarea>
-            <button onClick = { onAddClick } >Send message</button>
+            <textarea 
+                onChange = { enterNewMessage } 
+                onKeyPress = { addMessageOnKey }
+                value = { newMessage } 
+                cols="60" rows="3"></textarea>
+            <button onClick = { addMessageOnClick } >Send message</button>
         </div>
     )
 }

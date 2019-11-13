@@ -1,21 +1,34 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
 import style from './Dialogs.module.css';
 import DialogName from './DialogName/DialogName';
 import Messages from './Messages/Messages';
+import { Route } from 'react-router-dom';
 
 
 
 
-const Dialogs = (props) => {
-    
+const Dialogs = ( { dialogsPage, dispatch } ) => {
+
+    let dialogNamesMessages = dialogsPage.dialogNames.map( (name) => {
+        let path = '/dialogs/' + name.path;
+        return(
+            <Route path = { path }
+                    render = { () => <Messages 
+                            messages = { name.dialogs } 
+                            id = { name.id }  
+                            dispatch = { dispatch } 
+                            newMessage = { name.newMessage } /> }  
+            />
+        )
+    } )
+
     return (
-        <div className={style.dialogs}>
+        <div className = { style.dialogsWrapper }>
 
-            <DialogName dialogNames = {props.state.dialogNames} />
-            <Route path='/dialogs/name1'
-                render={() => <Messages dialogBox = {props.state.dialogBox} />}  />
-            
+            <DialogName dialogNames = { dialogsPage.dialogNames } />
+            { dialogNamesMessages }
+            {/* <Route path = '/dialogs'
+                    render = { () => <div>Please, choose a dialog of create a new one.</div>}   /> */}
         </div>
     )
 }
