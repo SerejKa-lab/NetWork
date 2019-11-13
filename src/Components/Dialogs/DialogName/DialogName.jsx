@@ -3,9 +3,9 @@ import style from './DialogName.module.css';
 import { NavLink } from 'react-router-dom';
 
 
-const DialogName = ( {dialogNames} ) => {
+const DialogName = ( { dialogsPage } ) => {
 
-    const namesArray = dialogNames.map( (el) => {
+    const namesArray = dialogsPage.map( (el) => {
         let linkPath = '/dialogs/' + el.path;
         return (
             <div className={style.dialog} key={el.id}>

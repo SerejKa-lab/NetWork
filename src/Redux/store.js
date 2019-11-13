@@ -31,8 +31,8 @@ let store = {
             postText: ''
         },
 
-        dialogsPage: {
-            dialogNames: [
+        dialogsPage: [
+            
                 { name: 'Name1', id: 'n1', path: 'name1', 
                 avatar: 'https://ds04.infourok.ru/uploads/ex/0c29/00150740-02eff148/hello_html_ff4df5c.png',
                 dialogs: [
@@ -109,7 +109,7 @@ let store = {
                     newMessage: ''
                 }
             ],
-        },
+        
         
         sideBar: {  }
     

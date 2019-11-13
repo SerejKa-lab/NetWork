@@ -9,7 +9,7 @@ import { Route } from 'react-router-dom';
 
 const Dialogs = ( { dialogsPage, dispatch } ) => {
 
-    let dialogNamesMessages = dialogsPage.dialogNames.map( (name) => {
+    let dialogNamesMessages = dialogsPage.map( (name) => {
         let path = '/dialogs/' + name.path;
         return(
             <Route path = { path }
@@ -25,7 +25,7 @@ const Dialogs = ( { dialogsPage, dispatch } ) => {
     return (
         <div className = { style.dialogsWrapper }>
 
-            <DialogName dialogNames = { dialogsPage.dialogNames } />
+            <DialogName dialogsPage = { dialogsPage } />
             { dialogNamesMessages }
             {/* <Route path = '/dialogs'
                     render = { () => <div>Please, choose a dialog of create a new one.</div>}   /> */}
