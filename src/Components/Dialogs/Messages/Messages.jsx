@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './Messages.module.css';
-import { setNewMessageTextActionCreator, addMessageActionCreator } from '../../../Redux/State'
+import { setNewMessageTextActionCreator, addMessageActionCreator } from '../../../Redux/dialogsReducer'
 
 
 
