@@ -122,7 +122,7 @@ let store = {
 
     _callSubscriber () { console.log('no subcribers availiable') },
 
-    subscriber(observer) {                // экспортируем метод, в аргумент передается функция из "мира UI",
+    subscribe (observer) {                // экспортируем метод, в аргумент передается функция из "мира UI",
         this._callSubscriber = observer   // которая выполняется всякий раз при изменении state
     },
 
