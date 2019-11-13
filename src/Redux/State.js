@@ -1,9 +1,6 @@
-
-const ADD_POST = 'ADD-POST';
-const SET_POST_TEXT = 'SET-POST-TEXT';
-const SET_NEW_MESSAGE_TEXT = 'SET-NEW-MESSAGE-TEXT';
-const ADD_MESSAGE = 'ADD-MESSAGE';
-
+import profileReducer from "./profileReducer";
+import dialogsReducer from "./dialogsReducer";
+import sideBarReducer from "./sideBarReducer";
 
 let store = {
 
@@ -12,23 +9,23 @@ let store = {
             postsData: [
                 {
                     name: 'Pavel', message: 'Hi. I am fine. Thank you!', like: '15', id: 'Pavel',
-                    profileImage: 'https://multik.online/wp-content/uploads/2019/07/1562444283_main_2x.jpg'
+                    profileImage: 'https://img3.goodfon.ru/original/1400x1050/7/b7/cvetok-lepestki-priroda-fon-1988.jpg'
                 },
                 {
                     name: 'Yuriy', message: 'Hello! How are you', like: '10', id: 'Yuriy',
-                    profileImage: 'https://multik.online/wp-content/uploads/2019/07/1562444283_main_2x.jpg'
+                    profileImage: 'https://img3.goodfon.ru/original/1400x1050/7/b7/cvetok-lepestki-priroda-fon-1988.jpg'
                 },
                 {
                     name: 'Katya', message: 'Would you like a cup of tee?', like: '17', id: 'Katya',
-                    profileImage: 'https://multik.online/wp-content/uploads/2019/07/1562444283_main_2x.jpg'
+                    profileImage: 'https://img3.goodfon.ru/original/1400x1050/7/b7/cvetok-lepestki-priroda-fon-1988.jpg'
                 },
                 {
                     name: 'Masha', message: "No, i'd like a glass of juice.", like: '17', id: 'Masha',
-                    profileImage: 'https://multik.online/wp-content/uploads/2019/07/1562444283_main_2x.jpg'
+                    profileImage: 'https://img3.goodfon.ru/original/1400x1050/7/b7/cvetok-lepestki-priroda-fon-1988.jpg'
                 },
                 {
                     name: 'EasyMan', message: 'Ok. Here it is!', like: '17', id: 'EasyMan',
-                    profileImage: 'https://multik.online/wp-content/uploads/2019/07/1562444283_main_2x.jpg'
+                    profileImage: 'https://img3.goodfon.ru/original/1400x1050/7/b7/cvetok-lepestki-priroda-fon-1988.jpg'
                 }
             ],
             postText: ''
@@ -112,7 +109,9 @@ let store = {
                     newMessage: ''
                 }
             ],
-        }
+        },
+        
+        sideBar: {  }
     
     },
 
@@ -129,54 +128,12 @@ let store = {
 
     // dispatch - метод, объединяющий все методы, изменяющие state
     dispatch( action ) {
-        if ( action.type === ADD_POST ) {
-            let newPost = {
-                name: 'Kolya',
-                message: this._state.profilePage.postText,
-                like: '0',
-                id: 'Kolya',
-                profileImage: 'https://multik.online/wp-content/uploads/2019/07/1562444283_main_2x.jpg'
-            };
-            this._state.profilePage.postsData.push(newPost);
-            this._state.profilePage.postText = '';
-            this._callSubscriber(this._state);
-        }
-        if ( action.type === SET_POST_TEXT ) {
-            this._state.profilePage.postText = action.newPostText;
-            this._callSubscriber(this._state);
-        }
-        if ( action.type === SET_NEW_MESSAGE_TEXT ){
-            this._state.dialogsPage.dialogNames.forEach( (name) => {
-                if ( action.id === name.id ) {
-                   name.newMessage = action.newMessageText;
-                   this._callSubscriber(this._state);
-                }
-            } ) 
-            
-        }
-        if ( action.type === ADD_MESSAGE ){
-            this._state.dialogsPage.dialogNames.forEach( (name) => {
-                if ( action.id === name.id && name.newMessage !== '' ) {
-                    let newMessage = {
-                        text: name.newMessage,
-                        id: 'm2'
-                    };
-                   name.dialogs.push(newMessage);
-                   name.newMessage = '';
-                   this._callSubscriber(this._state);
-                }
-            } ) 
-        }
-
+        profileReducer( this._state.profilePage, action );
+        dialogsReducer( this._state.dialogsPage, action );
+        sideBarReducer( this._state.sideBar, action );
+        this._callSubscriber(this._state);
     }
 }
-
-export const setNewMessageTextActionCreator = ( nameId, newMessageText ) => 
-    ( { type: SET_NEW_MESSAGE_TEXT, id: nameId, newMessageText: newMessageText } )
-export const addMessageActionCreator = ( nameId ) => ( { type: ADD_MESSAGE, id: nameId } );
-export const addPostActionCreator = () => ({ type: ADD_POST });
-export const setPostTextActionCreator = (newText) =>
-        ({ type: SET_POST_TEXT, newPostText: newText });
 
 
 export default store;
