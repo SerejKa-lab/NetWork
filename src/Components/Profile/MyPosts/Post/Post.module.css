@@ -1,5 +1,5 @@
 .item {
-    background-color: rgba(5, 255, 243, 0.4);
+    background-color: rgba(24, 177, 149, 0.27);
     width           : 550px;
     border          : 1px solid black;
     margin          : 15px 0px;
@@ -14,7 +14,7 @@
 
     font-family: 'Courier New', Courier, monospace;
     font-style : italic;
-    color      : darkmagenta
+    color      : rgb(66, 66, 16);
 }
 
 
