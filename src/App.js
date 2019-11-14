@@ -10,7 +10,7 @@ import Settings from './Components/Settings/Settings';
 import News from './Components/News/News';
 
 
-const App = (props) => {
+const App = ({ store }) => {
     return (
         <BrowserRouter>
             <div className ='app-wraper'>
@@ -18,15 +18,12 @@ const App = (props) => {
                 <Navbar />
                 <div className ='content-wrapper'>
                     <Route path ='/dialogs'
-                        render = { () => <Dialogs dialogsPage = {props.state.dialogsPage} dispatch = { props.dispatch } /> }
+                        render = { () => <Dialogs store = { store } /> }
                     />
 
                     <Route path='/profile'
                         render={
-                            () => <Profile
-                                postsData = { props.state.profilePage.postsData }
-                                postText = { props.state.profilePage.postText }
-                                dispatch = { props.dispatch } />
+                            () => <Profile store = { store } />
                         }
                     />
 

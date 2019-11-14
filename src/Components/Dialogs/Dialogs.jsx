@@ -7,7 +7,10 @@ import { Route } from 'react-router-dom';
 
 
 
-const Dialogs = ( { dialogsPage, dispatch } ) => {
+const Dialogs = ( { store } ) => {
+
+    const dialogsPage = store.getState().dialogsPage;
+    const { dispatch } = store;
 
     let dialogNamesMessages = dialogsPage.map( (name) => {
         let path = '/dialogs/' + name.path;

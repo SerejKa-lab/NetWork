@@ -1,9 +1,8 @@
 import React from 'react';
 import style from './MyPosts.module.css';
 import Post from './Post/Post';
-import { addPostActionCreator, setPostTextActionCreator } from '../../../Redux/profileReducer'
 
-const MyPosts = ({ postsData, postText, dispatch }) => {
+const MyPosts = ({ postsData, postText, ChangePostText, ClickAddPost, KeyAddPost }) => {
 
     let postComponent = postsData.map((post) => {
         return (
@@ -18,19 +17,16 @@ const MyPosts = ({ postsData, postText, dispatch }) => {
 
     let onChangePostText = () => {
         let text = PostRef.current.value;
-        let action = setPostTextActionCreator( text );
-        dispatch( action );
+        ChangePostText(text);
     }
 
     let onAddPost = () => {
-        let action = addPostActionCreator();
-        dispatch( action );
+        ClickAddPost();
     }
 
     let onKeyAddPost = (e) => {
          if ( e.key === 'Enter' ) {
-             let action = addPostActionCreator();
-             dispatch( action );
+            KeyAddPost();
          }
     }
 
