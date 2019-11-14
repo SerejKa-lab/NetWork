@@ -7,10 +7,10 @@ import { Route } from 'react-router-dom';
 
 
 
-const Dialogs = ( { store } ) => {
+const Dialogs = ( props ) => {
 
-    const dialogsPage = store.getState().dialogsPage;
-    const { dispatch } = store;
+    const { dialogsPage} = props;
+    const {setNewMessage, addMessageKey, addMessageClick } = props;
 
     let dialogNamesMessages = dialogsPage.map( (name) => {
         let path = '/dialogs/' + name.path;
@@ -19,8 +19,10 @@ const Dialogs = ( { store } ) => {
                     render = { () => <Messages 
                             messages = { name.dialogs } 
                             id = { name.id }  
-                            dispatch = { dispatch } 
-                            newMessage = { name.newMessage } /> }  
+                            newMessage = { name.newMessage }
+                            setNewMessage = { setNewMessage }
+                            addMessageKey = { addMessageKey }
+                            addMessageClick = { addMessageClick } /> }  
             />
         )
     } )

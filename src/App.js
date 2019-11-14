@@ -4,10 +4,10 @@ import './App.css';
 import Header from './Components/Header/Header';
 import Navbar from './Components/Navbar/Navbar';
 import Profile from './Components/Profile/Profile';
-import Dialogs from './Components/Dialogs/Dialogs';
 import Music from './Components/Music/Music';
 import Settings from './Components/Settings/Settings';
 import News from './Components/News/News';
+import DialogsContainer from './Components/Dialogs/DialogsContainer';
 
 
 const App = ({ store }) => {
@@ -18,7 +18,7 @@ const App = ({ store }) => {
                 <Navbar />
                 <div className ='content-wrapper'>
                     <Route path ='/dialogs'
-                        render = { () => <Dialogs store = { store } /> }
+                        render = { () => <DialogsContainer store = { store } /> }
                     />
 
                     <Route path='/profile'

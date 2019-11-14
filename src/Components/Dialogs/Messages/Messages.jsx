@@ -1,12 +1,14 @@
 import React from 'react';
 import style from './Messages.module.css';
-import { setNewMessageTextActionCreator, addMessageActionCreator } from '../../../Redux/dialogsReducer'
 
 
 
-const Messages = ({ newMessage, messages, dispatch, id }) => {
+const Messages = ( props ) => {
 
-    let firstTalker = messages[0].id;
+    const { id, newMessage, messages} = props;
+    const {setNewMessage, addMessageClick, addMessageKey } = props;
+
+    const firstTalker = messages[0].id;
     const messagesArray = messages.map((message) => {
 
         let messageStyle = (message.id === firstTalker) ?
@@ -21,20 +23,18 @@ const Messages = ({ newMessage, messages, dispatch, id }) => {
     })
 
     const addMessageOnClick  = () => {
-        let action = addMessageActionCreator( id );
-        dispatch( action );
+        addMessageClick ( id );
     }
 
     const addMessageOnKey = (e) => {
         if ( e.key === 'Enter' ) {
-            let action = addMessageActionCreator( id );
-            dispatch( action );
+            addMessageKey( id );
         }
     }
 
     const enterNewMessage = (e) => {
-        let action = setNewMessageTextActionCreator( id, e.currentTarget.value );
-        dispatch(action);
+        setNewMessage( id, e.currentTarget.value );
+       
     }
 
     return (
