@@ -3,7 +3,7 @@ import { addPostActionCreator, setPostTextActionCreator } from '../../../Redux/p
 import MyPosts from './MyPosts';
 
 const MyPostsContainer = ({ store }) => {
-
+    
     const { postsData, postText } = store.getState().profilePage;
     const { dispatch } = store;
 
@@ -21,7 +21,7 @@ const MyPostsContainer = ({ store }) => {
         let action = addPostActionCreator();
         dispatch( action );
     }
-    debugger;
+   
     return (
         <MyPosts 
             postText = { postText } 
