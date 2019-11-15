@@ -23,17 +23,17 @@ const Messages = ( props ) => {
     })
 
     const addMessageOnClick  = () => {
-        addMessageClick ();
+        addMessageClick ( id );
     }
 
     const addMessageOnKey = (e) => {
         if ( e.key === 'Enter' ) {
-            addMessageKey();
+            addMessageKey( id );
         }
     }
 
     const enterNewMessage = (e) => {
-        setNewMessage( e.currentTarget.value );
+        setNewMessage( id, e.currentTarget.value );
        
     }
 

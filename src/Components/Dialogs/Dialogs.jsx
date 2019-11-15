@@ -2,24 +2,27 @@ import React from 'react';
 import style from './Dialogs.module.css';
 import DialogName from './DialogName/DialogName';
 import { Route } from 'react-router-dom';
-import MessagesContainer from './Messages/MessagesContainer';
+import Messages from './Messages/Messages';
 
 
 
 
 const Dialogs = ( props ) => {
 
-    const { dialogsPage, store } = props;
+    const { dialogsPage } = props;
+    const { addMessageClick, addMessageKey, setNewMessage } = props;
 
     let dialogNamesMessages = dialogsPage.map( (name) => {
         let path = '/dialogs/' + name.path;
         return(
             <Route path = { path }
-                    render = { () => <MessagesContainer 
-                            store = { store }
+                    render = { () => <Messages 
                             messages = { name.dialogs } 
                             id = { name.id }  
-                            newMessage = { name.newMessage } /> }  
+                            newMessage = { name.newMessage }
+                            addMessageClick = { addMessageClick }
+                            addMessageKey = { addMessageKey }
+                            setNewMessage = { setNewMessage } /> }  
             />
         )
     } )
