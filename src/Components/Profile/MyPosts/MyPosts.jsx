@@ -43,7 +43,7 @@ const MyPosts = ({ postsData, postText, ChangePostText, ClickAddPost, KeyAddPost
                         value = { postText } 
                         onChange = { onChangePostText }
                         onKeyPress = { onKeyAddPost }
-                        cols="70" rows="3"></textarea>
+                        cols="75" rows="3"></textarea>
                 </div>
                 <div>
                     <button onClick = { onAddPost }>Add post</button>
