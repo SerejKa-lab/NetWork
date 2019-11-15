@@ -9,11 +9,11 @@ const Messages = ( props ) => {
     const {setNewMessage, addMessageClick, addMessageKey } = props;
 
     const firstTalker = messages[0].id;
+    
     const messagesArray = messages.map((message) => {
 
         let messageStyle = (message.id === firstTalker) ?
             style.talker + ' ' + style.talkerFirst : `${style.talker} ${style.talkerSecond}`;
-
 
         return (
             <div className={messageStyle} key={message.id}>
@@ -23,17 +23,17 @@ const Messages = ( props ) => {
     })
 
     const addMessageOnClick  = () => {
-        addMessageClick ( id );
+        addMessageClick ();
     }
 
     const addMessageOnKey = (e) => {
         if ( e.key === 'Enter' ) {
-            addMessageKey( id );
+            addMessageKey();
         }
     }
 
     const enterNewMessage = (e) => {
-        setNewMessage( id, e.currentTarget.value );
+        setNewMessage( e.currentTarget.value );
        
     }
 
