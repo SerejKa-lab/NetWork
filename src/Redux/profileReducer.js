@@ -33,24 +33,28 @@ let initialState = {
 }
 
 const profileReducer = (state = initialState, action) => {
+    debugger;
     switch (action.type) { 
-        case ADD_POST:  
-            let newPost = {
-                name: 'Kolya',
-                message: state.postText,
-                like: '0',
-                id: 'Kolya',
-                profileImage: 'https://img3.goodfon.ru/original/1400x1050/7/b7/cvetok-lepestki-priroda-fon-1988.jpg',
-                likesImage: 'https://i.pinimg.com/474x/db/3a/bb/db3abbe34ca1a4568b408971cf4621ba.jpg'
-            };
-            state.postText = '';
-            state.postsData.push(newPost);
-            return state;
+        case ADD_POST:
+            if ( state.postText.trim() !== '' ) {  
+                let newPost = {
+                    name: 'Kolya',
+                    message: state.postText,
+                    like: '0',
+                    id: 'Kolya',
+                    profileImage: 'https://img3.goodfon.ru/original/1400x1050/7/b7/cvetok-lepestki-priroda-fon-1988.jpg',
+                    likesImage: 'https://i.pinimg.com/474x/db/3a/bb/db3abbe34ca1a4568b408971cf4621ba.jpg'
+                };
+                state.postText = '';
+                state.postsData.push(newPost);
+                return state;
+            }
     
-        case SET_POST_TEXT:   
-            state.postText = action.newPostText;
-            return state;
-       
+        case SET_POST_TEXT:
+            if ( action.newPostText !== undefined ) {   
+                state.postText = action.newPostText;
+                return state;
+            }
 
         default: return state;
 }

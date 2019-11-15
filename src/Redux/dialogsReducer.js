@@ -85,7 +85,7 @@ const dialogsReducer = (state = initialState, action) => {
     switch ( action.type) {
         case SET_NEW_MESSAGE_TEXT: 
             state.forEach( (name) => {
-                if ( action.id === name.id ) {
+                if ( action.id === name.id && action.newMessageText !== undefined ) {
                 name.newMessage = action.newMessageText;
                 }
             } );
@@ -93,7 +93,7 @@ const dialogsReducer = (state = initialState, action) => {
    
         case ADD_MESSAGE:
             state.forEach( (name) => {
-                if ( action.id === name.id && name.newMessage !== '' ) {
+                if ( action.id === name.id && name.newMessage.trim() !== '' ) {
                     let newMessage = {
                         text: name.newMessage,
                         id: 'm2'
