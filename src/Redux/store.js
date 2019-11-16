@@ -143,5 +143,3 @@ let store = {
 
 export default store;
 
-//делаем store объектом window, чтобы можно было к нему обратиться в любой точке программы
-window.store = store;
