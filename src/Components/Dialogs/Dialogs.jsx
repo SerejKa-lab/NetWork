@@ -10,7 +10,7 @@ import Messages from './Messages/Messages';
 const Dialogs = ( props ) => {
 
     const { dialogsPage } = props;
-    const { addMessageClick, addMessageKey, setNewMessage } = props;
+    const { callBacks } = props;
 
     let dialogNamesMessages = dialogsPage.map( (name) => {
         let path = '/dialogs/' + name.path;
@@ -20,9 +20,7 @@ const Dialogs = ( props ) => {
                             messages = { name.dialogs } 
                             id = { name.id }  
                             newMessage = { name.newMessage }
-                            addMessageClick = { addMessageClick }
-                            addMessageKey = { addMessageKey }
-                            setNewMessage = { setNewMessage } /> }  
+                            callBacks = { callBacks } /> }  
             />
         )
     } )

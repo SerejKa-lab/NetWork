@@ -9,21 +9,23 @@ const mapStateToProps = ( state ) => {
     }
 }
 
-const mapDispatchToProps = ( dispatch ) => {
-    return{
-        addMessageClick: ( id ) => {
-            let action = addMessageActionCreator( id );
-            dispatch( action );
-        },
-    
-        addMessageKey: ( id ) => {
-            let action = addMessageActionCreator( id );
-            dispatch( action );
-        },
-    
-        setNewMessage: ( id, value ) => {
-            let action = setNewMessageTextActionCreator( id, value );
-            dispatch(action);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        callBacks: {
+            addMessageClick: (id) => {
+                let action = addMessageActionCreator(id);
+                dispatch(action);
+            },
+
+            addMessageKey: (id) => {
+                let action = addMessageActionCreator(id);
+                dispatch(action);
+            },
+
+            setNewMessage: (id, value) => {
+                let action = setNewMessageTextActionCreator(id, value);
+                dispatch(action);
+            }
         }
     }
 }

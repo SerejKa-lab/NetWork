@@ -6,7 +6,7 @@ import style from './Messages.module.css';
 const Messages = ( props ) => {
 
     const { id, newMessage, messages} = props;
-    const {setNewMessage, addMessageClick, addMessageKey } = props;
+    const {setNewMessage, addMessageClick, addMessageKey } = props.callBacks;
 
     const firstTalker = messages[0].id;
     
