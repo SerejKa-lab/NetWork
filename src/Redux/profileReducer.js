@@ -33,10 +33,9 @@ let initialState = {
 }
 
 const profileReducer = (state = initialState, action) => {
-    debugger;
     switch (action.type) { 
         case ADD_POST:
-            if ( state.postText.trim() !== '' ) {  
+            if ( state.postText.trim() !== '' ) {   //проверка на пустую стоку
                 let newPost = {
                     name: 'Kolya',
                     message: state.postText,
@@ -45,15 +44,19 @@ const profileReducer = (state = initialState, action) => {
                     profileImage: 'https://img3.goodfon.ru/original/1400x1050/7/b7/cvetok-lepestki-priroda-fon-1988.jpg',
                     likesImage: 'https://i.pinimg.com/474x/db/3a/bb/db3abbe34ca1a4568b408971cf4621ba.jpg'
                 };
-                state.postText = '';
-                state.postsData.push(newPost);
-                return state;
+                return { 
+                    ...state,
+                    postsData: [ ...state.postsData, newPost ],
+                    postText: ''
+                };
             }
     
         case SET_POST_TEXT:
-            if ( action.newPostText !== undefined ) {   
-                state.postText = action.newPostText;
-                return state;
+            if ( action.newPostText !== ( undefined || null) ) {   //проверка неопределенного состояния ввода сообщения
+               return {
+                    ...state,
+                    postText: action.newPostText
+                };
             }
 
         default: return state;
