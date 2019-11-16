@@ -11,14 +11,14 @@ const Dialogs = ( props ) => {
 
     const { dialogsPage } = props;
     const { callBacks } = props;
-
-    let dialogNamesMessages = dialogsPage.map( (name) => {
+    
+    let dialogNamesMessages = dialogsPage.map( (name, index) => {
         let path = '/dialogs/' + name.path;
         return(
-            <Route path = { path }
+            <Route path = { path } key= { index }
                     render = { () => <Messages 
                             messages = { name.dialogs } 
-                            id = { name.id }  
+                            id = { name.id }
                             newMessage = { name.newMessage }
                             callBacks = { callBacks } /> }  
             />

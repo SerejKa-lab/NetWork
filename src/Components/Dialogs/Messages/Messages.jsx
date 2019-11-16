@@ -10,13 +10,13 @@ const Messages = ( props ) => {
 
     const firstTalker = messages[0].id;
     
-    const messagesArray = messages.map((message) => {
+    const messagesArray = messages.map((message, index) => {
 
         let messageStyle = (message.id === firstTalker) ?
             style.talker + ' ' + style.talkerFirst : `${style.talker} ${style.talkerSecond}`;
 
         return (
-            <div className={messageStyle} key={message.id}>
+            <div className={messageStyle} key={message.id + index}>
                 {message.text}
             </div>
         )

@@ -40,7 +40,7 @@ const profileReducer = (state = initialState, action) => {
                     name: 'Kolya',
                     message: state.postText,
                     like: '0',
-                    id: 'Kolya',
+                    id: Math.random(),
                     profileImage: 'https://img3.goodfon.ru/original/1400x1050/7/b7/cvetok-lepestki-priroda-fon-1988.jpg',
                     likesImage: 'https://i.pinimg.com/474x/db/3a/bb/db3abbe34ca1a4568b408971cf4621ba.jpg'
                 };
@@ -49,15 +49,17 @@ const profileReducer = (state = initialState, action) => {
                     postsData: [ ...state.postsData, newPost ],
                     postText: ''
                 };
-            }
+            };
+            break;
     
         case SET_POST_TEXT:
-            if ( action.newPostText !== ( undefined || null) ) {   //проверка неопределенного состояния ввода сообщения
+            if ( action.newPostText !== ( undefined && null) ) {   //проверка неопределенного состояния ввода сообщения
                return {
                     ...state,
                     postText: action.newPostText
                 };
-            }
+            };
+            break;
 
         default: return state;
 }

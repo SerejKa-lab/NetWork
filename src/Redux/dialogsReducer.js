@@ -7,7 +7,7 @@ let initialState = [
         name: 'Name1', id: 'n1', path: 'name1',
         avatar: 'https://ds04.infourok.ru/uploads/ex/0c29/00150740-02eff148/hello_html_ff4df5c.png',
         dialogs: [
-            { text: 'Name1 Message1', id: 'm1' },
+            { text: 'Name1 Message1', id: 'm2' },
             { text: 'Name1 Message2', id: 'm1' },
             { text: 'Name1 Message3', id: 'm2' },
             { text: 'Name1 Message4', id: 'm2' },
@@ -39,8 +39,8 @@ let initialState = [
         name: 'Name3', id: 'n3', path: 'name3',
         avatar: 'https://ds04.infourok.ru/uploads/ex/0c29/00150740-02eff148/hello_html_ff4df5c.png',
         dialogs: [
-            { text: 'Name 3 Message1', id: 'm1' },
             { text: 'Name 3 Message3', id: 'm2' },
+            { text: 'Name 3 Message1', id: 'm1' },
             { text: 'Name 3 Message2', id: 'm1' },
             { text: 'Name 3 Message4', id: 'm2' },
             { text: 'Name 3 Message4', id: 'm1' },
@@ -87,9 +87,9 @@ let initialState = [
 
 const dialogsReducer = (state = initialState, action) => {
 
+    let stateCopy = [ ...state ];
     switch (action.type) {
         case SET_NEW_MESSAGE_TEXT: {
-            let stateCopy = [...state];
             stateCopy.forEach((name) => {
                 if (action.id === name.id && action.newMessageText !== undefined) {
                     name.newMessage = action.newMessageText;
@@ -99,7 +99,6 @@ const dialogsReducer = (state = initialState, action) => {
         }
 
         case ADD_MESSAGE: {
-            let stateCopy = [...state];
             stateCopy.forEach((name, index) => {
                 if (action.id === name.id && name.newMessage.trim() !== '') {
                     let newMessage = {
