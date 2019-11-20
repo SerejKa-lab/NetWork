@@ -9,8 +9,9 @@ const DialogName = ( { dialogsPage } ) => {
         let linkPath = '/dialogs/' + el.path;
         return (
             <div className={style.dialog} key={index}>
-                <NavLink to={linkPath} activeClassName={style.active}>
-                    <img src = { el.avatar } alt="Avatar"/> {el.name}</NavLink>
+                <NavLink to = { linkPath } activeClassName = { style.active }>
+                    <img src = { el.avatar } alt="Avatar"/>{el.name}
+                </NavLink>
             </div>
         )
     }

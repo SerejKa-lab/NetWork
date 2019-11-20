@@ -11,7 +11,7 @@ const Dialogs = ( props ) => {
 
     const { dialogsPage } = props;
     const { callBacks } = props;
-    
+
     let dialogNamesMessages = dialogsPage.map( (name, index) => {
         let path = '/dialogs/' + name.path;
         return(
@@ -26,12 +26,14 @@ const Dialogs = ( props ) => {
     } )
 
     return (
-        <div className = { style.dialogsWrapper }>
+        <div className={style.dialogsWrapper}>
 
-            <DialogName dialogsPage = { dialogsPage } />
-            { dialogNamesMessages }
-            {/* <Route path = '/dialogs'
-                    render = { () => <div>Please, choose a dialog of create a new one.</div>}   /> */}
+            <DialogName dialogsPage={dialogsPage} />
+            {dialogNamesMessages}
+            <Route path='/dialogs' exact
+                render = {() => <span className={style.greeting}>
+                                    Please, choose a dialog<br/>or create a new one.
+                                </span>} />
         </div>
     )
 }

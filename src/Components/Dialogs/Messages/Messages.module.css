@@ -5,7 +5,10 @@
     border-left: 1px solid grey;
 }
 
-.messages textarea,
+.messages textarea {
+    align-self: flex-start;
+    margin-top: 25px;
+}
 .messages button {
     align-self: flex-start;
 }

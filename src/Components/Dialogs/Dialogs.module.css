@@ -30,3 +30,13 @@ a.active {
 .message {
     margin: 5px 0px;
 }
+
+.greeting {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 15px;
+    color: rgb(107, 94, 94);
+    font-style: italic;
+    text-align: center;
+}

@@ -13,3 +13,7 @@
 .newPost {
     padding: 5px 0px;
 }
+
+.newPost textarea {
+    margin-top: 12px;
+}
