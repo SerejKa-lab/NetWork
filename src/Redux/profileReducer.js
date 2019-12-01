@@ -53,7 +53,7 @@ const profileReducer = (state = initialState, action) => {
             break;
     
         case SET_POST_TEXT:
-            if ( action.newPostText !== ( undefined && null) ) {   //проверка неопределенного состояния ввода сообщения
+            if ( action.newPostText !== ( undefined || null) ) {   //проверка неопределенного состояния ввода сообщения
                return {
                     ...state,
                     postText: action.newPostText
