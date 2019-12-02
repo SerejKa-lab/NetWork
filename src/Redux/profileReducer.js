@@ -49,8 +49,7 @@ const profileReducer = (state = initialState, action) => {
                     postsData: [ ...state.postsData, newPost ],
                     postText: ''
                 };
-            };
-            break;
+            } else return state
     
         case SET_POST_TEXT:
             if ( action.newPostText !== ( undefined || null) ) {   //проверка неопределенного состояния ввода сообщения
@@ -65,7 +64,6 @@ const profileReducer = (state = initialState, action) => {
 }
 }
 
+export const addPostAC = () => ({ type: ADD_POST });
+export const setPostTextAC = (newText) =>({ type: SET_POST_TEXT, newPostText: newText });
 export default profileReducer;
-export const addPostActionCreator = () => ({ type: ADD_POST });
-export const setPostTextActionCreator = (newText) =>
-        ({ type: SET_POST_TEXT, newPostText: newText });

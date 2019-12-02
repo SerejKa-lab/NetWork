@@ -2,7 +2,7 @@ import React from 'react';
 import style from './MyPosts.module.css';
 import Post from './Post/Post';
 
-const MyPosts = ({ postsData, postText, ChangePostText, ClickAddPost, KeyAddPost }) => {
+const MyPosts = ({ postsData, postText, ChangePostText, addPost }) => {
 
     let postComponent = postsData.map((post) => {
         return (
@@ -13,22 +13,12 @@ const MyPosts = ({ postsData, postText, ChangePostText, ClickAddPost, KeyAddPost
     })
 
     
-    let PostRef = React.createRef();
+    let onChangePostText = (e) =>  ChangePostText(e.currentTarget.value);
 
-    let onChangePostText = () => {
-        let text = PostRef.current.value;
-        ChangePostText(text);
-    }
-
-    let onAddPost = () => {
-        ClickAddPost();
-    }
-
-    let onKeyAddPost = (e) => {
-         if ( e.key === 'Enter' ) {
-            KeyAddPost();
-         }
-    }
+    let addPostOnClick = () => addPost();
+   
+    let addPostOnKey = (e) => { if ( e.key === 'Enter' ) addPost() }
+ 
 
     return (
         <div className={style.posts}>
@@ -39,14 +29,13 @@ const MyPosts = ({ postsData, postText, ChangePostText, ClickAddPost, KeyAddPost
             <div className={style.newPost}>
                 <div>
                     <textarea 
-                        ref = { PostRef } 
                         value = { postText } 
                         onChange = { onChangePostText }
-                        onKeyPress = { onKeyAddPost }
+                        onKeyPress = { addPostOnKey }
                         cols="75" rows="3"></textarea>
                 </div>
                 <div>
-                    <button onClick = { onAddPost }>Add post</button>
+                    <button onClick = { addPostOnClick }>Add post</button>
                 </div>
             </div>
         </div>
