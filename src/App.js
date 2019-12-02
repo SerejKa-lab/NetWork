@@ -8,30 +8,24 @@ import Music from './Components/Music/Music';
 import Settings from './Components/Settings/Settings';
 import News from './Components/News/News';
 import DialogsContainer from './Components/Dialogs/DialogsContainer';
+import UsersContainer from './Components/Users/UsersContainer';
 
 
 const App = () => {
     return (
         <BrowserRouter>
-            <div className ='app-wraper'>
+            <section className='app'>
                 <Header />
                 <Navbar />
-                <div className ='content-wrapper'>
-                    <Route path ='/dialogs'
-                        render = { () => <DialogsContainer /> }
-                    />
-
-                    <Route path='/profile'
-                        render={
-                            () => <Profile />
-                        }
-                    />
-
-                    <Route path = '/music' component={Music} />
-                    <Route path = '/settings' component={Settings} />
-                    <Route path = '/news' component={News} />
-                </div>
-            </div>
+                <section className='content-wrapper'>
+                    <Route path='/dialogs' component={DialogsContainer} />
+                    <Route path='/profile' component={Profile} />
+                    <Route path='/users' component={UsersContainer} />
+                    <Route path='/music' component={Music} />
+                    <Route path='/settings' component={Settings} />
+                    <Route path='/news' component={News} />
+                </section>
+            </section>
         </BrowserRouter>
     );
 }
