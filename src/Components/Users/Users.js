@@ -6,8 +6,7 @@ import * as Axios from 'axios';
 
 class Users extends React.Component {
 
-    constructor(props) {
-        super(props);
+   componentDidMount(){
         if (this.props.users.length === 0) {
             Axios.get('https://social-network.samuraijs.com/api/1.0/users').then(Response => {
                 this.props.setUsers(Response.data.items)
@@ -27,7 +26,7 @@ class Users extends React.Component {
 
     render = () => {
         debugger;
-        const { setUsers, toggleFollow, users } = this.props;
+        const { toggleFollow, users } = this.props;
         const usersList = users.map((user) => <User user={user} toggleFollow={toggleFollow} key={user.id} />);
         
         return (
