@@ -1,11 +1,25 @@
-.nav {
+.navigationContaiter {
   padding: 10px;
-  grid-area       : n;
+  grid-area: n;
+  background-color: rgb(160, 218, 241);
+}
+
+.navigation {
+  padding: 10px;
   background-color: rgb(126, 189, 231);
+  border-radius: 5px;
 }
 
 .item {
   margin: 10px 0;
+}
+
+.item:first-of-type {
+  margin-top: 0;
+}
+
+.item:last-of-type {
+  margin-bottom: 0;
 }
 
 .item a {

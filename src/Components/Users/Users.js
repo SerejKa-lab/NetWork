@@ -25,7 +25,6 @@ class Users extends React.Component {
 
 
     render = () => {
-        debugger;
         const { toggleFollow, users } = this.props;
         const usersList = users.map((user) => <User user={user} toggleFollow={toggleFollow} key={user.id} />);
         
