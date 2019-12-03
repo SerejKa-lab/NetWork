@@ -16,7 +16,7 @@ const Dialogs = ( props ) => {
         let path = '/dialogs/' + name.path;
         return(
             <Route path = { path } key= { index }
-                    render = { () => <Messages 
+                render = { () => <Messages 
                             messages = { name.dialogs } 
                             id = { name.id }
                             newMessage = { name.newMessage }
@@ -27,13 +27,14 @@ const Dialogs = ( props ) => {
 
     return (
         <div className={style.dialogsWrapper}>
-
             <DialogName dialogsPage={dialogsPage} />
             {dialogNamesMessages}
             <Route path='/dialogs' exact
-                render = {() => <span className={style.greeting}>
-                                    Please, choose a dialog<br/>or create a new one.
-                                </span>} />
+                render={() =>
+                    <span className={style.greeting}>
+                        Please, choose a dialog<br />or create a new one.
+                    </span>
+                } />
         </div>
     )
 }

@@ -1,33 +1,24 @@
 const TOGGLE_FOLLOW = 'TOGGLE-FOLLOW';
 const SET_USERS = 'SET-USERS';
+const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 
 
-const initialState = { users: [] }; 
-    
-// users: [
-//     {
-//         id: 0, follow: true, name: 'Katya', status: 'Hi there!', location: { country: 'Russia', city: 'Moskow' },
-//         photo: 'https://avatars.mds.yandex.net/get-pdb/1943199/39401561-8fc2-4e15-8562-0b26330403ce/s1200?webp=false'
-//     },
-//     {
-//         id: 1, follow: false, name: 'Karolina', status: 'Hi there!', location: { country: 'Ukrain', city: 'Kiev' },
-//         photo: 'https://newsone.ua/img/article/892/20_original.jpg'
-//     },
-//     {
-//         id: 2, follow: true, name: 'Katrin', status: 'Hi there!', location: { country: 'Great Britan', city: 'London' },
-//         photo: 'https://i.scdn.co/image/fefa9bad33ddd21d606a6ca192aab86e31f3a84f'
-//     },
-//     {
-//         id: 3, follow: false, name: 'Lena', status: 'Hi there!', location: { country: 'Ukrain', city: 'Kiev' },
-//         photo: 'https://from-ua.com/upload/articles/2019/06/06/medium/1559832590_2.png'
-//     },
-// ]
-
+const initialState = { 
+    users: [],
+    totalUsersCount: 0,
+    pageSize: 4,
+    currentPage: 33,
+}; 
 
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USERS:
-            return { ...state, users: [ ...state.users, ...action.users ] }
+            return { 
+                ...state, 
+                users: [ ...action.users ],
+                totalUsersCount: action.totalCount,
+                pagesCount: Math.ceil( action.totalCount/state.pageSize )
+            }
 
         case TOGGLE_FOLLOW:
             return {
@@ -39,12 +30,20 @@ const usersReducer = (state = initialState, action) => {
                 })
             }
 
+        case SET_CURRENT_PAGE:
+            return {
+                ...state,
+                currentPage: action.page
+            }
+
         default:
             return state
     }
 }
-const toggleFollowAC = (userId) => ({ type: TOGGLE_FOLLOW, userId });
-const setUsersAC = (users) => ({ type: SET_USERS, users });
 
-export { toggleFollowAC, setUsersAC };
+const setCurrentPageAC = (page) => ({ type: SET_CURRENT_PAGE, page });
+const toggleFollowAC = (userId) => ({ type: TOGGLE_FOLLOW, userId });
+const setUsersAC = (users, totalCount) => ({ type: SET_USERS, users, totalCount });
+
+export { toggleFollowAC, setUsersAC, setCurrentPageAC };
 export default usersReducer;
