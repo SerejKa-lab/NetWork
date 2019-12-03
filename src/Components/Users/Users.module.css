@@ -1,6 +1,7 @@
 .usersPage {
     margin: 15px;
     color: rgba(251, 255, 20, 0.952);
+    text-align: center;
 }
 
 .showUsers {
@@ -11,4 +12,41 @@
     font-size: 25px;
     border-radius: 8px;
     padding: 5px 10px;
+}
+
+.paginator {
+    display: inline-block;
+    background-color: rgb(126, 189, 231);
+    border: 1px solid gray;
+    border-radius: 4px;
+    font-size: 1.25em;
+    padding: 3px 5px;
+}
+
+.paginator span {
+    padding: 3px 6px;
+    text-align: center;
+    color: white;
+}
+
+.paginator span.active {
+    color: rgba(251, 255, 20, 0.952)
+}
+
+.paginator span:hover {
+    color: black;
+    background-color: white;
+    border-radius: 3px;
+}
+
+.paginator input {
+    width: 60px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-align: center;
+    margin: 3px;   
+}
+
+.inpError {
+    border: 2px solid red;
 }
