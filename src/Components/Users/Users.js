@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Users.module.css';
 import User from './User/User';
+import preloader from '../../Assets/Images/preloader.svg';
 
 
 class Users extends React.Component {
@@ -74,7 +75,7 @@ class Users extends React.Component {
 
     render = () => {
         
-        const {users, currentPage, pagesCount } = this.props;
+        const {users, isLoading, currentPage, pagesCount } = this.props;
         const { toggleFollow } =this.props;
         const { inputError, pagginator } = this.state;
         
@@ -82,8 +83,7 @@ class Users extends React.Component {
 
         return (
             <div className={styles.usersPage}>
-                {!this.state.pagginator 
-                    && <button onClick={this.showMoreUsers} disabled={this.state.disabled}>Show more</button>}
+                {isLoading && <img src={preloader} alt='preloader' className={styles.preloader} />}
                 {pagginator
                     ? <section className={styles.pagginatorWrapper}>
                         <nav className={styles.paginator}>
@@ -94,17 +94,20 @@ class Users extends React.Component {
                                 onClick={this.setPageOnEvent}
                                 onKeyPress={this.setPageOnKey}
                                 onChange={this.setDisplayValue} />
-                            {(currentPage !== pagesCount) 
+                            {(currentPage !== pagesCount)
                                 && <span onClick={() => this.setFirstLastPage(pagesCount)}>Last</span>}
                         </nav>
                         <div className={styles.hidePagginator} onClick={this.togglePagginator}>Hide</div>
                     </section>
-                    : <p className={styles.pagginatorLable} onClick={this.togglePagginator}>Pagginator</p>
+                    : <div>
+                        <button onClick={this.showMoreUsers} disabled={this.state.disabled}>Show more</button>
+                        <p className={styles.pagginatorLable} onClick={this.togglePagginator}>Pagginator</p>
+                    </div>
                 }
+
                 {usersList}
-                {this.state.pagginator 
-                    && <button onClick={this.showMoreUsers} disabled={this.state.disabled}>Show more</button>
-                }
+                {this.state.pagginator
+                    && <button onClick={this.showMoreUsers} disabled={this.state.disabled}>Show more</button>}
             </div>
         )
     }
@@ -112,6 +115,8 @@ class Users extends React.Component {
 
 
 export default Users;
+
+
 
 
 // ------------- получение активной и двух соседний номеров страниц-----------

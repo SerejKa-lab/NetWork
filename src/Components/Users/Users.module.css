@@ -4,6 +4,13 @@
     text-align: center;
 }
 
+.preloader {
+    position: absolute;
+    right: 14%;
+    top: 9%;
+    height: 45px;
+}
+
 .pagginatorLable {
     margin: 0;
 }
