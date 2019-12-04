@@ -50,10 +50,10 @@ const usersReducer = (state = initialState, action) => {
     }
 }
 
-const setCurrentPageAC = (page) => ({ type: SET_CURRENT_PAGE, page});
-const toggleFollowAC = (userId) => ({ type: TOGGLE_FOLLOW, userId });
-const setUsersAC = (users, totalCount, inList) => ({ type: SET_USERS, users, totalCount, inList });
-const toggleIsLoadingAC = (isLoading) => ({ type: TOGGLE_IS_LOADING, isLoading });
+const setCurrentPage = (page) => ({ type: SET_CURRENT_PAGE, page});
+const toggleFollow = (userId) => ({ type: TOGGLE_FOLLOW, userId });
+const setUsers = (users, totalCount, inList) => ({ type: SET_USERS, users, totalCount, inList });
+const toggleIsLoading = (isLoading) => ({ type: TOGGLE_IS_LOADING, isLoading });
 
-export { toggleFollowAC, setUsersAC, setCurrentPageAC, toggleIsLoadingAC };
+export { toggleFollow, setUsers, setCurrentPage, toggleIsLoading };
 export default usersReducer;

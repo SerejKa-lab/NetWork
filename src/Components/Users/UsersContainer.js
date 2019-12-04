@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { toggleFollowAC, setUsersAC, setCurrentPageAC, toggleIsLoadingAC } from '../../Redux/usersReducer';
+import { toggleFollow, setUsers, setCurrentPage, toggleIsLoading } from '../../Redux/usersReducer';
 import UsersAPIContainer from './UsersAPIContainer';
 
 
@@ -13,15 +13,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        toggleFollow: (userId) => dispatch( toggleFollowAC(userId) ),
-        setUsers: (users, totalCount, inList) => dispatch( setUsersAC(users, totalCount, inList) ),
-        setCurrentPage: (page) => dispatch( setCurrentPageAC(page) ),
-        toggleIsLoading: (isLoading) => dispatch( toggleIsLoadingAC(isLoading) )
-    }
-}
+const actions = { toggleFollow, setUsers, setCurrentPage, toggleIsLoading };
 
-
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIContainer);
+const UsersContainer = connect(mapStateToProps, actions)(UsersAPIContainer);
 export default UsersContainer;
