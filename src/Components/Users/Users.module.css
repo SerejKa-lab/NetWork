@@ -1,17 +1,25 @@
 .usersPage {
     margin: 15px;
+    color: white;
+    text-align: center;
+}
+
+.pagginatorLable {
+    margin: 0;
+}
+
+.pagginatorLable:hover {
     color: rgba(251, 255, 20, 0.952);
-    text-align: center;
 }
 
-.showUsers {
-    text-align: center;
-}
-
-.showUsers button {
+.usersPage button {
     font-size: 25px;
     border-radius: 8px;
     padding: 5px 10px;
+}
+
+.hidePagginator:hover{
+    color: rgba(251, 255, 20, 0.952);
 }
 
 .paginator {

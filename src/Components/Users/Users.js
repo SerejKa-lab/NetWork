@@ -8,89 +8,119 @@ class Users extends React.Component {
 
     state = {
         inputError: false,
-        displayNumber: null
+        displayNumber: null,
+        pagginator: false,
+        disabled: false
     }
 
     componentDidMount() {
         const { pageSize, currentPage } = this.props;
         this.setState({ displayNumber: currentPage });
-        Axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}`)
+        Axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}&page=${currentPage}`)
             .then(Response => {
                 const { items, totalCount } = Response.data;
                 this.props.setUsers(items, totalCount)
             })
     }
 
-    setUsers = (page) => {
+    setUsers = (page, inList) => {
+        debugger;
         const { pageSize } = this.props;
         Axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}&page=${page}`)
             .then(Response => {
                 const { items, totalCount } = Response.data;
-                this.props.setUsers(items, totalCount)
+                this.props.setUsers(items, totalCount, inList)
             })
     }
 
-    setCurrentPage = (page) => {
-        const {currentPage} = this.props;
-        if (page !== currentPage) {
+    setCurrentPage = (page, inList) => {
+        if (page !== this.props.currentPage) {
             this.props.setCurrentPage(page);
-            this.setUsers(page);
+            this.setUsers(page, inList);
+        }
+    }
+
+    showMoreUsers = () => {
+        const {currentPage, pagesCount} = this.props;
+        if (currentPage < pagesCount) {
+            this.setCurrentPage(currentPage+1, true);
+            currentPage+1 === pagesCount
+                ? this.setState({ displayNumber: currentPage+1, disabled: true })
+                : this.setState({ displayNumber: currentPage+1 })
         }
     }
 
     setPageOnEvent = (e) => {
         const { pagesCount } = this.props;
-        if (+e.currentTarget.value >= 1 && +e.currentTarget.value <= pagesCount) {
+        const nextPage = +e.currentTarget.value;
+        const { disabled } = this.state;
+        if (nextPage >= 1 && nextPage <= pagesCount) {
             this.setState({ inputError: false });
-            this.setCurrentPage(+e.currentTarget.value)
+            nextPage === pagesCount
+                ? this.setState({ disabled: true })
+                : disabled && this.setState({ disabled: false })
+            this.setCurrentPage(nextPage)
         } else this.setState({ inputError: true })
         
     }
 
     setPageOnKey = (e) => {
-        if ( e.key === 'Enter' ) this.setPageOnEvent(e)
+        if (e.key === 'Enter') this.setPageOnEvent(e);
     }
 
     setFirstLastPage = (page) => {
-        this.setState({ displayNumber: page })
+        page === this.props.pagesCount
+            ? this.setState({ displayNumber: page, disabled: true })
+            : this.setState({ displayNumber: page, disabled: false })
         this.setCurrentPage(page)
     }
 
     setDisplayValue = (e) => {
         const { pagesCount } = this.props;
-        if (e.currentTarget.value >= 1 && e.currentTarget.value <= pagesCount) {
-            this.setState({ inputError: false })
-            this.setState({ displayNumber: e.currentTarget.value })
+        const nextPage = e.currentTarget.value;
+        if (nextPage >= 1 && nextPage <= pagesCount) {
+            this.setState({ inputError: false, displayNumber: nextPage })
         } else {
-            this.setState({ displayNumber: e.currentTarget.value })
+            this.setState({ displayNumber: nextPage })
             this.setState({ inputError: true })
         }
+    }
+
+    togglePagginator = () => {
+        this.setState( { pagginator: !this.state.pagginator } )
     }
 
     render = () => {
         
         const {users, currentPage, pagesCount } = this.props;
         const { toggleFollow } =this.props;
-        const { inputError } = this.state;
+        const { inputError, pagginator } = this.state;
         
         const usersList = users.map((user) => <User user={user} toggleFollow={toggleFollow} key={user.id} />);
 
         return (
             <div className={styles.usersPage}>
-                <nav className={styles.paginator}>
-                    {(currentPage !== 1) && <span onClick={() => this.setFirstLastPage(1)}>First</span>}
-                    <input type='number' value={this.state.displayNumber} 
-                        min='1' max={pagesCount}
-                        className={ inputError ? styles.inpError : '' }
-                        onClick={this.setPageOnEvent}
-                        onKeyPress ={this.setPageOnKey}
-                        onChange={this.setDisplayValue}/>
-                    {(currentPage !== pagesCount) && <span onClick={() => this.setFirstLastPage(pagesCount)}>Last</span>}
-                </nav>
+                {!this.state.pagginator && <button onClick={this.showMoreUsers} disabled={this.state.disabled}>Show more</button>}
+                {pagginator
+                    ? <section className={styles.pagginatorWrapper}>
+                        <nav className={styles.paginator}>
+                            {(currentPage !== 1) && <span onClick={() => this.setFirstLastPage(1)}>First</span>}
+                            <input type='number' value={this.state.displayNumber}
+                                min='1' max={pagesCount}
+                                className={inputError ? styles.inpError : ''}
+                                onClick={this.setPageOnEvent}
+                                onKeyPress={this.setPageOnKey}
+                                onChange={this.setDisplayValue} />
+                            {(currentPage !== pagesCount) && <span onClick={() => this.setFirstLastPage(pagesCount)}>Last</span>}
+                        </nav>
+                        <div className={styles.hidePagginator} onClick={this.togglePagginator}>Hide</div>
+                    </section>
+                    : <p className={styles.pagginatorLable} onClick={this.togglePagginator}>Pagginator</p>
+                }
                 {usersList}
-                <div className={styles.showUsers}>
-                    <button onClick={this.getUsers}>Show more</button>
-                </div>
+                {this.state.pagginator 
+                    && <button onClick={this.showMoreUsers} disabled={this.state.disabled}>Show more</button>
+                }
             </div>
         )
     }

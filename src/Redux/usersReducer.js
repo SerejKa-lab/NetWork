@@ -7,15 +7,16 @@ const initialState = {
     users: [],
     totalUsersCount: 0,
     pageSize: 4,
-    currentPage: 33,
+    currentPage: 335,
 }; 
 
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USERS:
+            const users = action.inList ? [ ...action.users, ...state.users ] : [ ...action.users ];
             return { 
                 ...state, 
-                users: [ ...action.users ],
+                users: [ ...users ],
                 totalUsersCount: action.totalCount,
                 pagesCount: Math.ceil( action.totalCount/state.pageSize )
             }
@@ -41,9 +42,9 @@ const usersReducer = (state = initialState, action) => {
     }
 }
 
-const setCurrentPageAC = (page) => ({ type: SET_CURRENT_PAGE, page });
+const setCurrentPageAC = (page) => ({ type: SET_CURRENT_PAGE, page});
 const toggleFollowAC = (userId) => ({ type: TOGGLE_FOLLOW, userId });
-const setUsersAC = (users, totalCount) => ({ type: SET_USERS, users, totalCount });
+const setUsersAC = (users, totalCount, inList) => ({ type: SET_USERS, users, totalCount, inList });
 
 export { toggleFollowAC, setUsersAC, setCurrentPageAC };
 export default usersReducer;

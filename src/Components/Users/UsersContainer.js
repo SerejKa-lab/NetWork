@@ -15,7 +15,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         toggleFollow: (userId) => dispatch( toggleFollowAC(userId) ),
-        setUsers: (users, totalCount) => dispatch( setUsersAC(users, totalCount) ),
+        setUsers: (users, totalCount, inList) => dispatch( setUsersAC(users, totalCount, inList) ),
         setCurrentPage: (page) => dispatch( setCurrentPageAC(page) )
     }
 }
