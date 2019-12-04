@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './Users.module.css';
 import User from './User/User';
-import * as Axios from 'axios';
 
 
 class Users extends React.Component {
@@ -13,37 +12,20 @@ class Users extends React.Component {
         disabled: false
     }
 
-    componentDidMount() {
-        const { pageSize, currentPage } = this.props;
-        this.setState({ displayNumber: currentPage });
-        Axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}&page=${currentPage}`)
-            .then(Response => {
-                const { items, totalCount } = Response.data;
-                this.props.setUsers(items, totalCount)
-            })
-    }
+    componentDidMount() { this.setState({ displayNumber: this.props.currentPage }) };
 
-    setUsers = (page, inList) => {
-        debugger;
-        const { pageSize } = this.props;
-        Axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}&page=${page}`)
-            .then(Response => {
-                const { items, totalCount } = Response.data;
-                this.props.setUsers(items, totalCount, inList)
-            })
-    }
 
-    setCurrentPage = (page, inList) => {
+    setEventPage = (page, inList) => {
         if (page !== this.props.currentPage) {
             this.props.setCurrentPage(page);
-            this.setUsers(page, inList);
+            this.props.setUsers(page, inList);
         }
     }
 
     showMoreUsers = () => {
         const {currentPage, pagesCount} = this.props;
         if (currentPage < pagesCount) {
-            this.setCurrentPage(currentPage+1, true);
+            this.setEventPage(currentPage+1, true);
             currentPage+1 === pagesCount
                 ? this.setState({ displayNumber: currentPage+1, disabled: true })
                 : this.setState({ displayNumber: currentPage+1 })
@@ -59,7 +41,7 @@ class Users extends React.Component {
             nextPage === pagesCount
                 ? this.setState({ disabled: true })
                 : disabled && this.setState({ disabled: false })
-            this.setCurrentPage(nextPage)
+            this.setEventPage(nextPage)
         } else this.setState({ inputError: true })
         
     }
@@ -72,7 +54,7 @@ class Users extends React.Component {
         page === this.props.pagesCount
             ? this.setState({ displayNumber: page, disabled: true })
             : this.setState({ displayNumber: page, disabled: false })
-        this.setCurrentPage(page)
+        this.setEventPage(page)
     }
 
     setDisplayValue = (e) => {
@@ -100,7 +82,8 @@ class Users extends React.Component {
 
         return (
             <div className={styles.usersPage}>
-                {!this.state.pagginator && <button onClick={this.showMoreUsers} disabled={this.state.disabled}>Show more</button>}
+                {!this.state.pagginator 
+                    && <button onClick={this.showMoreUsers} disabled={this.state.disabled}>Show more</button>}
                 {pagginator
                     ? <section className={styles.pagginatorWrapper}>
                         <nav className={styles.paginator}>
@@ -111,7 +94,8 @@ class Users extends React.Component {
                                 onClick={this.setPageOnEvent}
                                 onKeyPress={this.setPageOnKey}
                                 onChange={this.setDisplayValue} />
-                            {(currentPage !== pagesCount) && <span onClick={() => this.setFirstLastPage(pagesCount)}>Last</span>}
+                            {(currentPage !== pagesCount) 
+                                && <span onClick={() => this.setFirstLastPage(pagesCount)}>Last</span>}
                         </nav>
                         <div className={styles.hidePagginator} onClick={this.togglePagginator}>Hide</div>
                     </section>
