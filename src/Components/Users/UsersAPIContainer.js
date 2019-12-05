@@ -11,7 +11,7 @@ export default class UsersAPIContainer extends React.Component {
         Axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}&page=${currentPage}`)
             .then(Response => {
                 const { items, totalCount } = Response.data;
-                this.props.setUsers(items, totalCount);
+                this.props.setUsers(items, totalCount, currentPage);
                 toggleIsLoading(false)
             })
     }
@@ -22,19 +22,19 @@ export default class UsersAPIContainer extends React.Component {
         Axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}&page=${page}`)
             .then(Response => {
                 const { items, totalCount } = Response.data;
-                this.props.setUsers(items, totalCount, inList);
+                this.props.setUsers(items, totalCount, page, inList);
                 toggleIsLoading(false)
             })
     }
 
     render() {
         const { users, pageSize, pagesCount, currentPage, isLoading } = this.props;
-        const { toggleFollow, setCurrentPage } = this.props;
+        const { toggleFollow } = this.props;
         return(
             <Users 
                 users={users} pageSize={pageSize} pagesCount={pagesCount} 
                 currentPage={currentPage} isLoading={isLoading}
-                toggleFollow={toggleFollow} setCurrentPage={setCurrentPage} setUsers={this.setUsers} />
+                toggleFollow={toggleFollow} setUsers={this.setUsers} />
         )
     }
 
