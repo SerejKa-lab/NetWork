@@ -5,14 +5,13 @@ import style from './Messages.module.css';
 
 const Messages = ( props ) => {
 
-    const { id, newMessage, messages} = props;
-    const {setNewMessage, addMessageClick, addMessageKey } = props.callBacks;
+    const { id, newMessage, dialogs} = props;
+    const {addMessage, setMessageText} = props;
 
-    const firstTalker = messages[0].id;
+    const firstTalker = dialogs[0].id;
     
-    const messagesArray = messages.map((message, index) => {
-
-        let messageStyle = (message.id === firstTalker) ?
+    const messagesArray = dialogs.map((message, index) => {
+        const messageStyle = (message.id === firstTalker) ? //определение стиля для сообщения
             style.talker + ' ' + style.talkerFirst : `${style.talker} ${style.talkerSecond}`;
 
         return (
@@ -23,17 +22,17 @@ const Messages = ( props ) => {
     })
 
     const addMessageOnClick  = () => {
-        addMessageClick ( id );
+        addMessage( id );
     }
 
     const addMessageOnKey = (e) => {
         if ( e.key === 'Enter' ) {
-            addMessageKey( id );
+            addMessage( id );
         }
     }
 
     const enterNewMessage = (e) => {
-        setNewMessage( id, e.currentTarget.value );
+        setMessageText( id, e.currentTarget.value );
        
     }
 
