@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './Users.module.css';
 import User from './User/User';
-import preloader from '../../Assets/Images/preloader.svg';
 import Pagginator from './Pagginator/Pagginator';
+import Preloader from '../Preloader/Preloader';
 
 
 class Users extends React.Component {
@@ -39,7 +39,7 @@ class Users extends React.Component {
         const usersList = users.map((user) => <User user={user} toggleFollow={toggleFollow} key={user.id} />);
         return (
             <div className={styles.usersPage}>
-                {isLoading && <img src={preloader} alt='preloader' className={styles.preloader} />}
+                {isLoading && <Preloader className={styles.preloader} />}
                 {pagginator
                     ? <div>
                         <button onClick={this.showMoreUsers} disabled={disabled}>Show more</button>
