@@ -6,14 +6,7 @@ import Users from './Users';
 export default class UsersAPIContainer extends React.Component {
 
     componentDidMount() {
-        const { pageSize, currentPage, toggleIsLoading } = this.props;
-        toggleIsLoading(true);
-        Axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}&page=${currentPage}`)
-            .then(Response => {
-                const { items, totalCount } = Response.data;
-                this.props.setUsers(items, totalCount, currentPage);
-                toggleIsLoading(false)
-            })
+        this.setUsers(this.props.currentPage)
     }
 
     setUsers = (page, inList) => {
