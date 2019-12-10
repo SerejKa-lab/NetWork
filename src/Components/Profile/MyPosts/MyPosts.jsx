@@ -2,7 +2,7 @@ import React from 'react';
 import style from './MyPosts.module.css';
 import Post from './Post/Post';
 
-const MyPosts = ({ postsData, postText, ChangePostText, addPost }) => {
+const MyPosts = ({ postsData, postText, setPostText, addPost }) => {
 
     let postComponent = postsData.map((post) => {
         return (
@@ -13,7 +13,7 @@ const MyPosts = ({ postsData, postText, ChangePostText, addPost }) => {
     })
 
     
-    let onChangePostText = (e) =>  ChangePostText(e.currentTarget.value);
+    let onChangePostText = (e) =>  setPostText(e.currentTarget.value);
 
     let addPostOnClick = () => addPost();
    
