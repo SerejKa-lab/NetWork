@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-const actions = { toggleFollow, setUsers, toggleIsLoading };
+const actionsCreators = { toggleFollow, setUsers, toggleIsLoading };
 
-const UsersContainer = connect(mapStateToProps, actions)(UsersAPIContainer);
+const UsersContainer = connect(mapStateToProps, actionsCreators)(UsersAPIContainer);
 export default UsersContainer;
