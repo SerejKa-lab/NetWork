@@ -3,14 +3,14 @@ import style from './DialogName.module.css';
 import { NavLink } from 'react-router-dom';
 
 
-const DialogName = ( { dialogsPage } ) => {
+const DialogName = ( { nameData } ) => {
 
-    const namesArray = dialogsPage.map( (el, index) => {
-        let linkPath = '/dialogs/' + el.path;
+    const namesArray = nameData.map( (name, index) => {
+        let linkPath = '/dialogs/' + name.path;
         return (
             <div className={style.dialog} key={index}>
                 <NavLink to = { linkPath } activeClassName = { style.active }>
-                    <img src = { el.avatar } alt="Avatar"/>{el.name}
+                    <img src = { name.avatar } alt="Avatar"/>{name.name}
                 </NavLink>
             </div>
         )

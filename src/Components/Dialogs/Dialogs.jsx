@@ -10,26 +10,30 @@ import Messages from './Messages/Messages';
 const Dialogs = ( props ) => {
 
     const { dialogsPage } = props;
-    const { callBacks } = props;
+    const {addMessage, setMessageText} = props;
 
-    let dialogNamesMessages = dialogsPage.map( (name, index) => {
-        let path = '/dialogs/' + name.path;
+    const dialogMessages = dialogsPage.map( (dialog, index) => {
+        const path = '/dialogs/' + dialog.path;
+        const {id, newMessage, dialogs} = dialog 
         return(
             <Route path = { path } key= { index }
                 render = { () => <Messages 
-                            messages = { name.dialogs } 
-                            id = { name.id }
-                            newMessage = { name.newMessage }
-                            callBacks = { callBacks } /> }  
+                    id={id} newMessage={newMessage} dialogs={dialogs}
+                    addMessage={addMessage} setMessageText={setMessageText} /> }  
             />
         )
     } )
 
+    const nameData = dialogsPage.map( (dialog) => {
+        const {path, name, avatar} = dialog
+        return ({ path, name, avatar })
+    } )
+
     return (
         <div className={style.dialogsWrapper}>
-            <DialogName dialogsPage={dialogsPage} />
-            {dialogNamesMessages}
-            <Route path='/dialogs' exact
+            <DialogName nameData = {nameData} />
+            {dialogMessages}
+            <Route exact path='/dialogs'
                 render={() =>
                     <span className={style.greeting}>
                         Please, choose a dialog<br />or create a new one.
