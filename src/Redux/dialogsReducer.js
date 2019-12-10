@@ -1,11 +1,13 @@
 const SET_NEW_MESSAGE_TEXT = 'SET-NEW-MESSAGE-TEXT';
 const ADD_MESSAGE = 'ADD-MESSAGE';
 
+const avatar = require('../Assets/Images/avatar.png')
+
 let initialState = [
 
     {
         name: 'Name1', id: 'n1', path: 'name1',
-        avatar: 'https://ds04.infourok.ru/uploads/ex/0c29/00150740-02eff148/hello_html_ff4df5c.png',
+        avatar,
         dialogs: [
             { text: 'Name1 Message1', id: 'm2' },
             { text: 'Name1 Message2', id: 'm1' },
@@ -21,7 +23,7 @@ let initialState = [
     },
     {
         name: 'Name2', id: 'n2', path: 'name2',
-        avatar: 'https://ds04.infourok.ru/uploads/ex/0c29/00150740-02eff148/hello_html_ff4df5c.png',
+        avatar,
         dialogs: [
             { text: 'Name 2 Message1', id: 'm1' },
             { text: 'Name 2 Message3', id: 'm2' },
@@ -37,7 +39,7 @@ let initialState = [
     },
     {
         name: 'Name3', id: 'n3', path: 'name3',
-        avatar: 'https://ds04.infourok.ru/uploads/ex/0c29/00150740-02eff148/hello_html_ff4df5c.png',
+        avatar,
         dialogs: [
             { text: 'Name 3 Message3', id: 'm2' },
             { text: 'Name 3 Message1', id: 'm1' },
@@ -53,7 +55,7 @@ let initialState = [
     },
     {
         name: 'Name4', id: 'n4', path: 'name4',
-        avatar: 'https://ds04.infourok.ru/uploads/ex/0c29/00150740-02eff148/hello_html_ff4df5c.png',
+        avatar,
         dialogs: [
             { text: 'Name4 Message1', id: 'm1' },
             { text: 'Name4 Message2', id: 'm1' },
@@ -69,7 +71,7 @@ let initialState = [
     },
     {
         name: 'Name5', id: 'n5', path: 'name5',
-        avatar: 'https://ds04.infourok.ru/uploads/ex/0c29/00150740-02eff148/hello_html_ff4df5c.png',
+        avatar,
         dialogs: [
             { text: 'Name5 Message3', id: 'm2' },
             { text: 'Name5 Message2', id: 'm1' },
@@ -121,6 +123,6 @@ const dialogsReducer = (state = initialState, action) => {
 }
 
 export default dialogsReducer;
-export const setNewMessageTextActionCreator = (nameId, newMessageText) =>
+export const setMessageText = (nameId, newMessageText) =>
     ({ type: SET_NEW_MESSAGE_TEXT, id: nameId, newMessageText: newMessageText })
-export const addMessageActionCreator = (nameId) => ({ type: ADD_MESSAGE, id: nameId });
+export const addMessage = (nameId) => ({ type: ADD_MESSAGE, id: nameId });
