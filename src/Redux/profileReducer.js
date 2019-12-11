@@ -1,7 +1,5 @@
-const ADD_POST = 'ADD-POST';
-const SET_POST_TEXT = 'SET-POST-TEXT';
 
-let initialState = {
+const initialState = {
     postsData: [
         {
             name: 'Pavel', message: 'Hi. I am fine. Thank you!', like: '15', id: 'Pavel',
@@ -29,11 +27,19 @@ let initialState = {
             likesImage: 'https://i.pinimg.com/474x/db/3a/bb/db3abbe34ca1a4568b408971cf4621ba.jpg'
         }
     ],
-    postText: ''
+    postText: '',
+    userProfile: null
 }
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) { 
+
+        case SET_USER_PROFILE:
+            return {
+                ...state, 
+                userProfile: action.userProfile
+            }
+
         case ADD_POST:
             if ( state.postText.trim() !== '' ) {   //проверка на пустую стоку
                 let newPost = {
@@ -64,6 +70,11 @@ const profileReducer = (state = initialState, action) => {
 }
 }
 
-export const addPost = () => ({ type: ADD_POST });
-export const setPostText = (newText) =>({ type: SET_POST_TEXT, newPostText: newText });
 export default profileReducer;
+
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
+export const setUserProfile = (userProfile) => ({ type: SET_USER_PROFILE, userProfile });
+const ADD_POST = 'ADD-POST';
+export const addPost = () => ({ type: ADD_POST });
+const SET_POST_TEXT = 'SET-POST-TEXT';
+export const setPostText = (newText) =>({ type: SET_POST_TEXT, newPostText: newText });
