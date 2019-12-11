@@ -1,5 +1,9 @@
-.posts {
+.postsContainer {
     padding: 15px;
+}
+
+.postsContainer h2 {
+    text-align: center;
 }
 
 .posts div {
@@ -7,10 +11,14 @@
 }
 
 .myPosts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 5px 0px;
 }
 
 .newPost {
+    text-align: center;
     padding: 5px 0px;
 }
 

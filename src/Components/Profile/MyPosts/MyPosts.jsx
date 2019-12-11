@@ -4,38 +4,32 @@ import Post from './Post/Post';
 
 const MyPosts = ({ postsData, postText, setPostText, addPost }) => {
 
-    let postComponent = postsData.map((post) => {
-        return (
-            <div key = {post.id}>
-                <Post {...post} />
-            </div>
-        )
-    })
+    const postComponent = postsData.map((post) => <Post {...post} key={post.id} />)
 
-    
-    let onChangePostText = (e) =>  setPostText(e.currentTarget.value);
 
-    let addPostOnClick = () => addPost();
-   
-    let addPostOnKey = (e) => { if ( e.key === 'Enter' ) addPost() }
- 
+    const onChangePostText = (e) => setPostText(e.currentTarget.value);
+
+    const addPostOnClick = () => addPost();
+
+    const addPostOnKey = (e) => { if (e.key === 'Enter') addPost() }
+
 
     return (
-        <div className={style.posts}>
+        <div className={style.postsContainer}>
+            <h2> My posts </h2>
             <div className={style.myPosts}>
-               <h2> My posts </h2>
+                {postComponent}
             </div>
-            {postComponent}
             <div className={style.newPost}>
                 <div>
-                    <textarea 
-                        value = { postText } 
-                        onChange = { onChangePostText }
-                        onKeyPress = { addPostOnKey }
+                    <textarea
+                        value={postText}
+                        onChange={onChangePostText}
+                        onKeyPress={addPostOnKey}
                         cols="75" rows="3" />
                 </div>
                 <div>
-                    <button onClick = { addPostOnClick }>Add post</button>
+                    <button onClick={addPostOnClick}>Add post</button>
                 </div>
             </div>
         </div>
