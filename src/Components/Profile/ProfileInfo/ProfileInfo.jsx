@@ -9,26 +9,28 @@ const ProfileInfo = (props) => {
     if (!userProfile)
         return <Preloader />
     else {
-        const getContacts = () =>{
+        const getContacts = () => {
             let contacts = [];
             for (let key in userProfile.contacts) {
-                const nextContact = userProfile.contacts[key]
-                    ? <li className={styles.contact}>
-                        <a href={userProfile.contacts[key]}
-                            target='_blank' rel='noopener noreferrer'>{key} </a>
-                    </li>
-                    : null
-                contacts = [...contacts, nextContact]
+                if (userProfile.contacts[key]) {
+                    const nextContact =
+                        <li className={styles.contact} key={key}>
+                            <a href={userProfile.contacts[key]}
+                                target='_blank' rel='noopener noreferrer'>{key} </a>
+                        </li>
+                    contacts = [...contacts, nextContact]
+                }
             }
             return contacts
         }
 
         const contactsArr = getContacts()
-
+        const userPhotoLink = userProfile.photos.large ? userProfile.photos.large : require('../../../Assets/Images/userPhoto.jpeg')
+        
         return (
             <section className={styles.profileInfo}>
                 <div className={styles.profilePhoto}>
-                    <img alt='avatar' src={userProfile.photos.large}></img>
+                    <img alt='avatar' src={userPhotoLink}></img>
                 </div>
                 <div className={styles.descriprion}>
                     <div className={styles.aboutMeBlock}>
@@ -44,12 +46,14 @@ const ProfileInfo = (props) => {
                             </div>
                         </div>
                     }
-                    <div className={styles.contactsBlock}>
-                        <p className={styles.contactsHeader}>Contacts:</p>
-                        <ul className={styles.contacts}>
-                            {contactsArr}
-                        </ul>
-                    </div>
+                    {contactsArr.length !== 0
+                        && <div className={styles.contactsBlock}>
+                            <p className={styles.contactsHeader}>Contacts:</p>
+                            <ul className={styles.contacts}>
+                                {contactsArr}
+                            </ul>
+                        </div>
+                    }
                 </div>
 
             </section>
