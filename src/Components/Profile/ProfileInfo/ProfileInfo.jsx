@@ -1,17 +1,60 @@
 import React from 'react';
-import style from './ProfileInfo.module.css';
+import styles from './ProfileInfo.module.css';
+import Preloader from '../../Preloader/Preloader';
 
-const ProfileInfo = () => {
-    return (
-        <div className = {style.profileInfo} >
-            <div className={style.image}>
-                <img alt = 'Profile' src="https://s1.1zoom.me/big7/297/Canada_Mountains_Scenery_488936.jpg"></img>
-            </div>
-            <div className={style.description}>
-                Avatar + description
-            </div>
-        </div>
-    )
+
+const ProfileInfo = (props) => {
+    const { userProfile } = props;
+
+    if (!userProfile)
+        return <Preloader />
+    else {
+        const getContacts = () =>{
+            let contacts = [];
+            for (let key in userProfile.contacts) {
+                const nextContact = userProfile.contacts[key]
+                    ? <li className={styles.contact}>
+                        <a href={userProfile.contacts[key]}
+                            target='_blank' rel='noopener noreferrer'>{key} </a>
+                    </li>
+                    : null
+                contacts = [...contacts, nextContact]
+            }
+            return contacts
+        }
+
+        const contactsArr = getContacts()
+
+        return (
+            <section className={styles.profileInfo}>
+                <div className={styles.profilePhoto}>
+                    <img alt='avatar' src={userProfile.photos.large}></img>
+                </div>
+                <div className={styles.descriprion}>
+                    <div className={styles.aboutMeBlock}>
+                        <h2>{userProfile.fullName}</h2>
+                        <p className={styles.aboutMe}>{userProfile.aboutMe}</p>
+                    </div>
+                    {userProfile.lookingForAJob
+                        && <div className={styles.lookingForAJob}>
+                            <img alt='lookingForAJob' src={require('../../../Assets/Images/lookingForAJob.png')} />
+                            <div className={styles.LFAJ_descriprion}>
+                                <span className={styles.LFAJ_descriprion_header}>Looking for a vacancy:</span>
+                                <span className={styles.LFAJ_descriprion_vacancy}>{userProfile.lookingForAJobDescription}</span>
+                            </div>
+                        </div>
+                    }
+                    <div className={styles.contactsBlock}>
+                        <p className={styles.contactsHeader}>Contacts:</p>
+                        <ul className={styles.contacts}>
+                            {contactsArr}
+                        </ul>
+                    </div>
+                </div>
+
+            </section>
+        )
+    }
 }
 
 export default ProfileInfo;
