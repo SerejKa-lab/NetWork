@@ -11,7 +11,7 @@ class Users extends React.Component {
         pagginator: false,
     }
 
-    setEventPage = (page, inList) => {
+    setPageOnEvent = (page, inList) => {
         if (page !== this.props.currentPage) {
             this.props.setUsers(page, inList);
         }
@@ -20,7 +20,7 @@ class Users extends React.Component {
     showMoreUsers = () => {
         const {currentPage, pagesCount} = this.props;
         if (currentPage < pagesCount) {
-            this.setEventPage(currentPage+1, true);
+            this.setPageOnEvent(currentPage+1, true);
         }
     }
 
@@ -37,6 +37,7 @@ class Users extends React.Component {
         const disabled = currentPage === pagesCount ? true : false
         
         const usersList = users.map((user) => <User user={user} toggleFollow={toggleFollow} key={user.id} />);
+        
         return (
             <div className={styles.usersPage}>
                 {isLoading && <Preloader className={styles.preloader} />}
@@ -45,7 +46,7 @@ class Users extends React.Component {
                         <button onClick={this.showMoreUsers} disabled={disabled}>Show more</button>
                         <Pagginator
                             startPage={1} finishPage={pagesCount}
-                            currentPage={currentPage} dispatchNewPage={this.setEventPage} />
+                            currentPage={currentPage} dispatchNewPage={this.setPageOnEvent} />
                         <p className={styles.pagginatorLink} onClick={this.togglePagginator}>Hide</p>
                         
                     </div>
