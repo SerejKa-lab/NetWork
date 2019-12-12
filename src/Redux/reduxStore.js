@@ -3,15 +3,17 @@ import dialogsReducer from './dialogsReducer';
 import profileReducer from './profileReducer';
 import sideBarReducer from './sideBarReducer';
 import usersReducer from './usersReducer';
+import authReducer from './authReducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-let reducers = combineReducers({
+const reducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sideBar: sideBarReducer,
-    usersPage: usersReducer
+    usersPage: usersReducer,
+    auth: authReducer
 })
 
-let store = createStore(reducers, composeWithDevTools());
+const store = createStore(reducers, composeWithDevTools());
 
 export default store;

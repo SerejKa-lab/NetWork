@@ -2,12 +2,34 @@
     grid-area       : h;
     background-color: rgb(75, 158, 236);
     height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .header img {
-    position: relative;
-    top: 12px;
-    left: 25px;
+    margin-left: 25px;
     height       : 35px;
     border-radius: 50%;
+}
+
+.login {
+    display: flex;
+    align-items: center;
+    margin-right: 25px;
+}
+
+.login a {
+    text-decoration: none;
+    color: white;
+    line-height: 35px;
+}
+
+.login a:hover {
+    color: rgba(251, 255, 20, 0.952);
+}
+
+.login img {
+    height: 35px;
+    margin: 0;
 }
