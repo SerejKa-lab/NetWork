@@ -29,7 +29,7 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 users: state.users.map((user) => {
                     return (user.id === action.userId)
-                        ? { ...user, followed: !user.followed }
+                        ? { ...user, followed: action.isFollowed }
                         : user
                 })
             }
@@ -45,7 +45,7 @@ const usersReducer = (state = initialState, action) => {
     }
 }
 
-const toggleFollow = (userId) => ({ type: TOGGLE_FOLLOW, userId });
+const toggleFollow = (userId, isFollowed) => ({ type: TOGGLE_FOLLOW, userId, isFollowed });
 const setUsers = (users, totalCount, currentPage = 1, inList) => 
     ({ type: SET_USERS, users, totalCount, currentPage, inList });
 const toggleIsLoading = (isLoading) => ({ type: TOGGLE_IS_LOADING, isLoading });

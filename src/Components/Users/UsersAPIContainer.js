@@ -12,7 +12,11 @@ export default class UsersAPIContainer extends React.Component {
     setUsers = (page, inList) => {
         const { pageSize, toggleIsLoading } = this.props;
         toggleIsLoading(true);
-        Axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}&page=${page}`)
+        Axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}&page=${page}`,
+            {withCredentials: true,
+                headers: 
+                    {'API-KEY': '5deaa5a9-bfea-4e80-bac8-d313181506e0'}
+        })
             .then(Response => {
                 const { items, totalCount } = Response.data;
                 this.props.setUsers(items, totalCount, page, inList);

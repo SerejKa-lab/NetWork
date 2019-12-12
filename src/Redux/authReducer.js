@@ -1,9 +1,9 @@
 
 const initialState = {
-    id: 5330,
-    login: "SerejKa",
-    email: "seruogacom@mail.ru",
-    isAuth: true
+    id: '',
+    login: '',
+    email: '',
+    isAuth: false
 };
 
 const authReducer = (state = initialState, action) => {

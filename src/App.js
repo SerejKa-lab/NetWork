@@ -19,7 +19,6 @@ const App = () => {
                 <Navbar />
                 <section className='content-wrapper'>
                     <Route path='/' exact component={ProfileContainer} />
-                    <Route path='/profile/' exact component={ProfileContainer} />
                     <Route path='/profile/:userId?' component={ProfileContainer} />
                     <Route path='/dialogs' component={DialogsContainer} />
                     <Route path='/users' component={UsersContainer} />

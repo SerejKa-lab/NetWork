@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './User.module.css';
 import {NavLink} from 'react-router-dom';
+import axios from 'axios';
 
 
 const User = (props) => {
@@ -9,7 +10,31 @@ const User = (props) => {
     // const { country, city } = props.user.location
     const photoUrl = photos.small !== null ? photos.small : require('../../../Assets/Images/userPhoto.jpeg');
 
-    const toggleFollowClick = () => toggleFollow(id);
+    const setFollow = () => {
+        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {},
+            {withCredentials: true,
+            headers: 
+                {'API-KEY': '5deaa5a9-bfea-4e80-bac8-d313181506e0'}
+        })
+            .then( res => {
+                if (res.data.resultCode === 0){
+                    toggleFollow(id, true)
+                }
+            })
+    }
+
+    const setUnfollow = () => {
+        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`,
+            {withCredentials: true,
+            headers: 
+                {'API-KEY': '5deaa5a9-bfea-4e80-bac8-d313181506e0'}
+        })
+            .then( res => {
+                if (res.data.resultCode === 0){
+                    toggleFollow(id, false)
+                }
+            })
+    }
 
     return (
         <section className={styles.user} >
@@ -18,8 +43,8 @@ const User = (props) => {
                     <img src={photoUrl} alt='avatar' className={styles.photo} />
                 </NavLink>
                 {followed
-                ? <button onClick={toggleFollowClick} >Follow</button>
-                : <button onClick={toggleFollowClick} >Unfollow</button>}
+                ? <button onClick={setUnfollow} >Unfollow</button>
+                : <button onClick={setFollow} >Follow</button>}
             </section>
             <section className={styles.description}>
                 <div className={styles.info}>
