@@ -29,8 +29,8 @@ export const profileAPI = {
     }
 }
 
-export const headerAPI = {
-    login() {
+export const authAPI = {
+    setAuthData() {
         return instance.get('auth/me' )
     }
 }
