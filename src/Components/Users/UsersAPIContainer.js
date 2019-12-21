@@ -26,12 +26,11 @@ export default class UsersAPIContainer extends React.Component {
 
     render() {
         const { users, pageSize, pagesCount, currentPage, isLoading } = this.props;
-        const { toggleFollow } = this.props;
         return(
             <Users 
                 users={users} pageSize={pageSize} pagesCount={pagesCount} 
                 currentPage={currentPage} isLoading={isLoading}
-                toggleFollow={toggleFollow} setUsers={this.setUsers} />
+                setUsers={this.setUsers} />
         )
     }
 

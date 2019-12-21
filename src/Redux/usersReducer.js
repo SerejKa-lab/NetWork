@@ -1,7 +1,3 @@
-const TOGGLE_FOLLOW = 'TOGGLE_FOLLOW';
-const SET_USERS = 'SET_USERS';
-const TOGGLE_IS_LOADING = 'TOGGLE_IS_LOADING';
-
 
 const initialState = { 
     users: [],
@@ -9,6 +5,7 @@ const initialState = {
     pageSize: 4,
     currentPage: 336,
     isLoading: true,
+    followInProgress: false,
     pagesCount: null
 }; 
 
@@ -40,15 +37,32 @@ const usersReducer = (state = initialState, action) => {
                 isLoading: action.isLoading
             }
 
+        case TOGGLE_FOLLOW_PROGRESS:
+            return {
+                ...state,
+                users: state.users.map((user) => {
+                    return (user.id === action.userId)
+                        ? { ...user, followInProgress: action.value }
+                        : user
+                })
+            }
+
         default:
             return state
     }
 }
 
+const TOGGLE_FOLLOW = 'TOGGLE_FOLLOW';
+const SET_USERS = 'SET_USERS';
+const TOGGLE_IS_LOADING = 'TOGGLE_IS_LOADING';
+const TOGGLE_FOLLOW_PROGRESS = 'TOGGLE_FOLLOW_PROGRESS'
+
+
+const toggleFollowProgress = (userId, value) => ({ type: TOGGLE_FOLLOW_PROGRESS, userId, value })
 const toggleFollow = (userId, isFollowed) => ({ type: TOGGLE_FOLLOW, userId, isFollowed });
 const setUsers = (users, totalCount, currentPage = 1, inList) => 
     ({ type: SET_USERS, users, totalCount, currentPage, inList });
 const toggleIsLoading = (isLoading) => ({ type: TOGGLE_IS_LOADING, isLoading });
 
-export { toggleFollow, setUsers, toggleIsLoading };
+export { toggleFollow, setUsers, toggleIsLoading, toggleFollowProgress };
 export default usersReducer;

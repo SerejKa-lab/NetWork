@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './Users.module.css';
-import User from './User/User';
 import Pagginator from './Pagginator/Pagginator';
 import Preloader from '../Preloader/Preloader';
+import UserContainer from './User/UserContainer';
 
 
 class Users extends React.Component {
@@ -32,11 +32,11 @@ class Users extends React.Component {
     render = () => {
         
         const {users, isLoading, currentPage, pagesCount } = this.props;
-        const { toggleFollow } =this.props;
         const { pagginator } = this.state;
         const disabled = currentPage === pagesCount ? true : false
         
-        const usersList = users.map((user) => <User user={user} toggleFollow={toggleFollow} key={user.id} />);
+        const usersList = users.map((user) => 
+            <UserContainer user={user} key={user.id} />);
         
         return (
             <div className={styles.usersPage}>
