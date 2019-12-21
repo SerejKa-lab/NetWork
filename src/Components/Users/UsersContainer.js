@@ -1,6 +1,33 @@
+import React from 'react';
 import { connect } from 'react-redux';
 import { setUsers, toggleIsLoading } from '../../Redux/usersReducer';
-import UsersAPIContainer from './UsersAPIContainer';
+import { usersAPI } from '../../Api/api';
+import Users from './Users';
+
+
+class UsersContainer extends React.Component {
+    componentDidMount() {
+        this.setUsers(this.props.currentPage)
+    }
+
+    setUsers = (page, inList) => {
+        const { pageSize, toggleIsLoading } = this.props;
+        toggleIsLoading(true);
+        usersAPI.setUsers(pageSize, page)
+            .then(Response => {
+                const { items, totalCount } = Response.data;
+                this.props.setUsers(items, totalCount, page, inList);
+                toggleIsLoading(false)
+            })
+    }
+
+    render() {
+        return (
+            <Users {...this.props} setUsers={this.setUsers} />
+        )
+    }
+
+}
 
 
 const mapStateToProps = (state) => {
@@ -13,7 +40,5 @@ const mapStateToProps = (state) => {
     }
 }
 
-const actionsCreators = { setUsers, toggleIsLoading };
 
-const UsersContainer = connect(mapStateToProps, actionsCreators)(UsersAPIContainer);
-export default UsersContainer;
+export default connect(mapStateToProps, { setUsers, toggleIsLoading } )(UsersContainer);

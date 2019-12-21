@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './User.module.css';
 import { NavLink } from 'react-router-dom';
-import axios from 'axios';
+import styles from './User.module.css';
+import { usersAPI } from '../../../Api/api'
 
 
 const User = (props) => {
@@ -11,12 +11,7 @@ const User = (props) => {
 
     const setFollow = () => {
         toggleFollowProgress(id, true)
-        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {},
-            {
-                withCredentials: true,
-                headers:
-                    { 'API-KEY': '5deaa5a9-bfea-4e80-bac8-d313181506e0' }
-            })
+        usersAPI.setFollow(id)
             .then(res => {
                 if (res.data.resultCode === 0) {
                     toggleFollow(id, true)
@@ -27,12 +22,7 @@ const User = (props) => {
 
     const setUnfollow = () => {
         toggleFollowProgress(id, true)
-        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`,
-            {
-                withCredentials: true,
-                headers:
-                    { 'API-KEY': '5deaa5a9-bfea-4e80-bac8-d313181506e0' }
-            })
+        usersAPI.setUnfollow(id)
             .then(res => {
                 if (res.data.resultCode === 0) {
                     toggleFollow(id, false)
