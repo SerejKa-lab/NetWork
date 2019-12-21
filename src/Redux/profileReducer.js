@@ -1,3 +1,4 @@
+import { profileAPI } from '../Api/api'
 
 const initialState = {
     postsData: [
@@ -28,7 +29,7 @@ const initialState = {
         }
     ],
     postText: '',
-    userProfile: null
+    userProfile: { profileIsLoading: false, photos: {} }
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -66,14 +67,33 @@ const profileReducer = (state = initialState, action) => {
             };
             break;
 
+        case TOGGLE_PROFILE_LOADING: 
+            return {
+                ...state,
+                userProfile: { ...state.userProfile, profileIsLoading: action.loading }
+            }
+
         default: return state;
 }
 }
 
 export default profileReducer;
 
+const TOGGLE_PROFILE_LOADING = 'TOGGLE_PROFILE_LOADING';
+const toggleProfileLoading = (loading) => ({ type: TOGGLE_PROFILE_LOADING, loading })
+
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
-export const setUserProfile = (userProfile) => ({ type: SET_USER_PROFILE, userProfile });
+const setUserProfileAC = (userProfile) => ({ type: SET_USER_PROFILE, userProfile });
+
+export const setUserProfile = (userId) => (dispatch) => {
+    dispatch( toggleProfileLoading(true) )
+    profileAPI.setUserProfile(userId)
+    .then( Response => {debugger
+        dispatch(setUserProfileAC(Response.data))
+        dispatch( toggleProfileLoading(false) )
+    } )
+}
+
 const ADD_POST = 'ADD-POST';
 export const addPost = () => ({ type: ADD_POST });
 const SET_POST_TEXT = 'SET-POST-TEXT';
