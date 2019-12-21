@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import User from './User';
-import { toggleFollow, toggleFollowProgress } from '../../../Redux/usersReducer'
+import { setFollow } from '../../../Redux/usersReducer'
 
 const UserContainer = (props) => {
     return (
@@ -9,4 +9,4 @@ const UserContainer = (props) => {
     )
 }
 
-export default connect(null, { toggleFollow, toggleFollowProgress } )(UserContainer);
+export default connect(null, { setFollow } )(UserContainer);
