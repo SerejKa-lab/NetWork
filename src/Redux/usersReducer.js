@@ -32,7 +32,7 @@ const usersReducer = (state = initialState, action) => {
                 })
             }
         
-        case TOGGLE_IS_LOADING:
+        case TOGGLE_USER_LOADING:
             return {
                 ...state,
                 isLoading: action.isLoading
@@ -73,8 +73,8 @@ export const setFollow = (userId, follow) => (dispatch) => {
     })
 }
 
-const TOGGLE_IS_LOADING = 'TOGGLE_IS_LOADING';
-const toggleIsLoading = (isLoading) => ({ type: TOGGLE_IS_LOADING, isLoading });
+const TOGGLE_USER_LOADING = 'TOGGLE_USER_LOADING';
+const toggleIsLoading = (isLoading) => ({ type: TOGGLE_USER_LOADING, isLoading });
 
 const SET_USERS = 'SET_USERS';
 const setUsersAC = (users, totalCount, currentPage = 1, inList) => 

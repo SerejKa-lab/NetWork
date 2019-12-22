@@ -88,7 +88,7 @@ const setUserProfileAC = (userProfile) => ({ type: SET_USER_PROFILE, userProfile
 export const setUserProfile = (userId) => (dispatch) => {
     dispatch( toggleProfileLoading(true) )
     profileAPI.setUserProfile(userId)
-    .then( Response => {debugger
+    .then( Response => {
         dispatch(setUserProfileAC(Response.data))
         dispatch( toggleProfileLoading(false) )
     } )
