@@ -9,6 +9,7 @@ import DialogsContainer from './Components/Dialogs/DialogsContainer';
 import UsersContainer from './Components/Users/UsersContainer';
 import ProfileContainer from './Components/Profile/ProfileContainer';
 import HeaderContainer from './Components/Header/HeaderContainer';
+import Login from './Components/Login/Login';
 
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
                 <HeaderContainer />
                 <Navbar />
                 <section className='content-wrapper'>
+                    <Route path='/login' component={Login} />
                     <Route path='/' exact component={ProfileContainer} />
                     <Route path='/profile' exact component={ProfileContainer} />
                     <Route path='/profile/:userId?' component={ProfileContainer} />
