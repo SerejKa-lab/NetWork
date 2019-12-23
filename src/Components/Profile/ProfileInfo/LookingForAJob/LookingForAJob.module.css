@@ -1,0 +1,32 @@
+.lookingForAJob {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    background-color: rgba(159, 182, 197, 0.21);
+}
+
+.lookingForAJob img {
+    object-fit: contain;
+    height: 60px;
+    width: 60px;
+}
+
+.LFAJ_descriprion {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0 10px;
+}
+
+.LFAJ_descriprion_header {
+    font-size: 1.1em;
+    text-decoration: underline;
+}
+
+.LFAJ_descriprion_vacancy {
+    font-style: italic;
+}
