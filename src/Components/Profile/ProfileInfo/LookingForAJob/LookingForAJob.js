@@ -15,7 +15,7 @@ const LookingForAJob = (props) => {
                     <span className={styles.LFAJ_descriprion_vacancy}>{LFAJDescription}</span>
                 </div>
             </div>
-            : <div></div>
+            : null
     )
 }
 

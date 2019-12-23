@@ -24,13 +24,14 @@ const ProfileContacts = (props) => {
     const contactsArr = getContacts()
 
     return (
-        contactsArr.length !== 0
-            && <div className={styles.contactsBlock}>
+        contactsArr.length
+            ? <div className={styles.contactsBlock}>
                 <p className={styles.contactsHeader}>Contacts:</p>
                 <ul className={styles.contacts}>
                     {contactsArr}
                 </ul>
             </div>
+            : null
     )
 }
 
