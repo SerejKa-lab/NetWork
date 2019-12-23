@@ -29,7 +29,7 @@ const initialState = {
         }
     ],
     postText: '',
-    userProfile: { profileIsLoading: false, photos: {}, status: ''}
+    userProfile: { profileIsLoading: false, photos: {}, status: '', statusIsLoading: false}
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -45,6 +45,12 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 userProfile: {...state.userProfile, status: action.status}
+            }
+
+        case TOGGLE_STATUS_LOADING:
+            return {
+                ...state,
+                userProfile: { ...state.userProfile, statusIsLoading: action.loading }
             }
 
         case ADD_POST:
@@ -110,11 +116,16 @@ export const setUserStatus = (userId) => (dispatch) => {
         } )
 }
 
+const TOGGLE_STATUS_LOADING = 'TOGGLE_STATUS_LOADING';
+const toggleStatusLoading = (loading) => ({ type: TOGGLE_STATUS_LOADING, loading })
+
 export const changeMyStatus = (status) => (dispatch) => {
+    dispatch(toggleStatusLoading(true))
     profileAPI.setStatus(status)
         .then(Response => {
             if (Response.data.resultCode === 0) {
                 dispatch(setUserStatusAC(status))
+                dispatch(toggleStatusLoading(false))
             }
         })
 }

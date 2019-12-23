@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './AboutMe.module.css'
 import { connect } from 'react-redux';
 import { changeMyStatus } from '../../../../Redux/profileReducer'
+import Preloader from '../../../Preloader/Preloader';
 
 
 class AboutMe extends React.Component {
@@ -47,7 +48,7 @@ class AboutMe extends React.Component {
     }
 
     render() {
-        const { fullName, aboutMe, status } = this.props;
+        const { fullName, aboutMe, status, statusIsLoading } = this.props;
         const fullNameWrapper = aboutMe ? styles.fullNameWrapper__underline : styles.fullNameWrapper;
         const statusValue = (this.props.userId === this.props.myId && !status)
             ? 'set status'
@@ -67,11 +68,12 @@ class AboutMe extends React.Component {
                             onKeyDown={this.setStatusOnKey}
                             value={this.state.status} />
                     }
-                    { statusValue && !this.state.editMode
+                    { statusValue && !this.state.editMode && !statusIsLoading
                         && <span onDoubleClick={this.setEditMode} className={styles.statusValue}>
                             {statusValue}
                         </span>
                     }
+                    { statusIsLoading && <Preloader height='25px' /> }
                 </div>
                 {aboutMe && <p className={styles.aboutMe}>{aboutMe}</p>}
             </div>

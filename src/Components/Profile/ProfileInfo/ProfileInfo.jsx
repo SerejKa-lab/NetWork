@@ -8,7 +8,7 @@ import LookingForAJob from './LookingForAJob/LookingForAJob';
 
 const ProfileInfo = (props) => {
     const { userProfile, myId } = props;
-    const { profileIsLoading, contacts, fullName, aboutMe, status, userId,
+    const { profileIsLoading, contacts, fullName, aboutMe, status, statusIsLoading, userId,
             lookingForAJob, lookingForAJobDescription: LFAJDescription }  = props.userProfile;
 
     if (!userProfile)
@@ -27,8 +27,8 @@ const ProfileInfo = (props) => {
                         <img alt='avatar' src={userPhotoLink}></img>
                     </div>
                     <div className={styles.descriprion}>
-                        <AboutMe fullName={fullName} aboutMe={aboutMe} 
-                            status={status} myId={myId} userId={userId} />
+                        <AboutMe fullName={fullName} aboutMe={aboutMe} status={status} 
+                            statusIsLoading={statusIsLoading} myId={myId} userId={userId} />
                         <LookingForAJob lookingForAJob={lookingForAJob} LFAJDescription={LFAJDescription} />
                         <ProfileContacts contacts={contacts} />
                     </div>
