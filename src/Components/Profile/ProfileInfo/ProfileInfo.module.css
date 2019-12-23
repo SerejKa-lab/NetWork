@@ -16,28 +16,6 @@
     width: 55%;
 }
 
-.aboutMeBlock {
-    padding: 10px 25px;
-    border: 1px solid gray;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    background-color: rgba(159, 182, 197, 0.21);
-}
-
-.aboutMe {
-    font-style: italic;
-}
-
-.fullNameWrapper {
-    padding: 0.83em 0;
-    border-bottom: 1px solid gray;
-}
-
-.fullNameWrapper h2 {
-    margin-block-end: 0;
-    margin-block-start: 0;
-}
-
 .lookingForAJob {
     display: flex;
     align-items: center;

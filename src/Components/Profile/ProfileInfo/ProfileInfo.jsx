@@ -2,15 +2,17 @@ import React from 'react';
 import styles from './ProfileInfo.module.css';
 import Preloader from '../../Preloader/Preloader';
 import ProfileContacts from './ProfileContacts/ProfileContacts';
+import AboutMe from './AboutMe/AboutMe';
 
 
 const ProfileInfo = (props) => {
-    const { userProfile, userProfile: { profileIsLoading }, userProfile: { contacts } } = props;
+    const { userProfile } = props;
+    const { profileIsLoading, contacts, fullName, aboutMe }  = props.userProfile;
 
     if (!userProfile)
         return <Preloader />
     else {
-        
+
         const userPhotoLink = userProfile.photos.large ? userProfile.photos.large : require('../../../Assets/Images/userPhoto.jpeg')
 
         return (
@@ -21,12 +23,7 @@ const ProfileInfo = (props) => {
                         <img alt='avatar' src={userPhotoLink}></img>
                     </div>
                     <div className={styles.descriprion}>
-                        <div className={styles.aboutMeBlock}>
-                            <div className={styles.fullNameWrapper}>
-                                <h2>{userProfile.fullName}</h2>
-                            </div>
-                            <p className={styles.aboutMe}>{userProfile.aboutMe}</p>
-                        </div>
+                        <AboutMe fullName={fullName} aboutMe={aboutMe} />
                         {userProfile.lookingForAJob
                             && <div className={styles.lookingForAJob}>
                                 <img alt='lookingForAJob' src={require('../../../Assets/Images/lookingForAJob.png')} />
