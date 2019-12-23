@@ -1,0 +1,38 @@
+.contactsBlock {
+    padding: 20px 15px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    background-color: rgba(159, 182, 197, 0.21);
+}
+
+.contactsHeader {
+    margin-top: 0;
+    font-size: 1.1em;
+    text-decoration: underline;
+}
+
+.contacts {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    line-height: 2em;
+}
+
+.contacts li {
+    margin-left: 20px;
+}
+
+.contacts a {
+    text-decoration: none;
+    color: white;
+    font-style: italic;
+}
+
+.contacts a:hover {
+    color: rgba(251, 255, 20, 0.952);
+    text-decoration: underline;
+}
+
+.contact::first-letter {
+    text-transform: uppercase;
+}
