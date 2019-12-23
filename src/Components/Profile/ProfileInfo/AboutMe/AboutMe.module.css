@@ -10,12 +10,32 @@
     font-style: italic;
 }
 
-.fullNameWrapper {
+.fullNameWrapper__underline {
+    width: 423px;
+    overflow: hidden;
     padding: 0.83em 0;
     border-bottom: 1px solid gray;
 }
 
-.fullNameWrapper h2 {
-    margin-block-end: 0;
+.fullNameWrapper__underline h2 {
+    margin-block-end: 5px;
     margin-block-start: 0;
+}
+
+.fullNameWrapper {
+    width: 423px;
+    overflow: hidden;
+}
+
+.fullNameWrapper h2 {
+    margin-block-end: 5px;
+    margin-block-start: 0;
+}
+
+.statusValue {
+    overflow-wrap: break-word;
+}
+
+.inputError {
+    border: 2px solid red;
 }

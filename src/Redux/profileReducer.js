@@ -29,7 +29,7 @@ const initialState = {
         }
     ],
     postText: '',
-    userProfile: { profileIsLoading: false, photos: {} }
+    userProfile: { profileIsLoading: false, photos: {}, status: ''}
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -38,7 +38,13 @@ const profileReducer = (state = initialState, action) => {
         case SET_USER_PROFILE:
             return {
                 ...state, 
-                userProfile: action.userProfile
+                userProfile: { ...state.userProfile, ...action.userProfile}
+            }
+
+        case SET_USER_STATUS:
+            return {
+                ...state,
+                userProfile: {...state.userProfile, status: action.status}
             }
 
         case ADD_POST:
@@ -92,6 +98,25 @@ export const setUserProfile = (userId) => (dispatch) => {
         dispatch(setUserProfileAC(Response.data))
         dispatch( toggleProfileLoading(false) )
     } )
+}
+
+const SET_USER_STATUS = 'SET_USER_STATUS';
+const setUserStatusAC = (status) => ({ type: SET_USER_STATUS, status });
+
+export const setUserStatus = (userId) => (dispatch) => {
+    profileAPI.getUserStatus(userId)
+        .then( (Response) => {
+            dispatch(setUserStatusAC(Response.data))
+        } )
+}
+
+export const changeMyStatus = (status) => (dispatch) => {
+    profileAPI.setStatus(status)
+        .then(Response => {
+            if (Response.data.resultCode === 0) {
+                dispatch(setUserStatusAC(status))
+            }
+        })
 }
 
 const ADD_POST = 'ADD-POST';
