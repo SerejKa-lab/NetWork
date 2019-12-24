@@ -6,7 +6,7 @@ import unlogged from '../../Assets/Images/unlogged.png';
 
 
 const Header = (props) => {
-    const { login, isAuth } = props;
+    const { login, isAuth, logOut } = props;
     return (
         <header className={style.header}>
             <Link to='/'>
@@ -14,8 +14,11 @@ const Header = (props) => {
             </Link>
             {isAuth
                 ? <div className={style.login}>
-                    <a href='#log'>{login}</a>
-                    <img src={avatar} alt='profile' />
+                    <div className={style.loggedIn}>
+                        <span>{login}</span>
+                        <img src={avatar} alt='profile' />
+                    </div>
+                    <span onClick={ logOut } className={style.logOut}>LogOut</span>
                 </div>
                 : <div className={style.login}>
                     <a href='#log'>Login</a>
