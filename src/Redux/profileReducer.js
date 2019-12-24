@@ -55,22 +55,20 @@ const profileReducer = (state = initialState, action) => {
             }
 
         case ADD_POST:
-            if ( action.postText.trim() !== '' ) {   //проверка на пустую стоку
-                let newPost = {
-                    name: 'Kolya',
-                    message: action.postText,
-                    like: '0',
-                    id: Math.random(),
-                    profileImage: avatar,
-                    likesImage: like
-                };
-                return { 
-                    ...state,
-                    postsData: [ ...state.postsData, newPost ],
-                };
-            } else return state
-    
-        case TOGGLE_PROFILE_LOADING: 
+            const newPost = {
+                name: 'Kolya',
+                message: action.postText,
+                like: '0',
+                id: Math.random(),
+                profileImage: avatar,
+                likesImage: like
+            };
+            return {
+                ...state,
+                postsData: [...state.postsData, newPost]
+            };
+
+        case TOGGLE_PROFILE_LOADING:
             return {
                 ...state,
                 userProfile: { ...state.userProfile, profileIsLoading: action.loading }

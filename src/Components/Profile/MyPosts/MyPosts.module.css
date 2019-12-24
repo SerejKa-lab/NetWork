@@ -24,8 +24,9 @@
 }
 
 .newPostForm input {
-    width: 450px;
-    height: 50px;
+    width: 500px;
+    height: 25px;
+    padding: 10px;
     border-radius: 5px;
 }
 

@@ -8,8 +8,10 @@ let AddPostForm = (props) => {
 
     const addPostAction = (values) => {
         if (values.newPost) {
-            addPost(values.newPost)
-            reset()
+            if (values.newPost.trim() !== '') {
+                addPost(values.newPost)
+                reset()
+            } else reset()
         }
     }
 
