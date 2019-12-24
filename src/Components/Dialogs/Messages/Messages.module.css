@@ -5,29 +5,18 @@
     border-left: 1px solid grey;
 }
 
-.messages textarea {
-    align-self: flex-start;
-    margin-top: 25px;
-}
-.messages button {
-    align-self: flex-start;
-}
-
-.message {
-    margin: 5px 0px;
-}
-
 .talker {
     max-width: 50%;
-    min-width: 25%;
-    height: 35px;
+    min-width: 40%;
+    min-height: 20px;
     border: 1px solid rgb(142, 142, 252);
     border-radius: 5px;
     margin: 5px;
     color: white;
     display: flex;
     align-items: center;
-    padding: 0 10px;
+    padding: 10px;
+    word-break: break-word;
 }
 
 .talkerFirst {
@@ -40,3 +29,22 @@
     background-color: rgba(152, 165, 39, 0.507);
 }
 
+.addMessageForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.addMessageForm textarea {
+    width: 400px;
+    min-height: 30px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.addMessageForm button {
+    margin: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+}

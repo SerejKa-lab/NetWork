@@ -10,16 +10,15 @@ import Messages from './Messages/Messages';
 const Dialogs = ( props ) => {
 
     const { dialogsPage } = props;
-    const {addMessage, setMessageText} = props;
+    const {addMessage} = props;
 
     const dialogMessages = dialogsPage.map( (dialog, index) => {
-        const path = '/dialogs/' + dialog.path;
-        const {id, newMessage, dialogs} = dialog 
+        const {id: dialogId, messages, path} = dialog 
+        const routePath = '/dialogs/' + path;
         return(
-            <Route path = { path } key= { index }
-                render = { () => <Messages 
-                    id={id} newMessage={newMessage} dialogs={dialogs}
-                    addMessage={addMessage} setMessageText={setMessageText} /> }  
+            <Route path = { routePath } key= { index }
+                render = { () => <Messages dialogId={dialogId} messages={messages}
+                    addMessage={addMessage} /> }  
             />
         )
     } )
@@ -33,12 +32,13 @@ const Dialogs = ( props ) => {
         <div className={style.dialogsWrapper}>
             <DialogName nameData = {nameData} />
             {dialogMessages}
-            <Route exact path='/dialogs'
+            <Route 
+                exact path='/dialogs'
                 render={() =>
                     <span className={style.greeting}>
                         Please, choose a dialog<br />or create a new one.
-                    </span>
-                } />
+                    </span> } 
+            />
         </div>
     )
 }
