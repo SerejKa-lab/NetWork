@@ -1,4 +1,6 @@
 import { profileAPI } from '../Api/api';
+import avatar from '../Assets/Images/cvetok-lepestki.jpg'
+import like from '../Assets/Images/like.jpg'
 
 const initialState = {
     postsData: [
@@ -59,8 +61,8 @@ const profileReducer = (state = initialState, action) => {
                     message: action.postText,
                     like: '0',
                     id: Math.random(),
-                    profileImage: 'https://img3.goodfon.ru/original/1400x1050/7/b7/cvetok-lepestki-priroda-fon-1988.jpg',
-                    likesImage: 'https://i.pinimg.com/474x/db/3a/bb/db3abbe34ca1a4568b408971cf4621ba.jpg'
+                    profileImage: avatar,
+                    likesImage: like
                 };
                 return { 
                     ...state,
