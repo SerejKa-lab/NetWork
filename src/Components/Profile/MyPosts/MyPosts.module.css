@@ -17,11 +17,21 @@
     padding: 5px 0px;
 }
 
-.newPost {
-    text-align: center;
-    padding: 5px 0px;
+.newPostForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.newPost textarea {
-    margin-top: 12px;
+.newPostForm input {
+    width: 450px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.newPostForm button {
+    font-size: 20px;
+    border-radius: 5px;
+    margin: 10px 0;
+    padding: 3px 5px;
 }

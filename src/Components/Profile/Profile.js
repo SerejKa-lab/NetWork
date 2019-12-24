@@ -10,7 +10,8 @@ const Profile = (props) => {
     return (
         <div className={style.profile}>
             <ProfileInfo {...props} />
-            { myId === userId && !profileIsLoading && <MyPostsContainer />}
+            { myId === userId && !profileIsLoading 
+                && <MyPostsContainer />}
         </div>
     )
 }

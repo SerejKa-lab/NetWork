@@ -1,39 +1,42 @@
 import React from 'react';
-import style from './MyPosts.module.css';
+import styles from './MyPosts.module.css';
 import Post from './Post/Post';
+import { Field, reduxForm } from 'redux-form';
 
-const MyPosts = ({ postsData, postText, setPostText, addPost }) => {
+let AddPostForm = (props) => {
+    const {handleSubmit, reset, addPost} = props
+
+    const addPostAction = (values) => {
+        if (values.newPost) {
+            addPost(values.newPost)
+            reset()
+        }
+    }
+
+    return (
+        <form onSubmit={handleSubmit(addPostAction)} className={styles.newPostForm}>
+            <Field name='newPost' component='input' type='text' />
+            <button type='submit'>Add post</button>
+        </form>
+    )
+}
+
+AddPostForm = reduxForm({ form: 'addPost' })(AddPostForm)
+
+const MyPosts = ({ postsData, addPost }) => {
 
     const postComponent = postsData.map((post) => <Post {...post} key={post.id} />)
 
-
-    const onChangePostText = (e) => setPostText(e.currentTarget.value);
-
-    const addPostOnClick = () => addPost();
-
-    const addPostOnKey = (e) => { if (e.key === 'Enter') addPost() }
-
-
     return (
-        <div className={style.postsContainer}>
+        <div className={styles.postsContainer}>
             <h2> My posts </h2>
-            <div className={style.myPosts}>
+            <div className={styles.myPosts}>
                 {postComponent}
             </div>
-            <div className={style.newPost}>
-                <div>
-                    <textarea
-                        value={postText}
-                        onChange={onChangePostText}
-                        onKeyPress={addPostOnKey}
-                        cols="75" rows="3" />
-                </div>
-                <div>
-                    <button onClick={addPostOnClick}>Add post</button>
-                </div>
-            </div>
+            <AddPostForm addPost={addPost} />
         </div>
     )
 }
+
 
 export default MyPosts;

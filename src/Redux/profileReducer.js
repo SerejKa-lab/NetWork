@@ -1,4 +1,4 @@
-import { profileAPI } from '../Api/api'
+import { profileAPI } from '../Api/api';
 
 const initialState = {
     postsData: [
@@ -28,7 +28,6 @@ const initialState = {
             likesImage: 'https://i.pinimg.com/474x/db/3a/bb/db3abbe34ca1a4568b408971cf4621ba.jpg'
         }
     ],
-    postText: '',
     userProfile: { profileIsLoading: false, photos: {}, status: '', statusIsLoading: false}
 }
 
@@ -54,10 +53,10 @@ const profileReducer = (state = initialState, action) => {
             }
 
         case ADD_POST:
-            if ( state.postText.trim() !== '' ) {   //проверка на пустую стоку
+            if ( action.postText.trim() !== '' ) {   //проверка на пустую стоку
                 let newPost = {
                     name: 'Kolya',
-                    message: state.postText,
+                    message: action.postText,
                     like: '0',
                     id: Math.random(),
                     profileImage: 'https://img3.goodfon.ru/original/1400x1050/7/b7/cvetok-lepestki-priroda-fon-1988.jpg',
@@ -66,19 +65,9 @@ const profileReducer = (state = initialState, action) => {
                 return { 
                     ...state,
                     postsData: [ ...state.postsData, newPost ],
-                    postText: ''
                 };
             } else return state
     
-        case SET_POST_TEXT:
-            if ( action.newPostText !== ( undefined || null) ) {   //проверка неопределенного состояния ввода сообщения
-               return {
-                    ...state,
-                    postText: action.newPostText
-                };
-            };
-            break;
-
         case TOGGLE_PROFILE_LOADING: 
             return {
                 ...state,
@@ -131,6 +120,4 @@ export const changeMyStatus = (status) => (dispatch) => {
 }
 
 const ADD_POST = 'ADD-POST';
-export const addPost = () => ({ type: ADD_POST });
-const SET_POST_TEXT = 'SET-POST-TEXT';
-export const setPostText = (newText) =>({ type: SET_POST_TEXT, newPostText: newText });
+export const addPost = (postText) => ({ type: ADD_POST, postText });

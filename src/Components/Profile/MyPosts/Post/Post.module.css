@@ -1,36 +1,34 @@
 .item {
     background-color: rgba(24, 177, 149, 0.27);
-    width           : 550px;
-    border          : 1px solid black;
-    margin          : 15px 0px;
+    width: 550px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 15px 0px;
 }
 
 .item img {
-    width        : 50px;
+    width: 50px;
     border-radius: 20%;
 }
 
 .item span {
-
     font-family: 'Courier New', Courier, monospace;
-    font-style : italic;
-    color      : rgb(66, 66, 16);
+    font-style: italic;
+    color: rgb(66, 66, 16);
 }
-
 
 .like {
     position: relative;
-    left    : 95%;
+    left: 95%;
     top: 10px;
 }
 
 .like span {
-    position   : relative;
-    right      : 2%;
-    font-size  : 15px;
+    position: relative;
+    right: 2%;
+    font-size: 15px;
     font-weight: bold;
-    color   : rgb(199, 46, 67);
-
+    color: rgb(199, 46, 67);
 }
 
 .like img {
