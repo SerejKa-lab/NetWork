@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './AboutMe.module.css'
 import { connect } from 'react-redux';
 import { changeMyStatus } from '../../../../Redux/profileReducer'
-import Preloader from '../../../Preloader/Preloader';
+import Preloader from '../../../Common/Preloader/Preloader';
 
 
 class AboutMe extends React.Component {

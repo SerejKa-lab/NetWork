@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './ProfileInfo.module.css';
-import Preloader from '../../Preloader/Preloader';
+import Preloader from '../../Common/Preloader/Preloader';
 import ProfileContacts from './ProfileContacts/ProfileContacts';
 import AboutMe from './AboutMe/AboutMe';
 import LookingForAJob from './LookingForAJob/LookingForAJob';
