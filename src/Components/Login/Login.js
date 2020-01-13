@@ -3,7 +3,9 @@ import { Field, reduxForm } from 'redux-form';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import styles from './Login.module.css';
-import { logIn } from '../../Redux/authReducer'
+import { logIn } from '../../Redux/authReducer';
+import {required} from '../../Utils/Validators';
+import { Input } from '../Common/FormControle/FormControle'
 
 
 let Login = (props) => {
@@ -18,9 +20,21 @@ let Login = (props) => {
         <form className={styles.loginForm} onSubmit={handleSubmit(submit)}>
             <fieldset>
                 <legend>Authorization form</legend>
-                <p><Field name='email' component='input' type='email' placeholder='email' /></p>
-                <p><Field name='password' component='input' type='password' placeholder='Password' /></p>
-                <p><Field name='rememberMe' component='input' type='checkbox'/>Remember me</p>
+                <p>
+                    <Field
+                        name='email' type='email'
+                        component={Input} placeholder='email'
+                        validate={[required]}
+                    />
+                </p>
+                <p>
+                    <Field
+                        name='password' type='password'
+                        component={Input} placeholder='Password'
+                        validate={[required]}
+                    />
+                </p>
+                <p><Field name='rememberMe' component='input' type='checkbox' />Remember me</p>
             </fieldset>
             <button type='submit' value='Submit' className={styles.button}>Login</button>
         </form>
@@ -30,7 +44,7 @@ let Login = (props) => {
 Login = reduxForm({
     form: 'login' // имя формы в state (state.form.post)
 })(Login)
-                
+
 
 const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth

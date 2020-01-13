@@ -2,22 +2,27 @@ import React from 'react';
 import styles from './MyPosts.module.css';
 import Post from './Post/Post';
 import { Field, reduxForm } from 'redux-form';
+import { required, maxLength } from '../../../Utils/Validators';
+import { Input } from '../../Common/FormControle/FormControle';
+
+const maxLength100 = maxLength(100);
 
 let AddPostForm = (props) => {
     const {handleSubmit, reset, addPost} = props
 
     const addPostAction = (values) => {
-        if (values.newPost) {
-            if (values.newPost.trim() !== '') {
-                addPost(values.newPost)
-                reset()
-            } else reset()
-        }
+        addPost(values.newPost)
+        reset()
     }
-
+    
     return (
         <form onSubmit={handleSubmit(addPostAction)} className={styles.newPostForm}>
-            <Field name='newPost' component='input' type='text' />
+            <Field 
+                name='newPost' 
+                type='text' 
+                component= {Input} 
+                validate = {[required, maxLength100]}
+            />
             <button type='submit'>Add post</button>
         </form>
     )
