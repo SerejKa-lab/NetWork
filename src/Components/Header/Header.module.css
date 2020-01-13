@@ -19,17 +19,31 @@
     margin-right: 25px;
 }
 
-.login a {
+.login span {
     text-decoration: none;
     color: white;
     line-height: 35px;
 }
 
-.login a:hover {
-    color: rgba(251, 255, 20, 0.952);
-}
-
 .login img {
     height: 35px;
     margin: 0;
+}
+
+.loggedIn {
+    display: flex;
+    align-items: center;
+    background-color: #a0d3e8;
+    padding: 0 10px;
+    border-radius: 24px;
+    margin: 0 10px;
+}
+
+.logOut {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.logOut:hover {
+    text-decoration: underline;
 }

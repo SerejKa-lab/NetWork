@@ -1,9 +1,9 @@
 import { authAPI } from '../Api/api'
 
 const initialState = {
-    id: '',
-    login: '',
-    email: '',
+    id: null,
+    login: null,
+    email: null,
     isAuth: false
 };
 
@@ -31,7 +31,26 @@ export const setAuthData = () => (dispatch) => {
     authAPI.setAuthData()
             .then(res => { 
                 if (res.data.resultCode === 0) {
-                    dispatch(setAuthDataAC({...res.data.data, isAuth: true}))
+                    const {id, login, email} = res.data.data;
+                    dispatch(setAuthDataAC({ id, login, email, isAuth: true}))
                 }
             })
+}
+
+export const logIn = (values) => (dispatch) => {
+    authAPI.logIn(values)
+        .then( res => {
+            if (res.data.resultCode === 0) {
+               dispatch( setAuthData())
+            }
+        } )
+}
+
+export const logOut = () => (dispatch) => {
+    authAPI.logOut()
+        .then( res => {
+            if (res.data.resultCode === 0) {
+               dispatch(setAuthDataAC({id: null, login: null, email: null, isAuth: false}))
+            }
+        } )
 }
