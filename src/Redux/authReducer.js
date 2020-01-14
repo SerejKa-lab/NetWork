@@ -29,7 +29,7 @@ const SET_AUTH_DATA = 'SET_AUTH_DATA';
 const setAuthDataAC = (authData) => ({ type: SET_AUTH_DATA, authData })
 
 export const setAuthData = () => (dispatch) => {
-    authAPI.setAuthData()
+    return authAPI.setAuthData()
             .then(res => { 
                 if (res.data.resultCode === 0) {
                     const {id, login, email} = res.data.data;

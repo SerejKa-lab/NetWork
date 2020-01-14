@@ -7,12 +7,14 @@ import profileReducer from './profileReducer';
 import sideBarReducer from './sideBarReducer';
 import usersReducer from './usersReducer';
 import authReducer from './authReducer';
+import appReducer from './appReducer';
 
 const storeReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sideBar: sideBarReducer,
     usersPage: usersReducer,
+    app: appReducer,
     auth: authReducer,
     form: formReducer
 })

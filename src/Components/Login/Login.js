@@ -8,7 +8,7 @@ import {required} from '../../Utils/Validators';
 import { Input } from '../Common/FormControle/FormControle'
 
 
-let Login = (props) => {debugger
+let Login = (props) => {
 
     const { handleSubmit, logIn, isAuth, error } = props
 
