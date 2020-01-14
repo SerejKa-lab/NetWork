@@ -8,9 +8,9 @@ import {required} from '../../Utils/Validators';
 import { Input } from '../Common/FormControle/FormControle'
 
 
-let Login = (props) => {
+let Login = (props) => {debugger
 
-    const { handleSubmit, logIn, isAuth } = props
+    const { handleSubmit, logIn, isAuth, error } = props
 
     const submit = (values) => logIn(values)
 
@@ -36,13 +36,14 @@ let Login = (props) => {
                 </p>
                 <p><Field name='rememberMe' component='input' type='checkbox' />Remember me</p>
             </fieldset>
+            <p className={styles.loginError}>{error}</p>
             <button type='submit' value='Submit' className={styles.button}>Login</button>
         </form>
     )
 }
 
 Login = reduxForm({
-    form: 'login' // имя формы в state (state.form.post)
+    form: 'login' // имя формы в state (state.form.login)
 })(Login)
 
 

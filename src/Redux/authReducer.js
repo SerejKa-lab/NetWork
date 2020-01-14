@@ -1,4 +1,5 @@
 import { authAPI } from '../Api/api'
+import { stopSubmit } from 'redux-form';
 
 const initialState = {
     id: null,
@@ -42,6 +43,9 @@ export const logIn = (values) => (dispatch) => {
         .then( res => {
             if (res.data.resultCode === 0) {
                dispatch( setAuthData())
+            } else {
+                const errorMessage = res.data.messages.length > 0 ? res.data.messages[0] : 'Error is undefined'
+                dispatch(stopSubmit('login', {_error:errorMessage}))
             }
         } )
 }
