@@ -1,65 +1,58 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Users.module.css';
 import Pagginator from './Pagginator/Pagginator';
 import Preloader from '../Common/Preloader/Preloader';
 import UserContainer from './User/UserContainer';
 
 
-class Users extends React.Component {
+const Users = (props) => {
 
-    state = {
-        pagginator: false,
-    }
+    const [pagginator, setPagginator] = useState(false)
 
-    setPageOnEvent = (page, inList) => {
-        if (page !== this.props.currentPage) {
-            this.props.setUsers(page, inList);
+    const setPageOnEvent = (page, inList) => {
+        if (page !== props.currentPage) {
+            props.setUsers(page, inList);
         }
     }
 
-    showMoreUsers = () => {
-        const {currentPage, pagesCount} = this.props;
+    const showMoreUsers = () => {
+        const { currentPage, pagesCount } = props;
         if (currentPage < pagesCount) {
-            this.setPageOnEvent(currentPage+1, true);
+            setPageOnEvent(currentPage + 1, true);
         }
     }
 
-    togglePagginator = () => {
-        this.setState( { pagginator: !this.state.pagginator } )
-    }
+    const showPagginator = () => setPagginator(true)
+    const hidePagginator = () => setPagginator(false)
 
-    
-    render = () => {
-        
-        const {users, isLoading, currentPage, pagesCount } = this.props;
-        const { pagginator } = this.state;
-        const disabled = currentPage === pagesCount ? true : false
-        
-        const usersList = users.map((user) => 
-            <UserContainer user={user} key={user.id} />);
-        
-        return (
-            <div className={styles.usersPage}>
-                {isLoading && <Preloader className={styles.preloader} />}
-                {pagginator
-                    ? <div>
-                        <button onClick={this.showMoreUsers} disabled={disabled}>Show more</button>
-                        <Pagginator
-                            startPage={1} finishPage={pagesCount}
-                            currentPage={currentPage} dispatchNewPage={this.setPageOnEvent} />
-                        <p className={styles.pagginatorLink} onClick={this.togglePagginator}>Hide</p>
-                        
-                    </div>
-                    : <div>
-                        <button onClick={this.showMoreUsers} disabled={disabled}>Show more</button>
-                        <p className={styles.pagginatorLink} onClick={this.togglePagginator}>Pagginator</p>
-                    </div>
-                }
 
-                {usersList}
-            </div>
-        )
-    }
+    const { users, isLoading, currentPage, pagesCount } = props;
+    const disabled = currentPage === pagesCount ? true : false
+
+    const usersList = users.map((user) =>
+        <UserContainer user={user} key={user.id} />);
+
+    return (
+        <div className={styles.usersPage}>
+            {isLoading && <Preloader className={styles.preloader} />}
+            {pagginator
+                ? <div>
+                    <button onClick={showMoreUsers} disabled={disabled}>Show more</button>
+                    <Pagginator
+                        startPage={1} finishPage={pagesCount}
+                        currentPage={currentPage} dispatchNewPage={setPageOnEvent} />
+                    <p className={styles.pagginatorLink} onClick={hidePagginator}>Hide</p>
+
+                </div>
+                : <div>
+                    <button onClick={showMoreUsers} disabled={disabled}>Show more</button>
+                    <p className={styles.pagginatorLink} onClick={showPagginator}>Pagginator</p>
+                </div>
+            }
+
+            {usersList}
+        </div>
+    )
 }
 
 
