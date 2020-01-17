@@ -56,10 +56,10 @@ const usersReducer = (state = initialState, action) => {
 
 
 
-const TOGGLE_FOLLOW_PROGRESS = 'TOGGLE_FOLLOW_PROGRESS'
+const TOGGLE_FOLLOW_PROGRESS = 'network/users/TOGGLE_FOLLOW_PROGRESS'
 const toggleFollowProgress = (userId, value) => ({ type: TOGGLE_FOLLOW_PROGRESS, userId, value })
 
-const TOGGLE_FOLLOW = 'TOGGLE_FOLLOW';
+const TOGGLE_FOLLOW = 'network/users/TOGGLE_FOLLOW';
 const toggleFollow = (userId, isFollowed) => ({ type: TOGGLE_FOLLOW, userId, isFollowed });
 
 export const setFollow = (userId, follow) => (dispatch) => {
@@ -73,10 +73,10 @@ export const setFollow = (userId, follow) => (dispatch) => {
     })
 }
 
-const TOGGLE_USER_LOADING = 'TOGGLE_USER_LOADING';
+const TOGGLE_USER_LOADING = 'network/users/TOGGLE_USER_LOADING';
 const toggleIsLoading = (isLoading) => ({ type: TOGGLE_USER_LOADING, isLoading });
 
-const SET_USERS = 'SET_USERS';
+const SET_USERS = 'network/users/SET_USERS';
 const setUsersAC = (users, totalCount, currentPage = 1, inList) => 
     ({ type: SET_USERS, users, totalCount, currentPage, inList });
 

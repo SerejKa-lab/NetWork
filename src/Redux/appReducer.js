@@ -25,7 +25,7 @@ const appReducer = (state = initialState, action) => {
 
 export default appReducer;
 
-const INITIALIZATION_SUCCESS = 'INITIALIZATION_SUCCESS';
+const INITIALIZATION_SUCCESS = 'network/app/INITIALIZATION_SUCCESS';
 const initializationSuccess = () => ({ type: INITIALIZATION_SUCCESS });
 
 export const initializeApp = () => (dispatch) => {

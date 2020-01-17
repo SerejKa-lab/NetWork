@@ -102,6 +102,6 @@ const dialogsReducer = (state = initialState, action) => {
 
 export default dialogsReducer;
 
-const ADD_MESSAGE = 'ADD-MESSAGE';
+const ADD_MESSAGE = 'network/dialogs/ADD-MESSAGE';
 export const addMessage = (dialogId, messageId, newMessage) => 
     ({ type: ADD_MESSAGE, dialogId, messageId, newMessage });

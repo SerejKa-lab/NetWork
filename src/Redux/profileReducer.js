@@ -80,10 +80,10 @@ const profileReducer = (state = initialState, action) => {
 
 export default profileReducer;
 
-const TOGGLE_PROFILE_LOADING = 'TOGGLE_PROFILE_LOADING';
+const TOGGLE_PROFILE_LOADING = 'network/profile/TOGGLE_PROFILE_LOADING';
 const toggleProfileLoading = (loading) => ({ type: TOGGLE_PROFILE_LOADING, loading })
 
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_USER_PROFILE = 'network/profile/SET_USER_PROFILE';
 const setUserProfileAC = (userProfile) => ({ type: SET_USER_PROFILE, userProfile });
 
 export const setUserProfile = (userId) => (dispatch) => {
@@ -95,7 +95,7 @@ export const setUserProfile = (userId) => (dispatch) => {
     } )
 }
 
-const SET_USER_STATUS = 'SET_USER_STATUS';
+const SET_USER_STATUS = 'network/profile/SET_USER_STATUS';
 const setUserStatusAC = (status) => ({ type: SET_USER_STATUS, status });
 
 export const setUserStatus = (userId) => (dispatch) => {
@@ -105,7 +105,7 @@ export const setUserStatus = (userId) => (dispatch) => {
         } )
 }
 
-const TOGGLE_STATUS_LOADING = 'TOGGLE_STATUS_LOADING';
+const TOGGLE_STATUS_LOADING = 'network/profile/TOGGLE_STATUS_LOADING';
 const toggleStatusLoading = (loading) => ({ type: TOGGLE_STATUS_LOADING, loading })
 
 export const changeMyStatus = (status) => (dispatch) => {
@@ -119,5 +119,5 @@ export const changeMyStatus = (status) => (dispatch) => {
         })
 }
 
-const ADD_POST = 'ADD-POST';
+const ADD_POST = 'network/profile/ADD-POST';
 export const addPost = (postText) => ({ type: ADD_POST, postText });

@@ -25,7 +25,7 @@ const authReducer = (state = initialState, action) => {
 
 export default authReducer;
 
-const SET_AUTH_DATA = 'SET_AUTH_DATA';
+const SET_AUTH_DATA = 'network/auth/SET_AUTH_DATA';
 const setAuthDataAC = (authData) => ({ type: SET_AUTH_DATA, authData })
 
 export const setAuthData = () => (dispatch) => {
