@@ -62,15 +62,14 @@ const toggleFollowProgress = (userId, value) => ({ type: TOGGLE_FOLLOW_PROGRESS,
 const TOGGLE_FOLLOW = 'network/users/TOGGLE_FOLLOW';
 const toggleFollow = (userId, isFollowed) => ({ type: TOGGLE_FOLLOW, userId, isFollowed });
 
-export const setFollow = (userId, follow) => (dispatch) => {
+export const setFollow = (userId, follow) => async(dispatch) => {
     dispatch(toggleFollowProgress(userId, true))
     const apiAction = follow ? usersAPI.setFollow(userId) : usersAPI.setUnfollow(userId)
-    apiAction.then(res => {
-        if (res.data.resultCode === 0) {
-            dispatch(toggleFollow(userId, follow))
-            dispatch(toggleFollowProgress(userId, false))
-        }
-    })
+    const response = await apiAction
+    if (response.data.resultCode === 0) {
+        dispatch(toggleFollow(userId, follow))
+        dispatch(toggleFollowProgress(userId, false))
+    }
 }
 
 const TOGGLE_USER_LOADING = 'network/users/TOGGLE_USER_LOADING';
@@ -80,15 +79,13 @@ const SET_USERS = 'network/users/SET_USERS';
 const setUsersAC = (users, totalCount, currentPage = 1, inList) => 
     ({ type: SET_USERS, users, totalCount, currentPage, inList });
 
-export const setUsers = (page, inList) => (dispatch, getState) => {
+export const setUsers = (page, inList) => async(dispatch, getState) => {
     const {pageSize} = getState().usersPage;
     dispatch(toggleIsLoading(true));
-    usersAPI.setUsers(pageSize, page)
-        .then(Response => {
-            const { items, totalCount } = Response.data;
-            dispatch( setUsersAC(items, totalCount, page, inList) );
-            dispatch(toggleIsLoading(false))
-        })
+    const response = await usersAPI.setUsers(pageSize, page)
+    const { items, totalCount } = response.data;
+    dispatch(setUsersAC(items, totalCount, page, inList));
+    dispatch(toggleIsLoading(false))
 }
 
 export { toggleFollow, toggleFollowProgress };

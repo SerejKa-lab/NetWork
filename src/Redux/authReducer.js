@@ -28,33 +28,28 @@ export default authReducer;
 const SET_AUTH_DATA = 'network/auth/SET_AUTH_DATA';
 const setAuthDataAC = (authData) => ({ type: SET_AUTH_DATA, authData })
 
-export const setAuthData = () => (dispatch) => {
-    return authAPI.setAuthData()
-            .then(res => { 
-                if (res.data.resultCode === 0) {
-                    const {id, login, email} = res.data.data;
-                    dispatch(setAuthDataAC({ id, login, email, isAuth: true}))
-                }
-            })
+export const setAuthData = () => async (dispatch) => {
+    const result = await authAPI.setAuthData()
+    if (result.data.resultCode === 0) {
+        const { id, login, email } = result.data.data;
+        dispatch(setAuthDataAC({ id, login, email, isAuth: true }))
+    }
+
 }
 
-export const logIn = (values) => (dispatch) => {
-    authAPI.logIn(values)
-        .then( res => {
-            if (res.data.resultCode === 0) {
-               dispatch( setAuthData())
-            } else {
-                const errorMessage = res.data.messages.length > 0 ? res.data.messages[0] : 'Error is undefined'
-                dispatch(stopSubmit('login', {_error:errorMessage}))
-            }
-        } )
+export const logIn = (values) => async (dispatch) => {
+    const res = await authAPI.logIn(values)
+    if (res.data.resultCode === 0) {
+        dispatch(setAuthData())
+    } else {
+        const errorMessage = res.data.messages.length > 0 ? res.data.messages[0] : 'Error is undefined'
+        dispatch(stopSubmit('login', { _error: errorMessage }))
+    }
 }
 
-export const logOut = () => (dispatch) => {
-    authAPI.logOut()
-        .then( res => {
-            if (res.data.resultCode === 0) {
-               dispatch(setAuthDataAC({id: null, login: null, email: null, isAuth: false}))
-            }
-        } )
+export const logOut = () => async (dispatch) => {
+    const res = await authAPI.logOut()
+    if (res.data.resultCode === 0) {
+        dispatch(setAuthDataAC({ id: null, login: null, email: null, isAuth: false }))
+    }
 }
