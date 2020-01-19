@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { initializeApp } from './Redux/appReducer';
@@ -7,13 +7,20 @@ import Navbar from './Components/Navbar/Navbar';
 import Music from './Components/Music/Music';
 import Settings from './Components/Settings/Settings';
 import News from './Components/News/News';
-import DialogsContainer from './Components/Dialogs/DialogsContainer';
-import UsersContainer from './Components/Users/UsersContainer';
-import ProfileContainer from './Components/Profile/ProfileContainer';
 import HeaderContainer from './Components/Header/HeaderContainer';
 import Login from './Components/Login/Login';
 import Preloader from './Components/Common/Preloader/Preloader';
 
+const DialogsContainer = React.lazy( () => import( './Components/Dialogs/DialogsContainer'));
+const UsersContainer = React.lazy( () => import( './Components/Users/UsersContainer'));
+const ProfileContainer = React.lazy( () => import( './Components/Profile/ProfileContainer'));
+
+const SuspenseComponent = (Component) => {
+    return (
+    <Suspense fallback={<div>Loading...</div>}>
+        <Component />
+    </Suspense>
+)}
 
 class App extends React.Component {
 
@@ -30,10 +37,10 @@ class App extends React.Component {
                     <Navbar />
                     <section className='content-wrapper'>
                         <Route path='/login' component={Login} />
-                        <Route path='/' exact component={ProfileContainer} />
-                        <Route path='/profile/:userId?' component={ProfileContainer} />
-                        <Route path='/dialogs' component={DialogsContainer} />
-                        <Route path='/users' component={UsersContainer} />
+                        <Route path='/' exact render={ () => SuspenseComponent(ProfileContainer)} />
+                        <Route path='/profile/:userId?' render={ () => SuspenseComponent(ProfileContainer)} />
+                        <Route path='/dialogs' render={ () => SuspenseComponent(DialogsContainer)} />
+                        <Route path='/users' render={ () => SuspenseComponent(UsersContainer)} />
                         <Route path='/music' component={Music} />
                         <Route path='/settings' component={Settings} />
                         <Route path='/news' component={News} />
