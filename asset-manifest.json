@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/NetWork/static/css/main.2d796946.chunk.css",
+    "main.js": "/NetWork/static/js/main.152055e5.chunk.js",
+    "main.js.map": "/NetWork/static/js/main.152055e5.chunk.js.map",
+    "runtime-main.js": "/NetWork/static/js/runtime-main.fc4d7d80.js",
+    "runtime-main.js.map": "/NetWork/static/js/runtime-main.fc4d7d80.js.map",
+    "static/js/2.3b994c77.chunk.js": "/NetWork/static/js/2.3b994c77.chunk.js",
+    "static/js/2.3b994c77.chunk.js.map": "/NetWork/static/js/2.3b994c77.chunk.js.map",
+    "static/css/3.48073082.chunk.css": "/NetWork/static/css/3.48073082.chunk.css",
+    "static/js/3.8f1f76ca.chunk.js": "/NetWork/static/js/3.8f1f76ca.chunk.js",
+    "static/js/3.8f1f76ca.chunk.js.map": "/NetWork/static/js/3.8f1f76ca.chunk.js.map",
+    "static/css/4.c8bb0ba8.chunk.css": "/NetWork/static/css/4.c8bb0ba8.chunk.css",
+    "static/js/4.e98df91a.chunk.js": "/NetWork/static/js/4.e98df91a.chunk.js",
+    "static/js/4.e98df91a.chunk.js.map": "/NetWork/static/js/4.e98df91a.chunk.js.map",
+    "static/css/5.43ad831a.chunk.css": "/NetWork/static/css/5.43ad831a.chunk.css",
+    "static/js/5.e5310c97.chunk.js": "/NetWork/static/js/5.e5310c97.chunk.js",
+    "static/js/5.e5310c97.chunk.js.map": "/NetWork/static/js/5.e5310c97.chunk.js.map",
+    "index.html": "/NetWork/index.html",
+    "precache-manifest.76bdcb133b3d33fba00f588bbca63c35.js": "/NetWork/precache-manifest.76bdcb133b3d33fba00f588bbca63c35.js",
+    "service-worker.js": "/NetWork/service-worker.js",
+    "static/css/3.48073082.chunk.css.map": "/NetWork/static/css/3.48073082.chunk.css.map",
+    "static/css/4.c8bb0ba8.chunk.css.map": "/NetWork/static/css/4.c8bb0ba8.chunk.css.map",
+    "static/css/5.43ad831a.chunk.css.map": "/NetWork/static/css/5.43ad831a.chunk.css.map",
+    "static/css/main.2d796946.chunk.css.map": "/NetWork/static/css/main.2d796946.chunk.css.map",
+    "static/media/avatar.png": "/NetWork/static/media/avatar.18685b60.png",
+    "static/media/cvetok-lepestki.jpg": "/NetWork/static/media/cvetok-lepestki.8810c4d2.jpg",
+    "static/media/lookingForAJob.png": "/NetWork/static/media/lookingForAJob.af7f5f7c.png",
+    "static/media/preloader.svg": "/NetWork/static/media/preloader.7db1e6a6.svg",
+    "static/media/unlogged.png": "/NetWork/static/media/unlogged.b4e8b423.png",
+    "static/media/userPhoto.jpeg": "/NetWork/static/media/userPhoto.5974e044.jpeg"
+  }
+}
