@@ -6,6 +6,7 @@ import styles from './Login.module.css';
 import { logIn } from '../../Redux/authReducer';
 import {required} from '../../Utils/Validators';
 import { Input } from '../Common/FormControle/FormControle'
+import { compose } from 'redux';
 
 
 let Login = (props) => {
@@ -42,12 +43,11 @@ let Login = (props) => {
     )
 }
 
-Login = reduxForm({
-    form: 'login' // имя формы в state (state.form.login)
-})(Login)
-
-
 const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth
 })
-export default connect(mapStateToProps, { logIn })(Login);
+
+export default compose(
+    connect(mapStateToProps, { logIn }),
+    reduxForm({ form: 'login' })
+) (Login);
