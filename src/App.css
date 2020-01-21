@@ -10,5 +10,6 @@
 
 .content-wrapper {
   grid-area: c;
-  background-color: rgb(160, 218, 241)
+  background-color: rgb(160, 218, 241);
+  padding: 10px;
 }

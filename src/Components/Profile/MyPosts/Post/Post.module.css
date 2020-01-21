@@ -1,30 +1,42 @@
-.item {
-    background-color: rgba(24, 177, 149, 0.27);
+.post {
+    background-color: rgb(126, 189, 231);
     width: 550px;
     border: 1px solid black;
     border-radius: 5px;
     margin: 15px 0px;
     word-break: break-all;
+    font-family: 'Courier New', Courier, monospace;
+    font-style: italic;
+    color: white;
 }
 
-.item img {
-    width: 50px;
+.postMessage {
+    margin: 15px;
+}
+
+.postWriter {
+    margin: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.postWriter span {
+    margin-left: 10px;
+    font-size: 17px;
+}
+
+.postWriter img {
+    width: 60px;
     border-radius: 20%;
 }
 
-.item span {
-    font-family: 'Courier New', Courier, monospace;
-    font-style: italic;
-    color: rgb(66, 66, 16);
-}
-
-.like {
+.postLike {
     position: relative;
     left: 95%;
     top: 10px;
 }
 
-.like span {
+.postLike span {
     position: relative;
     right: 2%;
     font-size: 15px;
@@ -32,6 +44,6 @@
     color: rgb(199, 46, 67);
 }
 
-.like img {
+.postLike img {
     width: 35px;
 }

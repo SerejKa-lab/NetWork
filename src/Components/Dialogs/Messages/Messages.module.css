@@ -9,7 +9,7 @@
     max-width: 50%;
     min-width: 40%;
     min-height: 20px;
-    border: 1px solid rgb(142, 142, 252);
+    border: 1px solid rgb(126, 189, 231);
     border-radius: 5px;
     margin: 5px;
     color: white;
@@ -21,12 +21,12 @@
 
 .talkerFirst {
     align-self: flex-start;
-    background-color: rgba(236, 204, 20, 0.418);
+    background-color: rgb(135, 186, 208);
 }
 
 .talkerSecond {
     align-self: flex-end;
-    background-color: rgba(152, 165, 39, 0.507);
+    background-color: rgb(138, 177, 193);
 }
 
 .addMessageForm {

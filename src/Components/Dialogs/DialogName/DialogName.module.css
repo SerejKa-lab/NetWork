@@ -1,14 +1,18 @@
-.dialogNamesWrapper {
-    
-}
-
 .dialogNames {
-    padding-left: 10px;
-    border-left: 1px solid grey;
+    padding: 10px;
+    margin-right: 10px;
+    background-color: #7ebde7;
+    border: 1px solid gray;
+    border-radius: 4px;
 }
 
 .dialog {
     margin: 5px 0px;
+    max-width: 200px;
+    overflow: hidden;
+    word-break: break-word;
+    min-width: 150px;
+    max-height: 100px;
 }
 
 .dialog a {

@@ -1,11 +1,6 @@
 .dialogsWrapper {
-    padding              : 10px;
-    display              : grid;
+    display: grid;
     grid-template-columns: 1fr 5fr;
-}
-
-.dialogNames {
-    padding-left: 10px;
 }
 
 .dialog {
@@ -15,7 +10,6 @@
 .dialog a {
     text-decoration: none;
     color: rgb(255, 255, 255);
-
 }
 
 a.active {
