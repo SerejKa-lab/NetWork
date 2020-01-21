@@ -10,8 +10,8 @@
 }
 
 .editProfileForm button {
-    align-self: center;
     margin-top: 15px;
+    margin-left: 40px;
     border-radius: 4px;
     font-size: 15px;
 }
@@ -21,7 +21,7 @@
     margin-top: 5px;
 }
 
-.editContactField {
+.entireField {
     margin-left: 10px;
 }
 

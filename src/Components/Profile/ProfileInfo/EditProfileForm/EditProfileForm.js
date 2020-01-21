@@ -12,7 +12,6 @@ const maxLength1000 = maxLength(1000);
 const EditProfileForm = ({handleSubmit, editMyProfile, setEditMode, userProfile, error}) => {
     
     const submit = (values)  => {
-        console.log(values)
         if (values !== userProfile) {
             editMyProfile({...userProfile, ...values})
                 .then( () => setEditMode(false))
@@ -23,24 +22,24 @@ const EditProfileForm = ({handleSubmit, editMyProfile, setEditMode, userProfile,
     
     return (
         <form onSubmit={handleSubmit(submit)} className={styles.editProfileForm}>
-            <label>Full name</label>
+            <label><b>Full name</b></label>
             <Field name='fullName' component={Input} type='text' validate={[ required ]}/>
-            <label>About me</label>
+            <label><b>About me</b></label>
             <Field name='aboutMe' component={Input} type='text' validate={[ required, maxLength1000 ]} />
-            <label className={styles.lokingFAJ}>Looking for a job</label>
+            <label className={styles.lokingFAJ}><b>Looking for a job</b></label>
             <Field name='lookingForAJob' component='input' type='checkbox' />
-            <label>Vacansy you pretend</label>
+            <label><b>Vacansy you pretend</b></label>
             <Field name='lookingForAJobDescription' component={Input} type='text' validate={[ required, maxLength1000 ]} />
-            <label>Contacts:</label>
+            <label><b>Contacts:</b></label>
             {error &&
                 <div className={error ? styles.inputError : ''}>
                     {error}.<br />Please, enter valid URL format -> https://website.com</div>
             }
-            {!error && <p className={styles.urlHint}>Please, enter valid URL format: https://website.com</p> }
+            {!error && <p className={styles.urlHint}>Please, check valid URL format: https://website.com</p> }
             { (Object.keys(userProfile.contacts)).map((key) => 
-                <div className={styles.editContactField} key={key}>
+                <div className={styles.entireField} key={key}>
                     <span>{key}</span><br/>
-                    <Field name={`contacts.${key}`} component='input' type='text' placeholder={`your ${key} URL`} />
+                    <Field name={`contacts.${key}`} component='input' type='text' placeholder={`${key} URL`} />
                 </div>
             ) }
             <button type="submit">Save changes</button>
