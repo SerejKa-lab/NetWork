@@ -6,7 +6,7 @@ const ProfileContacts = (props) => {
 
     const {contacts} = props;
 
-    const getContacts = () => {
+    const getContacts = () => {        // create array of completed contacts
         let contactsArr = [];
         for (let key in contacts) {
             if (contacts[key]) {

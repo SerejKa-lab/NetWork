@@ -3,12 +3,24 @@
     color: white;
 }
 
+.profilePhoto {
+    display: flex;
+    flex-direction: column;
+}
+
 .profilePhoto img {
     object-fit: cover;
     width: 200px;
     height: 300px;
     border-radius: 15px;
     margin-left: 10px;
+}
+
+.profilePhoto button {
+    align-self: center;
+    margin-top: 5px;
+    border-radius: 4px;
+    font-size: 15px;
 }
 
 .descriprion {

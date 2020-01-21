@@ -5,7 +5,8 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 const Profile = (props) => {
     const {myId} = props
-    const {userId, profileIsLoading} = props.userProfile 
+    const {userId} = props.userProfile 
+    const {profileIsLoading} = props.profileProgress 
     
     return (
         <div className={style.profile}>

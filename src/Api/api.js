@@ -28,6 +28,10 @@ export const profileAPI = {
         return instance.get(`/profile/${userId}`)
     },
 
+    editMyProfile(profileData) {
+        return instance.put('/profile', profileData)
+    },
+
     getUserStatus(userId) {
         return instance.get(`/profile/status/${userId}`)
     },

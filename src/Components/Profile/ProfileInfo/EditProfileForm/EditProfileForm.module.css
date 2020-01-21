@@ -1,0 +1,37 @@
+.editProfileForm {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+.editProfileForm label {
+    margin: 5px 0;
+}
+
+.editProfileForm button {
+    align-self: center;
+    margin-top: 15px;
+    border-radius: 4px;
+    font-size: 15px;
+}
+
+.editProfileForm .lokingFAJ {
+    margin-bottom: 0;
+    margin-top: 5px;
+}
+
+.editContactField {
+    margin-left: 10px;
+}
+
+.inputError {
+    color: red;
+}
+
+.urlHint {
+    font-style: italic;
+    margin-block-start: 0;
+    margin-block-end: 0.5em;
+}
+

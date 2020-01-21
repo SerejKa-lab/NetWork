@@ -22,13 +22,15 @@ class ProfileContainer extends React.Component {
     
     
     render() {
-        return <Profile userProfile={this.props.userProfile} myId={this.props.myId} />
+        const {userProfile, myId, profileProgress} = this.props
+        return <Profile userProfile={userProfile} myId={myId} profileProgress={profileProgress} />
     }
 }
 
 const mapStateToProps = (state) => {
     return {
         userProfile: state.profilePage.userProfile,
+        profileProgress: state.profilePage.profileProgress,
         myId: state.auth.id
     }
 }

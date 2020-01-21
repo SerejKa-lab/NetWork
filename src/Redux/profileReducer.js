@@ -1,6 +1,7 @@
 import { profileAPI } from '../Api/api';
 import avatar from '../Assets/Images/cvetok-lepestki.jpg'
 import like from '../Assets/Images/like.jpg'
+import { stopSubmit } from 'redux-form';
 
 const initialState = {
     postsData: [
@@ -30,7 +31,8 @@ const initialState = {
             likesImage: 'https://i.pinimg.com/474x/db/3a/bb/db3abbe34ca1a4568b408971cf4621ba.jpg'
         }
     ],
-    userProfile: { profileIsLoading: false, photos: {}, status: '', statusIsLoading: false}
+    userProfile: { photos: {}, status: '' },
+    profileProgress: {profileIsLoading: false, statusIsLoading: false, profileIsEditing: false } 
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -42,6 +44,12 @@ const profileReducer = (state = initialState, action) => {
                 userProfile: { ...state.userProfile, ...action.userProfile}
             }
 
+        case PROFILE_IS_EDITING:
+            return{
+                ...state,
+                profileProgress: { ...state.profileProgress, profileIsEditing: action.isEditing }
+            }        
+
         case SET_USER_STATUS:
             return {
                 ...state,
@@ -51,7 +59,7 @@ const profileReducer = (state = initialState, action) => {
         case TOGGLE_STATUS_LOADING:
             return {
                 ...state,
-                userProfile: { ...state.userProfile, statusIsLoading: action.loading }
+                profileProgress: { ...state.profileProgress, statusIsLoading: action.loading }
             }
 
         case ADD_POST:
@@ -71,7 +79,7 @@ const profileReducer = (state = initialState, action) => {
         case TOGGLE_PROFILE_LOADING:
             return {
                 ...state,
-                userProfile: { ...state.userProfile, profileIsLoading: action.loading }
+                profileProgress: { ...state.profileProgress, profileIsLoading: action.loading }
             }
 
         default: return state;
@@ -91,6 +99,26 @@ export const setUserProfile = (userId) => async(dispatch) => {
     const response = await profileAPI.setUserProfile(userId)
     dispatch(setUserProfileAC(response.data))
     dispatch(toggleProfileLoading(false))
+}
+
+const PROFILE_IS_EDITING = 'network/profile/PROFILE_IS_EDITING'
+const toggleProfileEditing = (isEditing) => ({type: PROFILE_IS_EDITING, isEditing})
+
+export const editMyProfile = (userProfile) => async(dispatch, getState) => {
+    const userId = getState().auth.id
+    dispatch(toggleProfileEditing(true))
+    const response = await profileAPI.editMyProfile(userProfile)
+    debugger
+    if (response.data.resultCode === 0) {
+        const response = await profileAPI.setUserProfile(userId)
+        dispatch(setUserProfileAC(response.data))
+        dispatch(toggleProfileEditing(false))
+    } else {
+        const errorMessage = response.data.messages.length > 0 
+            ? response.data.messages[0] : 'Error is undefined'
+        dispatch(stopSubmit('editProfile', { _error: errorMessage }))
+        return Promise.reject('error')
+    }
 }
 
 const SET_USER_STATUS = 'network/profile/SET_USER_STATUS';
