@@ -7,7 +7,7 @@ const Navbar = () => {
         <section className={style.navigationContaiter}>
             <nav className={style.navigation}>
                 <div className = {style.item}  >
-                    <NavLink to ='/profile/' activeClassName={style.active}>Profile</NavLink>
+                    <NavLink to ='/profile' activeClassName={style.active}>Profile</NavLink>
                 </div>
                 <div className={style.item}>
                     <NavLink to='/dialogs' activeClassName={style.active}>Messages</NavLink>
