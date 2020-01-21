@@ -63,12 +63,12 @@ const AboutMe = (props) => {
                         onKeyDown={setStatusOnKey}
                         value={hookStatus} />
                 }
-                {props.status && !editMode && !statusIsLoading      //status display mode
+                {!editMode && props.status && !statusIsLoading      //status display mode
                     && <span onDoubleClick={setEditMode} className={styles.statusValue}>
                         {props.status}
                     </span>
                 }
-                {!props.status && !editMode && !statusIsLoading && props.userId === props.myId
+                {!editMode && !props.status && !statusIsLoading && props.userId === props.myId
                     && <button onClick={setEditMode}>Set status</button>        //empty status mode
                 }
                 {statusIsLoading && <Preloader height='25px' />}        {/* status isLoading mode */}

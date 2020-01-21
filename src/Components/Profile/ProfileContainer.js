@@ -12,6 +12,12 @@ class ProfileContainer extends React.Component {
         this.setUserProfile()
     }
 
+    componentDidUpdate(prevProps) {
+        const {userId:prevUserId} = prevProps.match.params;
+        const {userId} = this.props.match.params;
+        if (userId !== prevUserId) this.setUserProfile()
+    }
+
     setUserProfile = () => {
         const {myId} = this.props;
         const {userId} = this.props.match.params;
