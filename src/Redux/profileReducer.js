@@ -96,7 +96,7 @@ const setUserProfileAC = (userProfile) => ({ type: SET_USER_PROFILE, userProfile
 
 export const setUserProfile = (userId) => async(dispatch) => {
     dispatch(toggleProfileLoading(true))
-    const response = await profileAPI.setUserProfile(userId)
+    const response = await profileAPI.getUserProfile(userId)
     dispatch(setUserProfileAC(response.data))
     dispatch(toggleProfileLoading(false))
 }
@@ -108,9 +108,8 @@ export const editMyProfile = (userProfile) => async(dispatch, getState) => {
     const userId = getState().auth.id
     dispatch(toggleProfileEditing(true))
     const response = await profileAPI.editMyProfile(userProfile)
-    debugger
     if (response.data.resultCode === 0) {
-        const response = await profileAPI.setUserProfile(userId)
+        const response = await profileAPI.getUserProfile(userId)
         dispatch(setUserProfileAC(response.data))
         dispatch(toggleProfileEditing(false))
     } else {
@@ -118,6 +117,17 @@ export const editMyProfile = (userProfile) => async(dispatch, getState) => {
             ? response.data.messages[0] : 'Error is undefined'
         dispatch(stopSubmit('editProfile', { _error: errorMessage }))
         return Promise.reject('error')
+    }
+}
+
+export const setProfilePhoto = (imageFile) => async (dispatch, getState) => {
+    const userId = getState().auth.id
+    dispatch(toggleProfileEditing(true))
+    const response = await profileAPI.setProfilePhoto(imageFile)
+    if (response.data.resultCode === 0) {
+        const response = await profileAPI.getUserProfile(userId)
+        dispatch(setUserProfileAC(response.data))
+        dispatch(toggleProfileEditing(false))
     }
 }
 

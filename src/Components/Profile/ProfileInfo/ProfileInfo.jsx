@@ -8,14 +8,18 @@ import EditProfileForm from './EditProfileForm/EditProfileForm';
 
 
 const ProfileInfo = (props) => {
-    const { userProfile, myId } = props;
+    const { userProfile, myId, setProfilePhoto } = props;
     const { profileIsLoading, statusIsLoading, profileIsEditing } = props.profileProgress;
     const { contacts, fullName, aboutMe, status, userId,
         lookingForAJob, lookingForAJobDescription: LFAJDescription } = props.userProfile;
 
+    const setUserPhoto = (e) => {
+        if (e.target.files.length) setProfilePhoto(e.target.files[0])
+    }
+
     const [editMode, setEditMode] = useState(false); // react hook useState
 
-    if (!userProfile)
+    if (!userProfile)   // profile undefined check
         return <Preloader />
     else {
 
@@ -29,11 +33,16 @@ const ProfileInfo = (props) => {
                 : <section className={styles.profileInfo}>
                     <div className={styles.profilePhoto}>
                         <img alt='avatar' src={userPhotoLink}></img>
-                        {!editMode && myId === userId
-                            && <button onClick={() => setEditMode(true)}>Edit profile</button>}
+                        {!editMode && myId === userId &&        //show block to profile owner
+                            <div className={styles.profileInfo_buttons}>
+                                <label htmlFor='choosePhoto'>Choose photo</label>
+                                <input type='file' id='choosePhoto' onChange={setUserPhoto}/>
+                                <button onClick={() => setEditMode(true)}>Edit profile</button>
+                            </div>
+                        }
                     </div>
                     {!editMode &&
-                        <div className={styles.descriprion}>
+                        <div className={styles.profileInfo_userInfo}>
                             <AboutMe fullName={fullName} aboutMe={aboutMe} status={status}
                                 statusIsLoading={statusIsLoading} myId={myId} userId={userId} />
                             <LookingForAJob lookingForAJob={lookingForAJob} LFAJDescription={LFAJDescription} />
