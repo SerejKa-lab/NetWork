@@ -20,25 +20,25 @@ let Login = (props) => {
     return (
         <form className={styles.loginForm} onSubmit={handleSubmit(submit)}>
             <fieldset>
-                <legend>Authorization form</legend>
-                <p>
+                <legend className={styles.legend}>Authorization form</legend>
+                <div className={styles.authField}>
                     <Field
                         name='email' type='email'
                         component={Input} placeholder='email'
                         validate={[required]}
                     />
-                </p>
-                <p>
+                </div>
+                <div className={styles.authField}>
                     <Field
                         name='password' type='password'
                         component={Input} placeholder='Password'
                         validate={[required]}
                     />
-                </p>
-                <p><Field name='rememberMe' component='input' type='checkbox' />Remember me</p>
+                </div>
+                <div className={styles.authField}><Field name='rememberMe' component='input' type='checkbox' />Remember me</div>
             </fieldset>
             <p className={styles.loginError}>{error}</p>
-            <button type='submit' value='Submit' className={styles.button}>Login</button>
+            <button type='submit' value='Submit' className={styles.submitButton}>Login</button>
         </form>
     )
 }
