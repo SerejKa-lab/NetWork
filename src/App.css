@@ -8,7 +8,7 @@
   grid-template-columns: 2fr 10fr;
 }
 
-.content-wrapper {
+.mainPage_content{
   grid-area: c;
   background-color: rgb(160, 218, 241);
   padding: 10px;

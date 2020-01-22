@@ -35,7 +35,7 @@ class App extends React.Component {
             <section className='app'>
                 <HeaderContainer />
                 <Navbar />
-                <section className='content-wrapper'>
+                <section className='mainPage_content'>
                     <Route path='/login' component={Login} />
                     <Route path='/' exact render={() => SuspenseComponent(ProfileContainer)} />
                     <Route path='/profile/:userId?' render={() => SuspenseComponent(ProfileContainer)} />
