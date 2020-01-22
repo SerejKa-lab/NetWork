@@ -6,17 +6,19 @@ import LoginForm from './LoginForm';
 
 
 
-const Login = ({ logIn, isAuth }) => {
+const Login = ({ logIn, isAuth, captchaCheck, captchaUrl }) => {
     
     if (isAuth) return (<Redirect to='/profile' />)
     
     const submit = (formData) => { logIn(formData) }
 
-    return <LoginForm onSubmit={submit} />
+    return <LoginForm onSubmit={submit} captchaCheck={captchaCheck} captchaUrl={captchaUrl} />
 }
 
-const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth
+const mapStateToProps = ({ auth:{ isAuth, captchaCheck, captchaUrl } }) => ({
+    isAuth,
+    captchaCheck,
+    captchaUrl
 })
 
 export default connect(mapStateToProps, { logIn })(Login);

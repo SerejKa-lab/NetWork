@@ -6,7 +6,7 @@ import {required} from '../../Utils/Validators';
 import { Input } from '../Common/FormControle/FormControle'
 
 
-let LoginForm = ({ handleSubmit, error }) => {
+let LoginForm = ({ handleSubmit, error, captchaCheck, captchaUrl }) => {
 
     return (
         <form className={styles.loginForm} onSubmit={handleSubmit}>
@@ -27,8 +27,15 @@ let LoginForm = ({ handleSubmit, error }) => {
                     />
                 </div>
                 <div className={styles.authField}><Field name='rememberMe' component='input' type='checkbox' />Remember me</div>
+                {captchaCheck &&
+                    <div className={styles.captcha}>
+                        <span>Please, correct you login or password<br/>and enter untibot symbols</span><br/>
+                        <img src={captchaUrl} alt='captcha'/>
+                        <Field name='captcha' component='input' type='text' />
+                    </div>
+                }
             </fieldset>
-            <p className={styles.loginError}>{error}</p>
+            {error && <p className={styles.loginError}>{error}</p>}
             <button type='submit' value='Submit' className={styles.submitButton}>Login</button>
         </form>
     )

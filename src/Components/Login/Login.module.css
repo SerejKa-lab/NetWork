@@ -26,3 +26,15 @@
 .legend {
     font-size: 1.2em;
 }
+
+.captcha span {
+    font-style: italic;
+}
+
+.captcha input {
+    margin: 10px 0;
+}
+
+.captcha img {
+    margin-top: 5px;
+}
