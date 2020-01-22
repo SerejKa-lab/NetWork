@@ -29,7 +29,8 @@
 }
 
 .inputError {
-    color: red;
+    color: mediumvioletred;
+    text-align: center;
 }
 
 .urlHint {

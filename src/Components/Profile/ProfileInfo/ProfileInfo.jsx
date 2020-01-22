@@ -8,7 +8,7 @@ import EditProfileForm from './EditProfileForm/EditProfileForm';
 
 
 const ProfileInfo = (props) => {
-    const { userProfile, myId, setProfilePhoto } = props;
+    const { userProfile, myId, setProfilePhoto, editMyProfile } = props;
     const { profileIsLoading, statusIsLoading, profileIsEditing } = props.profileProgress;
     const { contacts, fullName, aboutMe, status, userId,
         lookingForAJob, lookingForAJobDescription: LFAJDescription } = props.userProfile;
@@ -26,6 +26,13 @@ const ProfileInfo = (props) => {
         const userPhotoLink = userProfile.photos.large
             ? userProfile.photos.large
             : require('../../../Assets/Images/userPhoto.jpeg')
+
+        const submit = (values) => {
+            if (values !== userProfile) {
+                editMyProfile({...userProfile, ...values})
+                    .then(() => setEditMode(false))
+            } else setEditMode(false)
+        }
 
         return (
             profileIsLoading
@@ -51,9 +58,9 @@ const ProfileInfo = (props) => {
                         </div>}
                     { editMode &&
                        <EditProfileForm 
-                            userProfile={userProfile} 
+                            profileContacts={userProfile.contacts} 
                             initialValues={userProfile} 
-                            setEditMode={setEditMode} />
+                            onSubmit={submit} />
                     }
                 </section>
         )
