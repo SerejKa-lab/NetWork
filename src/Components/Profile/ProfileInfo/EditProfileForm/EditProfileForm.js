@@ -26,8 +26,10 @@ const EditProfileForm = ({handleSubmit, editMyProfile, setEditMode, userProfile,
             <Field name='fullName' component={Input} type='text' validate={[ required ]}/>
             <label><b>About me</b></label>
             <Field name='aboutMe' component={Input} type='text' validate={[ required, maxLength1000 ]} />
-            <label className={styles.lokingFAJ}><b>Looking for a job</b></label>
-            <Field name='lookingForAJob' component='input' type='checkbox' />
+            <div className={styles.LFAJWrapper}>
+                <label className={styles.lokingFAJ}><b>Looking for a job</b></label>
+                <Field name='lookingForAJob' component='input' type='checkbox' />
+            </div>
             <label><b>Vacansy you pretend</b></label>
             <Field name='lookingForAJobDescription' component={Input} type='text' validate={[ required, maxLength1000 ]} />
             <label><b>Contacts:</b></label>

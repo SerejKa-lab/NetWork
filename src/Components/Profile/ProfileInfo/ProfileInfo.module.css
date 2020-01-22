@@ -14,12 +14,14 @@
     height: 300px;
     border-radius: 15px;
     margin-left: 10px;
+    margin-right: 35px;
 }
 
 .profileInfo_buttons {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-right: 20px;
 }
 
 .profileInfo_buttons input {
@@ -47,6 +49,5 @@
 }
 
 .profileInfo_userInfo {
-    margin-left: 35px;
     width: 55%;
 }

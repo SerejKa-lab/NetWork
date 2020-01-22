@@ -1,7 +1,7 @@
 .post {
     background-color: rgb(126, 189, 231);
     width: 550px;
-    border: 1px solid black;
+    border: 1px solid gray;
     border-radius: 5px;
     margin: 15px 0px;
     word-break: break-all;

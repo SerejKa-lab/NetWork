@@ -1,8 +1,12 @@
 .editProfileForm {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     padding: 10px;
+    background-color: #7ebde7;
+    border: 1px solid gray;
+    border-radius: 10px;
+    width: 40%;
 }
 
 .editProfileForm label {
@@ -11,17 +15,16 @@
 
 .editProfileForm button {
     margin-top: 15px;
-    margin-left: 40px;
     border-radius: 4px;
     font-size: 15px;
 }
 
-.editProfileForm .lokingFAJ {
-    margin-bottom: 0;
-    margin-top: 5px;
+.LFAJWrapper {
+    margin-top: 10px;
+    margin-bottom: 5px;
 }
 
-.entireField {
+.LFAJWrapper input {
     margin-left: 10px;
 }
 
@@ -33,5 +36,7 @@
     font-style: italic;
     margin-block-start: 0;
     margin-block-end: 0.5em;
+    width: 250px;
+    text-align: center;
 }
 
