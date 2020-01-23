@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './MyPosts.module.css';
 import Post from './Post/Post';
 import { Field, reduxForm } from 'redux-form';
-import { maxLength } from '../../../Utils/Validators';
+import { maxLength, notEmpty } from '../../../Utils/Validators';
 import { Input } from '../../Common/FormControle/FormControle';
 
 const maxLength1000 = maxLength(1000);
@@ -20,7 +20,7 @@ let AddPostForm = ({handleSubmit, reset, addPost}) => {
                 name='newPost' 
                 type='text' 
                 component= {Input} 
-                validate = {[maxLength1000]}
+                validate = {[notEmpty, maxLength1000]}
             />
             <button type='submit'>Add post</button>
         </form>
