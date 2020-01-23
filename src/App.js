@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { initializeApp } from './Redux/appReducer';
-import './App.css';
+import styles from './App.module.css';
 import Navbar from './Components/Navbar/Navbar';
 import Music from './Components/Music/Music';
 import Settings from './Components/Settings/Settings';
@@ -32,20 +32,22 @@ class App extends React.Component {
     render() {
         if (!this.props.initialized) return <Preloader />
         return (
-            <section className='app'>
+            <div className=''>
                 <HeaderContainer />
-                <Navbar />
-                <section className='mainPage_content'>
-                    <Route path='/login' component={Login} />
-                    <Route path='/' exact render={() => SuspenseComponent(ProfileContainer)} />
-                    <Route path='/profile/:userId?' render={() => SuspenseComponent(ProfileContainer)} />
-                    <Route path='/dialogs' render={() => SuspenseComponent(DialogsContainer)} />
-                    <Route path='/users' render={() => SuspenseComponent(UsersContainer)} />
-                    <Route path='/music' component={Music} />
-                    <Route path='/settings' component={Settings} />
-                    <Route path='/news' component={News} />
+                <section className={styles.app}>
+                    <Navbar />
+                    <section className={styles.mainPage_content}>
+                        <Route path='/login' component={Login} />
+                        <Route path='/' exact render={() => SuspenseComponent(ProfileContainer)} />
+                        <Route path='/profile/:userId?' render={() => SuspenseComponent(ProfileContainer)} />
+                        <Route path='/dialogs' render={() => SuspenseComponent(DialogsContainer)} />
+                        <Route path='/users' render={() => SuspenseComponent(UsersContainer)} />
+                        <Route path='/music' component={Music} />
+                        <Route path='/settings' component={Settings} />
+                        <Route path='/news' component={News} />
+                    </section>
                 </section>
-            </section>
+            </div>
         );
     }
 }
