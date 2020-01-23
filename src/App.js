@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { initializeApp } from './Redux/appReducer';
 import styles from './App.module.css';
@@ -9,6 +9,7 @@ import Settings from './Components/Settings/Settings';
 import News from './Components/News/News';
 import HeaderContainer from './Components/Header/HeaderContainer';
 import Login from './Components/Login/Login';
+import Error404 from './Components/Error404/Error404';
 import Preloader from './Components/Common/Preloader/Preloader';
 
 const DialogsContainer = React.lazy(() => import('./Components/Dialogs/DialogsContainer'));
@@ -37,14 +38,18 @@ class App extends React.Component {
                 <section className={styles.app}>
                     <Navbar />
                     <section className={styles.mainPage_content}>
-                        <Route path='/login' component={Login} />
-                        <Route path='/' exact render={() => SuspenseComponent(ProfileContainer)} />
-                        <Route path='/profile/:userId?' render={() => SuspenseComponent(ProfileContainer)} />
-                        <Route path='/dialogs' render={() => SuspenseComponent(DialogsContainer)} />
-                        <Route path='/users' render={() => SuspenseComponent(UsersContainer)} />
-                        <Route path='/music' component={Music} />
-                        <Route path='/settings' component={Settings} />
-                        <Route path='/news' component={News} />
+                        <Switch>
+                            <Redirect exact from='/' to='/profile'/>
+                            {/* <Route path='/' exact><Redirect to='/profile'/></Route> */}
+                            <Route path='/login' component={Login} />
+                            <Route path='/profile/:userId?' exact render={() => SuspenseComponent(ProfileContainer)} />
+                            <Route path='/dialogs/:name?' exact render={() => SuspenseComponent(DialogsContainer)} />
+                            <Route path='/users' exact render={() => SuspenseComponent(UsersContainer)} />
+                            <Route path='/music' exact component={Music} />
+                            <Route path='/settings' exact component={Settings} />
+                            <Route path='/news' exact component={News} />
+                            <Route component={Error404}/>
+                        </Switch>
                     </section>
                 </section>
             </div>
