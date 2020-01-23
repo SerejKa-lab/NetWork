@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './ProfileInfo.module.css';
 import Preloader from '../../Common/Preloader/Preloader';
 import ProfileContacts from './ProfileContacts/ProfileContacts';
@@ -16,6 +16,8 @@ const ProfileInfo = (props) => {
     const setUserPhoto = (e) => {
         if (e.target.files.length) setProfilePhoto(e.target.files[0])
     }
+
+    useEffect(()=>{setEditMode(false)}, [userId])
 
     const [editMode, setEditMode] = useState(false); // react hook useState
 
@@ -56,8 +58,8 @@ const ProfileInfo = (props) => {
                             <ProfileContacts contacts={contacts} />
                             {profileIsEditing && <Preloader width='25px'/>}
                         </div>}
-                    { editMode &&
-                       <EditProfileForm 
+                    { editMode && myId === userId &&
+                       <EditProfileForm
                             profileContacts={userProfile.contacts} 
                             initialValues={userProfile} 
                             onSubmit={submit} />
