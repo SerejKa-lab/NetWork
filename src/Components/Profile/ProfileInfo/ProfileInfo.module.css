@@ -17,6 +17,10 @@
     margin-right: 35px;
 }
 
+.profileInfo_userInfo {
+    width: 55%;
+}
+
 .profileInfo_buttons {
     display: flex;
     flex-direction: column;
@@ -40,14 +44,20 @@
     margin-top: 5px;
     font-size: 15px;
     border-radius: 4px;
+    cursor: pointer;
 }
 
 .profileInfo_buttons button {
     margin-top: 5px;
     border-radius: 4px;
     font-size: 15px;
+    cursor: pointer;
 }
 
-.profileInfo_userInfo {
-    width: 55%;
-}
+.profileInfo button:hover {
+    background-color: white;
+  }
+
+.profileInfo_buttons label:hover {
+    background-color: white;
+  }

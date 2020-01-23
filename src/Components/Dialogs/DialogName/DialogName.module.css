@@ -35,3 +35,7 @@
 .dialog a.active {
     color: rgba(251, 255, 20, 0.952);
 }
+
+.dialog a:hover {
+    color: rgba(251, 255, 20, 0.952);
+}

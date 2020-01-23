@@ -34,7 +34,7 @@
 }
 
 .login a:hover {
-    text-decoration: underline;
+    color: rgba(251, 255, 20, 0.952);
 }
 
 .loggedIn {
@@ -47,13 +47,21 @@
     cursor: pointer;
 }
 
+.loggedIn img {
+    height: 30px;
+}
+
 .loggedIn span {
     text-decoration: none;
     color: white;
-    line-height: 35px;
+    line-height: 30px;
 }
 
 .loggedIn_click {
+    background-color: rgb(126, 189, 231);
+}
+
+.loggedIn:hover {
     background-color: rgb(126, 189, 231);
 }
 
@@ -64,17 +72,16 @@
     top: 50px;
     right: 12%;
     background-color: #4b9eec;
-    padding: 10px;
+    padding: 6px 14px;
     border-radius: 5px;
     margin-top: 5px;
     color: white;
 }
 
 .logOut:hover {
-    text-decoration: underline;
+    color: rgba(251, 255, 20, 0.952);
 }
 
 .logOut_hide {
     display: none;
-    
 }

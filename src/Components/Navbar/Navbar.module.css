@@ -1,12 +1,10 @@
 .navigationContaiter {
   padding: 10px;
   grid-area: n;
-  background-color: rgb(160, 218, 241);
   border-right: 1px solid gray;
 }
 
 .navigation {
-  position: fixed;
   padding: 10px;
   background-color: rgb(126, 189, 231);
   border: 1px solid gray;
@@ -35,5 +33,9 @@
 }
 
 .item a.active {
+  color: rgba(251, 255, 20, 0.952);
+}
+
+.item a:hover {
   color: rgba(251, 255, 20, 0.952);
 }

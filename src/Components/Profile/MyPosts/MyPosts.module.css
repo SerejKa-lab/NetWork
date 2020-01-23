@@ -36,4 +36,9 @@
     border-radius: 5px;
     margin: 10px 0;
     padding: 3px 5px;
+    cursor: pointer;
 }
+
+.newPostForm button:hover {
+    background-color: white;
+  }
