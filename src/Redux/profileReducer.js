@@ -1,34 +1,28 @@
 import { profileAPI } from '../Api/api';
 import avatar from '../Assets/Images/cvetok-lepestki.jpg'
-import like from '../Assets/Images/like.jpg'
 import { stopSubmit } from 'redux-form';
 
 const initialState = {
     postsData: [
         {
-            name: 'Pavel', message: 'Hi. I am fine. Thank you!', like: '15', id: 'Pavel',
-            profileImage: 'https://img3.goodfon.ru/original/1400x1050/7/b7/cvetok-lepestki-priroda-fon-1988.jpg',
-            likesImage: 'https://i.pinimg.com/474x/db/3a/bb/db3abbe34ca1a4568b408971cf4621ba.jpg'
+            name: 'Pavel', message: 'Hi. I am fine. Thank you!', like: 15, id: 'Pavel',
+            profileImage: avatar
         },
         {
-            name: 'Yuriy', message: 'Hello! How are you', like: '10', id: 'Yuriy',
-            profileImage: 'https://img3.goodfon.ru/original/1400x1050/7/b7/cvetok-lepestki-priroda-fon-1988.jpg',
-            likesImage: 'https://i.pinimg.com/474x/db/3a/bb/db3abbe34ca1a4568b408971cf4621ba.jpg'
+            name: 'Yuriy', message: 'Hello! How are you', like: 10, id: 'Yuriy',
+            profileImage: avatar
         },
         {
-            name: 'Katya', message: 'Would you like a cup of tee?', like: '17', id: 'Katya',
-            profileImage: 'https://img3.goodfon.ru/original/1400x1050/7/b7/cvetok-lepestki-priroda-fon-1988.jpg',
-            likesImage: 'https://i.pinimg.com/474x/db/3a/bb/db3abbe34ca1a4568b408971cf4621ba.jpg'
+            name: 'Katya', message: 'Would you like a cup of tee?', like: 17, id: 'Katya',
+            profileImage: avatar
         },
         {
-            name: 'Masha', message: "No, i'd like a glass of juice.", like: '17', id: 'Masha',
-            profileImage: 'https://img3.goodfon.ru/original/1400x1050/7/b7/cvetok-lepestki-priroda-fon-1988.jpg',
-            likesImage: 'https://i.pinimg.com/474x/db/3a/bb/db3abbe34ca1a4568b408971cf4621ba.jpg'
+            name: 'Masha', message: "No, i'd like a glass of juice.", like: 17, id: 'Masha',
+            profileImage: avatar
         },
         {
-            name: 'EasyMan', message: 'Ok. Here it is!', like: '17', id: 'EasyMan',
-            profileImage: 'https://img3.goodfon.ru/original/1400x1050/7/b7/cvetok-lepestki-priroda-fon-1988.jpg',
-            likesImage: 'https://i.pinimg.com/474x/db/3a/bb/db3abbe34ca1a4568b408971cf4621ba.jpg'
+            name: 'EasyMan', message: 'Ok. Here it is!', like: 17, id: 'EasyMan',
+            profileImage: avatar
         }
     ],
     userProfile: { photos: {}, status: '' },
@@ -66,10 +60,9 @@ const profileReducer = (state = initialState, action) => {
             const newPost = {
                 name: 'Kolya',
                 message: action.postText,
-                like: '0',
+                like: null,
                 id: Math.random(),
                 profileImage: avatar,
-                likesImage: like
             };
             return {
                 ...state,
