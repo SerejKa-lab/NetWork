@@ -12,6 +12,10 @@
     margin: auto;
 }
 
+.header_wrapper a {
+    padding-left: 10px;
+}
+
 .header img {
     height: 35px;
     border-radius: 50%;
@@ -37,12 +41,16 @@
     color: rgba(251, 255, 20, 0.952);
 }
 
+.loggedIn_wraper {
+    position: relative;
+}
+
 .loggedIn {
     display: flex;
     align-items: center;
     background-color: #a0d3e8;
     padding: 0 10px;
-    border-radius: 8px;
+    border-radius: 5px;
     margin: 0 10px;
     cursor: pointer;
 }
@@ -59,6 +67,7 @@
 
 .loggedIn_click {
     background-color: rgb(126, 189, 231);
+    border: 1px inset #7ebde7;
 }
 
 .loggedIn:hover {
@@ -66,15 +75,14 @@
 }
 
 .logOut {
-    margin-left: 5px;
-    cursor: pointer;
     position: absolute;
-    top: 50px;
-    right: 12%;
+    top: 37px;
+    right: 10px;
+    cursor: pointer;
     background-color: #4b9eec;
     padding: 6px 14px;
     border-radius: 5px;
-    margin-top: 5px;
+    border: 1px solid #a0daf1;
     color: white;
 }
 

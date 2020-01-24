@@ -47,6 +47,10 @@
     cursor: pointer;
 }
 
+.profileInfo_buttons label:active {
+    border-style: inset;
+}
+
 .profileInfo_buttons button {
     margin-top: 5px;
     border-radius: 4px;

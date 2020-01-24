@@ -12,12 +12,8 @@
     position: relative;
 }
 
-.postMessage {
-    margin: 15px;
-}
-
 .postWriter {
-    margin: 10px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
 }
@@ -49,4 +45,5 @@
 
 .postLike img {
     width: 25px;
+    cursor: pointer;
 }

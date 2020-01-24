@@ -33,7 +33,7 @@ class App extends React.Component {
     render() {
         if (!this.props.initialized) return <Preloader />
         return (
-            <div className=''>
+            <div className={styles.app_wrapper}>
                 <HeaderContainer />
                 <section className={styles.app}>
                     <Navbar />
