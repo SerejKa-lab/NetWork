@@ -27,7 +27,7 @@ const Users = (props) => {
 
 
     const { users, isLoading, currentPage, pagesCount } = props;
-    const disabled = currentPage === pagesCount ? true : false
+    const disabled = (currentPage === pagesCount || isLoading) ? true : false
 
     const usersList = users.map((user) =>
         <UserContainer user={user} key={user.id} />);
