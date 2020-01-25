@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { initializeApp } from './Redux/appReducer';
 import styles from './App.module.css';
+import toTopImg from './Assets/Images/top.png';
 import Navbar from './Components/Navbar/Navbar';
 import Music from './Components/Music/Music';
 import Settings from './Components/Settings/Settings';
@@ -28,16 +29,51 @@ class App extends React.Component {
 
     componentDidMount() {
         this.props.initializeApp()
+        document.addEventListener('scroll', this.scrollHandler)
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('scroll', this.scrollHandler)
+    }
+
+    state = {
+        toTop: false
+    }
+
+    scrollHandler=(e) => {
+        if (window.pageYOffset > 300 && !this.state.toTop ) {
+            this.setState({toTop: true})
+        }
+        if (window.pageYOffset <= 300 && this.state.toTop ) {
+            this.setState({toTop: false})
+        }
+    }
+
+    srollToTop = () => {
+        const step = window.pageYOffset/2;
+        let timerId = setInterval(() => {
+            window.scrollBy(0, -step)
+            if (window.pageYOffset-step <= 0) {
+                clearInterval(timerId)
+                window.scrollTo(0, 0)
+            }
+        }, 100)
+        
     }
 
     render() {
         if (!this.props.initialized) return <Preloader />
+        const buttonStyle = this.state.toTop ? styles.visible : styles.hidden
         return (
             <div className={styles.app_wrapper}>
                 <HeaderContainer />
                 <section className={styles.app}>
                     <Navbar />
                     <section className={styles.mainPage_content}>
+                        <div className={`${styles.toTop} ${buttonStyle}`} onClick={this.srollToTop}>
+                            <img src={toTopImg} alt='arrow'/>
+                            <span>Top</span>
+                        </div>
                         <Switch>
                             <Redirect exact from='/' to='/profile'/>
                             {/* <Route path='/' exact><Redirect to='/profile'/></Route> */}

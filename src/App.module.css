@@ -12,3 +12,26 @@
   background-color: rgb(160, 218, 241);
   padding: 10px;
 }
+
+.toTop {
+  position: fixed;
+  right: 45px;
+  top: 10%;
+  font-size: 18px;
+  display: flex;
+  cursor: pointer;
+  color: rgb(41, 94, 170)
+}
+
+.visible {
+  opacity: 1;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.toTop img {
+  height: 20px;
+  margin-right: 2px;
+}
