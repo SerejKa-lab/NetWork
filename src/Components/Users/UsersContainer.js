@@ -6,7 +6,7 @@ import Users from './Users';
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.setUsers(this.props.currentPage)
+        if (this.props.users.length === 0) this.props.setUsers(this.props.currentPage)
     }
 
     render() {
