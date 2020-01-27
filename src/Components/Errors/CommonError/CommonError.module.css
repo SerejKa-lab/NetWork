@@ -1,0 +1,32 @@
+.commonError {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    width: fit-content;
+    position: absolute;
+    right: 10px;
+    padding: 5px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    transition-property: display;
+    transition-duration: 5s;
+}
+
+.commonError img {
+    width: 40px;
+}
+
+.commonError span {
+    font-size: 1.2em;
+    font-style: italic;
+}
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.errorMessage {
+    color: mediumvioletred
+}
