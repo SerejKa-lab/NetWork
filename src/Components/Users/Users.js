@@ -34,7 +34,7 @@ const Users = (props) => {
 
     return (
         <div className={styles.usersPage}>
-            {isLoading && <Preloader className={styles.preloader} />}
+            {/* isLoading */ true && <Preloader className={styles.preloader} />}
             {pagginator
                 ? <div>
                     <button onClick={showMoreUsers} disabled={disabled}>Show more</button>

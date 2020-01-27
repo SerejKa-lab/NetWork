@@ -18,17 +18,16 @@
   right: 45px;
   top: 10%;
   font-size: 18px;
-  display: flex;
   cursor: pointer;
   color: rgb(41, 94, 170)
 }
 
 .visible {
-  opacity: 1;
+  display: flex;
 }
 
 .hidden {
-  opacity: 0;
+  display: none;;
 }
 
 .toTop img {
