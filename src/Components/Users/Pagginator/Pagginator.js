@@ -4,7 +4,7 @@ import styles from './Pagginator.module.css'
 
 
 class Pagginator extends React.Component {
-    
+
     state = {
         inputError: false,
         displayNumber: null,
@@ -60,7 +60,9 @@ class Pagginator extends React.Component {
             <section className={styles.pagginatorWrapper}>
                 <nav className={styles.paginator}>
                     {currentPage !== startPage
-                        && <span onClick={() => dispatchNewPage(startPage)}>First</span>}
+                        && <span className={styles.button}
+                            onClick={() => dispatchNewPage(startPage)}>First</span>
+                    }
 
                     {this.state.inputMode
                         ? <input type='number' value={this.state.displayNumber}
@@ -73,10 +75,13 @@ class Pagginator extends React.Component {
                         : <input type='number' value={currentPage}
                             min={startPage} max={finishPage}
                             onInput={this.setInputMode}
-                            onClick={this.setPageOnEvent} />
+                            onClick={this.setPageOnEvent} 
+                            onChange={()=>{}}/>
                     }
                     {currentPage !== finishPage
-                        && <span onClick={() => dispatchNewPage(finishPage)}>Last</span>}
+                        && <span className={styles.button}
+                            onClick={() => dispatchNewPage(finishPage)}>Last</span>
+                    }
                 </nav>
             </section>
         )

@@ -34,19 +34,21 @@ const Users = (props) => {
 
     return (
         <div className={styles.usersPage}>
-            {/* isLoading */ true && <Preloader className={styles.preloader} />}
+            {isLoading && <Preloader className={styles.preloader} />}
             {pagginator
-                ? <div>
-                    <button onClick={showMoreUsers} disabled={disabled}>Show more</button>
+                ? <div className={styles.navigationBlock}>
+                    <button onClick={showMoreUsers} disabled={disabled} 
+                        className={styles.showMoreButton}>Show more</button>
                     <Pagginator
                         startPage={1} finishPage={pagesCount}
                         currentPage={currentPage} dispatchNewPage={setPageOnEvent} />
-                    <p className={styles.pagginatorLink} onClick={hidePagginator}>Hide</p>
+                    <span className={styles.showHideLink} onClick={hidePagginator}>Hide</span>
 
                 </div>
-                : <div>
-                    <button onClick={showMoreUsers} disabled={disabled}>Show more</button>
-                    <p className={styles.pagginatorLink} onClick={showPagginator}>Pagginator</p>
+                : <div className={styles.navigationBlock}>
+                    <button onClick={showMoreUsers} disabled={disabled} 
+                        className={styles.showMoreButton}>Show more</button>
+                    <span className={styles.showHideLink} onClick={showPagginator}>Pagginator</span>
                 </div>
             }
 

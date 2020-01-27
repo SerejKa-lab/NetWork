@@ -12,19 +12,27 @@
     height: 45px;
 }
 
-.pagginatorLink {
-    margin: 0;
+.navigationBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.pagginatorLink:hover {
+.showHideLink {
+    margin: 0;
+    cursor: pointer;
+}
+
+.showHideLink:hover {
     color: rgba(251, 255, 20, 0.952);
 }
 
-.usersPage button {
-    font-size: 25px;
+.showMoreButton {
+    font-size: 21px;
     border-radius: 8px;
     padding: 5px 10px;
     margin-bottom: 5px;
+    cursor: pointer;
 }
 
 
