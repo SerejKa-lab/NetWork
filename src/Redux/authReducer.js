@@ -1,5 +1,6 @@
 import { authAPI } from '../Api/api'
 import { stopSubmit } from 'redux-form';
+import {setError, resetError} from './errorsReducer'
 
 const initialState = {
     id: null,
@@ -32,10 +33,17 @@ const SET_AUTH_DATA = 'network/auth/SET_AUTH_DATA';
 const setAuthDataAC = (data) => ({ type: SET_AUTH_DATA, data })
 
 export const setAuthData = () => async (dispatch) => {
-    const response = await authAPI.setAuthData()
-    if (response.data.resultCode === 0) {
-        const { id, login, email } = response.data.data;
-        dispatch(setAuthDataAC({ id, login, email, isAuth: true }))
+    try {
+        const response = await authAPI.setAuthData()
+        if (response.data.resultCode === 0) {
+            const { id, login, email } = response.data.data;
+            dispatch(setAuthDataAC({ id, login, email, isAuth: true }))
+        }
+    } catch (err) {
+        dispatch(setError({error: err}))
+        setTimeout(() => {
+            dispatch(resetError())
+        }, 3000)
     }
 
 }
@@ -44,26 +52,40 @@ const SET_CAPTCHA_MODE = 'SET_CAPTCHA_MODE'
 const setCaptchaMode = (data) => ({ type: SET_CAPTCHA_MODE, data })
 
 export const logIn = (values) => async (dispatch, getState) => {
-    const res = await authAPI.logIn(values)
-    if (res.data.resultCode === 0) {
-        dispatch(setAuthData())
-        if (getState().auth.captchaCheck) {
-            dispatch(setCaptchaMode({captchaCheck: false, captchaUrl: null}))
+    try {
+        const res = await authAPI.logIn(values)
+        if (res.data.resultCode === 0) {
+            dispatch(setAuthData())
+            if (getState().auth.captchaCheck) {
+                dispatch(setCaptchaMode({ captchaCheck: false, captchaUrl: null }))
+            }
+        } else {
+            const errorMessage = res.data.messages.length > 0 ? res.data.messages[0] : 'Error is undefined'
+            const errCode = res.data.resultCode;
+            if (errCode === 10) {
+                dispatch(stopSubmit('login', { _error: errorMessage }))
+                const response = await authAPI.getCaptcha()
+                dispatch(setCaptchaMode({ captchaCheck: true, captchaUrl: response.data.url }))
+            } else dispatch(stopSubmit('login', { _error: errorMessage }))
         }
-    } else {
-        const errorMessage = res.data.messages.length > 0 ? res.data.messages[0] : 'Error is undefined'
-        const errCode = res.data.resultCode;
-        if (errCode === 10) {
-            dispatch(stopSubmit('login', { _error: errorMessage } ))
-            const response = await authAPI.getCaptcha()
-            dispatch(setCaptchaMode({captchaCheck: true, captchaUrl: response.data.url}))
-        } else dispatch(stopSubmit('login', { _error: errorMessage } ))
+    } catch (err) {
+        dispatch(setError({ error: err }))
+        setTimeout(() => {
+            dispatch(resetError())
+        }, 3000)
     }
 }
 
 export const logOut = () => async (dispatch) => {
-    const res = await authAPI.logOut()
-    if (res.data.resultCode === 0) {
-        dispatch(setAuthDataAC({ id: null, login: null, email: null, captcha: null, isAuth: false }))
+    try {
+        const res = await authAPI.logOut()
+        if (res.data.resultCode === 0) {
+            dispatch(setAuthDataAC({ id: null, login: null, email: null, captcha: null, isAuth: false }))
+        }
+    } catch (err) {
+        dispatch(setError({ error: err }))
+        setTimeout(() => {
+            dispatch(resetError())
+        }, 3000)
     }
 }

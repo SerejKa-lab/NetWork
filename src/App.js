@@ -10,8 +10,9 @@ import Settings from './Components/Settings/Settings';
 import News from './Components/News/News';
 import HeaderContainer from './Components/Header/HeaderContainer';
 import Login from './Components/Login/Login';
-import Error404 from './Components/Error404/Error404';
+import Error404 from './Components/Errors/Error404/Error404';
 import Preloader from './Components/Common/Preloader/Preloader';
+import CommonError from './Components/Errors/CommonError/CommonError';
 
 const DialogsContainer = React.lazy(() => import('./Components/Dialogs/DialogsContainer'));
 const UsersContainer = React.lazy(() => import('./Components/Users/UsersContainer'));
@@ -40,42 +41,46 @@ class App extends React.Component {
         toTop: false
     }
 
-    scrollHandler=(e) => {
-        if (window.pageYOffset > 300 && !this.state.toTop ) {
-            this.setState({toTop: true})
+    scrollHandler = (e) => {
+        if (window.pageYOffset > 300 && !this.state.toTop) {
+            this.setState({ toTop: true })
         }
-        if (window.pageYOffset <= 300 && this.state.toTop ) {
-            this.setState({toTop: false})
+        if (window.pageYOffset <= 300 && this.state.toTop) {
+            this.setState({ toTop: false })
         }
     }
 
     srollToTop = () => {
-        const step = window.pageYOffset/2;
+        const step = window.pageYOffset / 2;
         let timerId = setInterval(() => {
             window.scrollBy(0, -step)
-            if (window.pageYOffset-step <= 0) {
+            if (window.pageYOffset - step <= 0) {
                 clearInterval(timerId)
                 window.scrollTo(0, 0)
             }
         }, 100)
-        
+
     }
 
     render() {
+        const {error} = this.props;
+        const errorMessage = error ? error.message : null
+
         if (!this.props.initialized) return <Preloader />
         const buttonStyle = this.state.toTop ? styles.visible : styles.hidden
         return (
             <div className={styles.app_wrapper}>
                 <HeaderContainer />
+                {error && <CommonError errorMessage={errorMessage}/>}
                 <section className={styles.app}>
                     <Navbar />
                     <section className={styles.mainPage_content}>
                         <div className={`${styles.toTop} ${buttonStyle}`} onClick={this.srollToTop}>
-                            <img src={toTopImg} alt='arrow'/>
+                            <img src={toTopImg} alt='arrow' />
                             <span>Top</span>
                         </div>
                         <Switch>
-                            <Redirect exact from='/' to='/profile'/>
+                            <Redirect exact from='/' to='/profile' />
                             {/* <Route path='/' exact><Redirect to='/profile'/></Route> */}
                             <Route path='/login' component={Login} />
                             <Route path='/profile/:userId?' exact render={() => SuspenseComponent(ProfileContainer)} />
@@ -84,7 +89,7 @@ class App extends React.Component {
                             <Route path='/music' exact component={Music} />
                             <Route path='/settings' exact component={Settings} />
                             <Route path='/news' exact component={News} />
-                            <Route component={Error404}/>
+                            <Route component={Error404} />
                         </Switch>
                     </section>
                 </section>
@@ -95,7 +100,8 @@ class App extends React.Component {
 
 
 const mapStateToProps = (state) => ({
-    initialized: state.app.initialized
+    initialized: state.app.initialized,
+    error: state.errors.error
 })
 
 export default connect(mapStateToProps, { initializeApp })(App);

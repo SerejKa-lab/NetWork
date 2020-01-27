@@ -1,4 +1,5 @@
 import { setAuthData } from "./authReducer";
+import {setError, resetError} from './errorsReducer'
 
 
 
@@ -29,8 +30,16 @@ const INITIALIZATION_SUCCESS = 'network/app/INITIALIZATION_SUCCESS';
 const initializationSuccess = () => ({ type: INITIALIZATION_SUCCESS });
 
 export const initializeApp = () => (dispatch) => {
-    const promise = dispatch(setAuthData())
-    Promise.all([promise])
-        .then( () => {
-            dispatch(initializationSuccess())} )
+    try {
+        const promise = dispatch(setAuthData())
+        Promise.all([promise])
+            .then(() => {
+                dispatch(initializationSuccess())
+            })
+    } catch (err) {
+        dispatch(setError({ error: err }))
+        setTimeout(() => {
+            dispatch(resetError())
+        }, 3000)
+    }
 }

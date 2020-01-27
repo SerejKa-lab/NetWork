@@ -1,6 +1,7 @@
 import { profileAPI } from '../Api/api';
 import avatar from '../Assets/Images/cvetok-lepestki.jpg'
 import { stopSubmit } from 'redux-form';
+import {setError, resetError} from './errorsReducer'
 
 const initialState = {
     postsData: [
@@ -26,28 +27,28 @@ const initialState = {
         }
     ],
     userProfile: { photos: {}, status: '' },
-    profileProgress: {profileIsLoading: false, statusIsLoading: false, profileIsEditing: false } 
+    profileProgress: { profileIsLoading: false, statusIsLoading: false, profileIsEditing: false }
 }
 
 const profileReducer = (state = initialState, action) => {
-    switch (action.type) { 
+    switch (action.type) {
 
         case SET_USER_PROFILE:
             return {
-                ...state, 
-                userProfile: { ...state.userProfile, ...action.userProfile}
+                ...state,
+                userProfile: { ...state.userProfile, ...action.userProfile }
             }
 
         case PROFILE_IS_EDITING:
-            return{
+            return {
                 ...state,
                 profileProgress: { ...state.profileProgress, profileIsEditing: action.isEditing }
-            }        
+            }
 
         case SET_USER_STATUS:
             return {
                 ...state,
-                userProfile: {...state.userProfile, status: action.status}
+                userProfile: { ...state.userProfile, status: action.status }
             }
 
         case TOGGLE_STATUS_LOADING:
@@ -76,7 +77,7 @@ const profileReducer = (state = initialState, action) => {
             }
 
         default: return state;
-}
+    }
 }
 
 export default profileReducer;
@@ -87,60 +88,95 @@ const toggleProfileLoading = (loading) => ({ type: TOGGLE_PROFILE_LOADING, loadi
 const SET_USER_PROFILE = 'network/profile/SET_USER_PROFILE';
 const setUserProfileAC = (userProfile) => ({ type: SET_USER_PROFILE, userProfile });
 
-export const setUserProfile = (userId) => async(dispatch) => {
-    dispatch(toggleProfileLoading(true))
-    const response = await profileAPI.getUserProfile(userId)
-    dispatch(setUserProfileAC(response.data))
-    dispatch(toggleProfileLoading(false))
+export const setUserProfile = (userId) => async (dispatch) => {
+    try {
+        dispatch(toggleProfileLoading(true))
+        const response = await profileAPI.getUserProfile(userId)
+        dispatch(setUserProfileAC(response.data))
+        dispatch(toggleProfileLoading(false))
+    } catch (err) {
+        dispatch(setError({ error: err }))
+        setTimeout(() => {
+            dispatch(resetError())
+        }, 3000)
+    }
 }
 
 const PROFILE_IS_EDITING = 'network/profile/PROFILE_IS_EDITING'
-const toggleProfileEditing = (isEditing) => ({type: PROFILE_IS_EDITING, isEditing})
+const toggleProfileEditing = (isEditing) => ({ type: PROFILE_IS_EDITING, isEditing })
 
-export const editMyProfile = (userProfile) => async(dispatch, getState) => {
-    const userId = getState().auth.id
-    dispatch(toggleProfileEditing(true))
-    const response = await profileAPI.editMyProfile(userProfile)
-    if (response.data.resultCode === 0) {
-        const response = await profileAPI.getUserProfile(userId)
-        dispatch(setUserProfileAC(response.data))
-        dispatch(toggleProfileEditing(false))
-    } else {
-        const errorMessage = response.data.messages.length > 0 
-            ? response.data.messages[0] : 'Error is undefined'
-        dispatch(stopSubmit('editProfile', { _error: errorMessage }))
-        return Promise.reject('error')
+export const editMyProfile = (userProfile) => async (dispatch, getState) => {
+    try {
+        const userId = getState().auth.id
+        dispatch(toggleProfileEditing(true))
+        const response = await profileAPI.editMyProfile(userProfile)
+        if (response.data.resultCode === 0) {
+            const response = await profileAPI.getUserProfile(userId)
+            dispatch(setUserProfileAC(response.data))
+            dispatch(toggleProfileEditing(false))
+        } else {
+            const errorMessage = response.data.messages.length > 0
+                ? response.data.messages[0] : 'Error is undefined'
+            dispatch(stopSubmit('editProfile', { _error: errorMessage }))
+            return Promise.reject('error')
+        }
+    } catch (err) {
+        dispatch(setError({ error: err }))
+        setTimeout(() => {
+            dispatch(resetError())
+        }, 3000)
     }
 }
 
 export const setProfilePhoto = (imageFile) => async (dispatch, getState) => {
-    const userId = getState().auth.id
-    dispatch(toggleProfileEditing(true))
-    const response = await profileAPI.setProfilePhoto(imageFile)
-    if (response.data.resultCode === 0) {
-        const response = await profileAPI.getUserProfile(userId)
-        dispatch(setUserProfileAC(response.data))
-        dispatch(toggleProfileEditing(false))
+    try {
+        const userId = getState().auth.id
+        dispatch(toggleProfileEditing(true))
+        const response = await profileAPI.setProfilePhoto(imageFile)
+        if (response.data.resultCode === 0) {
+            const response = await profileAPI.getUserProfile(userId)
+            dispatch(setUserProfileAC(response.data))
+            dispatch(toggleProfileEditing(false))
+        }
+    } catch (err) {
+        dispatch(setError({ error: err }))
+        setTimeout(() => {
+            dispatch(resetError())
+        }, 3000)
     }
 }
 
 const SET_USER_STATUS = 'network/profile/SET_USER_STATUS';
 const setUserStatusAC = (status) => ({ type: SET_USER_STATUS, status });
 
-export const setUserStatus = (userId) => async(dispatch) => {
-    const response = await profileAPI.getUserStatus(userId)
-    dispatch(setUserStatusAC(response.data))
+export const setUserStatus = (userId) => async (dispatch) => {
+    try {
+        const response = await profileAPI.getUserStatus(userId)
+        dispatch(setUserStatusAC(response.data))
+    } catch (err) {
+        dispatch(setError({ error: err }))
+        setTimeout(() => {
+            dispatch(resetError())
+        }, 3000)
+    }
 }
 
 const TOGGLE_STATUS_LOADING = 'network/profile/TOGGLE_STATUS_LOADING';
 const toggleStatusLoading = (loading) => ({ type: TOGGLE_STATUS_LOADING, loading })
 
-export const changeMyStatus = (status) => async(dispatch) => {
-    dispatch(toggleStatusLoading(true))
-    const response = await profileAPI.setStatus(status)
-    if (response.data.resultCode === 0) {
-        dispatch(setUserStatusAC(status))
-        dispatch(toggleStatusLoading(false))
+export const changeMyStatus = (status) => async (dispatch) => {
+    try {
+        dispatch(toggleStatusLoading(true))
+        const response = await profileAPI.setStatus(status)
+        if (response.data.resultCode === 0) {
+            dispatch(setUserStatusAC(status))
+            dispatch(toggleStatusLoading(false))
+        }
+    } catch (err) {
+        dispatch(setError({ error: err }))
+        setTimeout(() => {
+            dispatch(resetError())
+        }, 3000)
     }
 }
 

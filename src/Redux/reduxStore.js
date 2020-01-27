@@ -8,6 +8,7 @@ import sideBarReducer from './sideBarReducer';
 import usersReducer from './usersReducer';
 import authReducer from './authReducer';
 import appReducer from './appReducer';
+import errorReducer from "./errorsReducer";
 
 const storeReducer = combineReducers({
     profilePage: profileReducer,
@@ -16,7 +17,8 @@ const storeReducer = combineReducers({
     usersPage: usersReducer,
     app: appReducer,
     auth: authReducer,
-    form: formReducer
+    form: formReducer,
+    errors: errorReducer
 })
 
 const store = createStore(storeReducer, composeWithDevTools(applyMiddleware(thunkMiddleware)) );
