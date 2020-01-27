@@ -1,7 +1,7 @@
 import { profileAPI } from '../Api/api';
 import avatar from '../Assets/Images/cvetok-lepestki.jpg'
 import { stopSubmit } from 'redux-form';
-import {setError, resetError} from './errorsReducer'
+import {setError} from './errorsReducer'
 
 const initialState = {
     postsData: [
@@ -96,9 +96,6 @@ export const setUserProfile = (userId) => async (dispatch) => {
         dispatch(toggleProfileLoading(false))
     } catch (err) {
         dispatch(setError({ error: err }))
-        setTimeout(() => {
-            dispatch(resetError())
-        }, 3000)
     }
 }
 
@@ -122,9 +119,6 @@ export const editMyProfile = (userProfile) => async (dispatch, getState) => {
         }
     } catch (err) {
         dispatch(setError({ error: err }))
-        setTimeout(() => {
-            dispatch(resetError())
-        }, 3000)
     }
 }
 
@@ -140,9 +134,6 @@ export const setProfilePhoto = (imageFile) => async (dispatch, getState) => {
         }
     } catch (err) {
         dispatch(setError({ error: err }))
-        setTimeout(() => {
-            dispatch(resetError())
-        }, 3000)
     }
 }
 
@@ -155,9 +146,6 @@ export const setUserStatus = (userId) => async (dispatch) => {
         dispatch(setUserStatusAC(response.data))
     } catch (err) {
         dispatch(setError({ error: err }))
-        setTimeout(() => {
-            dispatch(resetError())
-        }, 3000)
     }
 }
 
@@ -174,9 +162,6 @@ export const changeMyStatus = (status) => async (dispatch) => {
         }
     } catch (err) {
         dispatch(setError({ error: err }))
-        setTimeout(() => {
-            dispatch(resetError())
-        }, 3000)
     }
 }
 

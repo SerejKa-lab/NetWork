@@ -1,5 +1,5 @@
 import { usersAPI } from '../Api/api'
-import {setError, resetError} from './errorsReducer'
+import {setError} from './errorsReducer'
 
 const initialState = {
     users: [],
@@ -74,9 +74,6 @@ export const setFollow = (userId, follow) => async (dispatch) => {
         }
     } catch (err) {
         dispatch(setError({ error: err }))
-        setTimeout(() => {
-            dispatch(resetError())
-        }, 3000)
     }
 }
 
@@ -96,10 +93,8 @@ export const setUsers = (page, inList) => async (dispatch, getState) => {
         dispatch(setUsersAC(items, totalCount, page, inList));
         dispatch(toggleIsLoading(false))
     } catch (err) {
+        dispatch(toggleIsLoading(false))
         dispatch(setError({ error: err }))
-        setTimeout(() => {
-            dispatch(resetError())
-        }, 3000)
     }
 }
 

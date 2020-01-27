@@ -1,6 +1,6 @@
 import { authAPI } from '../Api/api'
 import { stopSubmit } from 'redux-form';
-import {setError, resetError} from './errorsReducer'
+import {setError} from './errorsReducer'
 
 const initialState = {
     id: null,
@@ -41,9 +41,6 @@ export const setAuthData = () => async (dispatch) => {
         }
     } catch (err) {
         dispatch(setError({error: err}))
-        setTimeout(() => {
-            dispatch(resetError())
-        }, 3000)
     }
 
 }
@@ -70,9 +67,6 @@ export const logIn = (values) => async (dispatch, getState) => {
         }
     } catch (err) {
         dispatch(setError({ error: err }))
-        setTimeout(() => {
-            dispatch(resetError())
-        }, 3000)
     }
 }
 
@@ -84,8 +78,5 @@ export const logOut = () => async (dispatch) => {
         }
     } catch (err) {
         dispatch(setError({ error: err }))
-        setTimeout(() => {
-            dispatch(resetError())
-        }, 3000)
     }
 }

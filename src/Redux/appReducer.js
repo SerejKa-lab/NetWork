@@ -1,5 +1,5 @@
 import { setAuthData } from "./authReducer";
-import {setError, resetError} from './errorsReducer'
+import {setError} from './errorsReducer'
 
 
 
@@ -38,8 +38,5 @@ export const initializeApp = () => (dispatch) => {
             })
     } catch (err) {
         dispatch(setError({ error: err }))
-        setTimeout(() => {
-            dispatch(resetError())
-        }, 3000)
     }
 }

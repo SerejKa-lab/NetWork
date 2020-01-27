@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { initializeApp } from './Redux/appReducer';
+import { resetError } from './Redux/errorsReducer';
 import styles from './App.module.css';
 import toTopImg from './Assets/Images/top.png';
 import Navbar from './Components/Navbar/Navbar';
@@ -63,7 +64,7 @@ class App extends React.Component {
     }
 
     render() {
-        const {error} = this.props;
+        const { error, resetError } = this.props;
         const errorMessage = error ? error.message : null
 
         if (!this.props.initialized) return <Preloader />
@@ -71,7 +72,7 @@ class App extends React.Component {
         return (
             <div className={styles.app_wrapper}>
                 <HeaderContainer />
-                {error && <CommonError errorMessage={errorMessage}/>}
+                <CommonError errorMessage={errorMessage} hint='Click to hide' onClick={resetError} />
                 <section className={styles.app}>
                     <Navbar />
                     <section className={styles.mainPage_content}>
@@ -104,5 +105,5 @@ const mapStateToProps = (state) => ({
     error: state.errors.error
 })
 
-export default connect(mapStateToProps, { initializeApp })(App);
+export default connect(mapStateToProps, { initializeApp, resetError })(App);
 

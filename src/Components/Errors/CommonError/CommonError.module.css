@@ -1,15 +1,26 @@
 .commonError {
+    position: absolute;
+    right: 10px;
+    top: 55px;
+    z-index: 10;
     display: flex;
     align-items: center;
     background-color: #f0f0f0;
     width: fit-content;
-    position: absolute;
-    right: 10px;
     padding: 5px;
     border: 1px solid gray;
     border-radius: 10px;
-    transition-property: display;
-    transition-duration: 5s;
+    cursor: pointer;
+    opacity: 1;
+}
+
+.hideError {
+    -o-opacity: 0;
+    -ms-opacity: 0;
+    -moz-opacity: 0;
+    -webkit-opacity: 0;
+    opacity: 0;
+    transition: all 1s;
 }
 
 .commonError img {
@@ -29,4 +40,14 @@
 
 .errorMessage {
     color: mediumvioletred
+}
+
+.hint {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    background-color: #f0f0f0;
+    padding: 3px;
+    border: 1px solid gray;
+    border-radius: 5px;
 }
