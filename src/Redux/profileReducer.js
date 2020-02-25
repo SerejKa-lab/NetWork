@@ -114,7 +114,8 @@ export const editMyProfile = (userProfile) => async (dispatch, getState) => {
         } else {
             const errorMessage = response.data.messages.length > 0
                 ? response.data.messages[0] : 'Error is undefined'
-            dispatch(stopSubmit('editProfile', { _error: errorMessage }))
+            dispatch(stopSubmit("editProfile", { _error : errorMessage}  ))
+            dispatch(toggleProfileEditing(false))
             return Promise.reject('error')
         }
     } catch (err) {

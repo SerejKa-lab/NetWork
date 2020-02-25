@@ -1,8 +1,8 @@
 
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { required, isEmail } from '../../Utils/Validators';
 import styles from './Login.module.css';
-import {required} from '../../Utils/Validators';
 import { Input } from '../Common/FormControle/FormControle'
 
 
@@ -16,7 +16,7 @@ let LoginForm = ({ handleSubmit, error, captchaCheck, captchaUrl }) => {
                     <Field
                         name='email' type='email'
                         component={Input} placeholder='email'
-                        validate={[required]}
+                        validate={[required, isEmail]}
                     />
                 </div>
                 <div className={styles.authField}>

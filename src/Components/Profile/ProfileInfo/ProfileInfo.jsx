@@ -62,6 +62,7 @@ const ProfileInfo = (props) => {
                        <EditProfileForm
                             profileContacts={userProfile.contacts} 
                             initialValues={userProfile} 
+                            profileIsEditing={profileIsEditing}
                             onSubmit={submit} />
                     }
                 </section>

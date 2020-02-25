@@ -7,6 +7,7 @@
     border: 1px solid gray;
     border-radius: 10px;
     width: 40%;
+    position: relative;
 }
 
 .editProfileForm label {
@@ -40,4 +41,3 @@
     width: 250px;
     text-align: center;
 }
-

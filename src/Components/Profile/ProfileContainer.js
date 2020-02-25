@@ -29,14 +29,15 @@ class ProfileContainer extends React.Component {
     
     render() {
         const {userProfile, myId, profileProgress, 
-                setProfilePhoto, editMyProfile} = this.props
+                setProfilePhoto, editMyProfile, profileIsEditing} = this.props
         return( 
             <Profile 
                 myId={myId} 
                 userProfile={userProfile} 
                 profileProgress={profileProgress} 
                 setProfilePhoto={setProfilePhoto}
-                editMyProfile={editMyProfile}/>
+                editMyProfile={editMyProfile}
+                profileIsEditing={profileIsEditing}/>
         )
     }
 }
@@ -45,6 +46,7 @@ const mapStateToProps = (state) => {
     return {
         userProfile: state.profilePage.userProfile,
         profileProgress: state.profilePage.profileProgress,
+        profileIsEditing: state.profilePage.profileIsEditing,
         myId: state.auth.id
     }
 }
