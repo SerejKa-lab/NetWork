@@ -43,5 +43,6 @@ Implemented functionality:
         - add next users bundle to page
     -> follow/unfollow user
     -> switch to user's profile
+    -> scroll to top button
         
         

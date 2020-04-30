@@ -52,14 +52,16 @@ class App extends React.Component {
     }
 
     srollToTop = () => {
-        const step = window.pageYOffset / 2;
+
+        const step = window.pageYOffset / 50;
+        
         let timerId = setInterval(() => {
             window.scrollBy(0, -step)
             if (window.pageYOffset - step <= 0) {
                 clearInterval(timerId)
                 window.scrollTo(0, 0)
             }
-        }, 100)
+        }, 2)
 
     }
 
