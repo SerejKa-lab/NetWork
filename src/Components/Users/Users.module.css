@@ -6,9 +6,9 @@
 }
 
 .preloader {
-    position: absolute;
-    right: 0;
-    top: 0;
+    position: fixed;
+    right: 13%;
+    top: 9%;
     height: 45px;
 }
 
@@ -27,13 +27,12 @@
     color: rgba(251, 255, 20, 0.952);
 }
 
-.showMoreButton {
-    font-size: 21px;
-    border-radius: 8px;
-    padding: 5px 10px;
-    margin-bottom: 5px;
-    cursor: pointer;
+.lastPage {
+    font-size: 1.1em;
+    font-style: italic;
+    color: maroon;
+    background-color: #f0f0f0;
+    padding: 5px;
+    border: 1px solid gray;
+    border-radius: 10px;
 }
-
-
-

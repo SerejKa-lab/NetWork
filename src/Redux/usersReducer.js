@@ -14,7 +14,16 @@ const initialState = {
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USERS:
-            const users = action.inList ? [...action.users, ...state.users] : [...action.users];
+            
+            let users = []
+            if (action.listOrder !== null) {
+                if (action.listOrder === true) {
+                    users = [...state.users, ...action.users]   // direct order
+                } else if (action.listOrder === false) {
+                    users = [...action.users, ...state.users]    // reverse order
+                } else users = [...action.users]
+            } else users = [...action.users]
+
             return {
                 ...state,
                 users: [...users],
@@ -81,16 +90,16 @@ const TOGGLE_USER_LOADING = 'network/users/TOGGLE_USER_LOADING';
 const toggleIsLoading = (isLoading) => ({ type: TOGGLE_USER_LOADING, isLoading });
 
 const SET_USERS = 'network/users/SET_USERS';
-const setUsersAC = (users, totalCount, currentPage = 1, inList) =>
-    ({ type: SET_USERS, users, totalCount, currentPage, inList });
+const setUsersAC = (users, totalCount, currentPage = 1, listOrder) =>
+    ({ type: SET_USERS, users, totalCount, currentPage, listOrder });
 
-export const setUsers = (page, inList) => async (dispatch, getState) => {
+export const setUsers = (page, listOrder = null) => async (dispatch, getState) => {
     try {
         const { pageSize } = getState().usersPage;
         dispatch(toggleIsLoading(true));
         const response = await usersAPI.setUsers(pageSize, page)
         const { items, totalCount } = response.data;
-        dispatch(setUsersAC(items, totalCount, page, inList));
+        dispatch(setUsersAC(items, totalCount, page, listOrder));
         dispatch(toggleIsLoading(false))
     } catch (err) {
         dispatch(toggleIsLoading(false))

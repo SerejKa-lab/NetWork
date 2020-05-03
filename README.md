@@ -41,6 +41,7 @@ Implemented functionality:
         - current page detecting
         - switch to first/last/previous/next/specified page
         - add next users bundle to page
+    -> elsess users scroll (adding users on reaching the end of the users page)
     -> follow/unfollow user
     -> switch to user's profile
     -> scroll to top button

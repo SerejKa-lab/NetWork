@@ -15,19 +15,11 @@ const Users = (props) => {
         }
     }
 
-    const showMoreUsers = () => {
-        const { currentPage, pagesCount } = props;
-        if (currentPage < pagesCount) {
-            setPageOnEvent(currentPage + 1, true);
-        }
-    }
-
     const showPagginator = () => setPagginator(true)
     const hidePagginator = () => setPagginator(false)
 
 
     const { users, isLoading, currentPage, pagesCount } = props;
-    const disabled = (currentPage === pagesCount || isLoading) ? true : false
 
     const usersList = users.map((user) =>
         <UserContainer user={user} key={user.id} />);
@@ -37,8 +29,6 @@ const Users = (props) => {
             {isLoading && <Preloader className={styles.preloader} />}
             {pagginator
                 ? <div className={styles.navigationBlock}>
-                    <button onClick={showMoreUsers} disabled={disabled} 
-                        className={styles.showMoreButton}>Show more</button>
                     <Pagginator
                         startPage={1} finishPage={pagesCount}
                         currentPage={currentPage} dispatchNewPage={setPageOnEvent} />
@@ -46,13 +36,13 @@ const Users = (props) => {
 
                 </div>
                 : <div className={styles.navigationBlock}>
-                    <button onClick={showMoreUsers} disabled={disabled} 
-                        className={styles.showMoreButton}>Show more</button>
                     <span className={styles.showHideLink} onClick={showPagginator}>Pagginator</span>
                 </div>
             }
 
             {usersList}
+            {currentPage === pagesCount
+                && <div className={styles.lastPage}>You have reached the last page...</div>}
         </div>
     )
 }
