@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from './Pagginator.module.css'
+import styles from './Paginator.module.css'
 
 
 
-class Pagginator extends React.Component {
+class Paginator extends React.Component {
 
     state = {
         inputError: false,
@@ -57,7 +57,7 @@ class Pagginator extends React.Component {
         const { currentPage, startPage, finishPage, dispatchNewPage } = this.props
 
         return (
-            <section className={styles.pagginatorWrapper}>
+            <section className={styles.paginatorWrapper}>
                 <nav className={styles.paginator}>
                     {currentPage !== startPage
                         && <span className={styles.button}
@@ -88,4 +88,4 @@ class Pagginator extends React.Component {
     }
 }
 
-export default Pagginator;
+export default Paginator;
